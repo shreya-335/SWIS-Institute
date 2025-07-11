@@ -1,1 +1,1 @@
-# SWIS-Institute
+# SWIS-foundation
