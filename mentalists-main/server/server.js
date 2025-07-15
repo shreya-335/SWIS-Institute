@@ -61,6 +61,11 @@ app.use(express.urlencoded({ extended: true }))
 // Routes
 app.use("/api", contactRoutes)
 
+// Health check route for Render
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
+
 // Health check route
 app.get("/api/health", (req, res) => {
   console.log("✅ Health check route hit!")
