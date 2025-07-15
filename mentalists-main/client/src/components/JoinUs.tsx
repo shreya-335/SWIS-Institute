@@ -50,9 +50,7 @@ const JoinUs: React.FC = () => {
     { value: "general", label: "General Volunteer" },
   ]
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -67,10 +65,12 @@ const JoinUs: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
+      // Check file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
         setStatus((prev) => ({ ...prev, error: "Resume file size should be less than 5MB" }))
         return
       }
+      // Check file type
       const allowedTypes = [
         "application/pdf",
         "application/msword",
@@ -107,7 +107,9 @@ const JoinUs: React.FC = () => {
       }
 
       const response = await axios.post("http://localhost:5000/api/volunteer-simple", submitData, {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         timeout: 10000,
       })
 
@@ -118,6 +120,8 @@ const JoinUs: React.FC = () => {
           error: null,
           success: response.data.message || "Thank you for your application! We will get back to you soon.",
         })
+
+        // Reset form
         setFormData({
           domain: "",
           firstName: "",
@@ -148,7 +152,7 @@ const JoinUs: React.FC = () => {
       setStatus({
         submitting: false,
         submitted: false,
-        error: errorMessage,
+        error: null,
         success: null,
       })
     }
@@ -156,7 +160,7 @@ const JoinUs: React.FC = () => {
 
   if (status.submitted) {
     return (
-      <div className="min-h-screen bg-gray-50 pt-28 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
           <div className="bg-white rounded-lg shadow-sm p-8">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -179,7 +183,7 @@ const JoinUs: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-28 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 pt-36">
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-12">

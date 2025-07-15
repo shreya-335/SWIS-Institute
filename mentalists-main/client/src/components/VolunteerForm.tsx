@@ -56,9 +56,6 @@ const VolunteerForm: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     console.log("🔍 FILE CHANGE EVENT:")
-    console.log("  - Event target:", e.target)
-    console.log("  - Files array:", e.target.files)
-    console.log("  - Files length:", e.target.files?.length)
     console.log("  - Selected file:", file)
 
     if (file) {
@@ -89,6 +86,7 @@ const VolunteerForm: React.FC = () => {
       setStatus((prev) => ({ ...prev, error: null }))
     } else {
       console.log("❌ NO FILE SELECTED")
+      console.log(e)
       setSelectedFile(null)
     }
   }
@@ -97,70 +95,82 @@ const VolunteerForm: React.FC = () => {
     e.preventDefault()
     console.log("🚀 FORM SUBMISSION STARTED")
     console.log("📝 Form data:", formData)
-    console.log("📄 Selected file before submission:", selectedFile)
-
-    if (selectedFile) {
-      console.log("📄 FILE DETAILS BEFORE SUBMISSION:")
-      console.log("  - Name:", selectedFile.name)
-      console.log("  - Size:", selectedFile.size)
-      console.log("  - Type:", selectedFile.type)
-      console.log("  - Constructor:", selectedFile.constructor.name)
-    }
+    console.log("📄 Selected file:", selectedFile)
 
     setStatus({ submitting: true, submitted: false, error: null, success: null })
 
     try {
-      // Create FormData object for multipart/form-data
+      // 🔧 FIXED: Create FormData object properly
       console.log("📦 CREATING FORMDATA OBJECT...")
       const submitData = new FormData()
 
       // Add all form fields
       console.log("📝 ADDING FORM FIELDS:")
       Object.entries(formData).forEach(([key, value]) => {
-        submitData.append(key, value)
-        console.log(`  ✅ ${key}: ${value}`)
+        if (value && typeof value === "string" && value.trim() !== "") {
+          submitData.append(key, value.trim())
+          console.log(`  ✅ ${key}: ${value}`)
+        }
       })
 
-      // Add file if selected - CRITICAL SECTION
-      if (selectedFile) {
+      // Add file if selected
+      if (selectedFile && selectedFile instanceof File) {
         console.log("📎 ADDING FILE TO FORMDATA:")
         console.log("  - File object:", selectedFile)
         console.log("  - File name:", selectedFile.name)
         console.log("  - File size:", selectedFile.size)
         console.log("  - File type:", selectedFile.type)
 
-        // Add file with explicit field name
         submitData.append("resume", selectedFile, selectedFile.name)
         console.log("  ✅ FILE ADDED TO FORMDATA WITH KEY 'resume'")
 
-        // Verify file was added (this won't work in all browsers but let's try)
-        console.log("🔍 VERIFYING FORMDATA CONTENTS:")
-        try {
-          // Try to access the file from FormData
-          const fileFromFormData = submitData.get("resume")
-          console.log("  - File retrieved from FormData:", fileFromFormData)
-          console.log("  - Is File instance?", fileFromFormData instanceof File)
-          if (fileFromFormData instanceof File) {
-            console.log("  - Retrieved file name:", fileFromFormData.name)
-            console.log("  - Retrieved file size:", fileFromFormData.size)
-          }
-        } catch (error) {
-          console.log("  - Cannot verify FormData contents in this browser")
-        }
+        // Verify the file was added
+        const checkFile = submitData.get("resume")
+        console.log("  - Verification - file in FormData:", checkFile)
+        console.log("  - Verification - is File?", checkFile instanceof File)
       } else {
-        console.log("⚠️ NO FILE TO ADD - selectedFile is null/undefined")
+        console.log("⚠️ NO FILE TO ADD OR INVALID FILE")
+      }
+
+      // 🔧 FIXED: Log FormData contents properly
+      console.log("🔍 FINAL FORMDATA CONTENTS:")
+      console.log("  - Has domain?", submitData.has("domain"))
+      console.log("  - Has firstName?", submitData.has("firstName"))
+      console.log("  - Has lastName?", submitData.has("lastName"))
+      console.log("  - Has contact?", submitData.has("contact"))
+      console.log("  - Has dateOfBirth?", submitData.has("dateOfBirth"))
+      console.log("  - Has email?", submitData.has("email"))
+      console.log("  - Has whyJoinUs?", submitData.has("whyJoinUs"))
+      console.log("  - Has resume?", submitData.has("resume"))
+
+      // Get and verify each field
+      console.log("📋 FORMDATA VALUES:")
+      console.log("  - domain:", submitData.get("domain"))
+      console.log("  - firstName:", submitData.get("firstName"))
+      console.log("  - lastName:", submitData.get("lastName"))
+      console.log("  - contact:", submitData.get("contact"))
+      console.log("  - dateOfBirth:", submitData.get("dateOfBirth"))
+      console.log("  - email:", submitData.get("email"))
+      console.log("  - whyJoinUs:", submitData.get("whyJoinUs"))
+
+      const resumeFile = submitData.get("resume")
+      if (resumeFile instanceof File) {
+        console.log("  - resume: FILE -", resumeFile.name, `(${resumeFile.size} bytes)`)
+      } else {
+        console.log("  - resume: NOT A FILE OR MISSING")
       }
 
       console.log("📤 SENDING REQUEST TO SERVER...")
       console.log("  - URL: http://localhost:5000/api/volunteer-simple")
       console.log("  - Method: POST")
-      console.log("  - Body: FormData object")
-      console.log("  - Content-Type: (auto-set by browser)")
+      console.log("  - Body type:", submitData.constructor.name)
+      console.log("  - Content-Type: (will be auto-set by browser for multipart/form-data)")
 
+      // 🔧 FIXED: Send FormData without setting Content-Type header
       const response = await fetch("http://localhost:5000/api/volunteer-simple", {
         method: "POST",
         body: submitData,
-        // DO NOT set Content-Type header - let browser set it with boundary
+        // CRITICAL: Do NOT set Content-Type header - let browser set it automatically
       })
 
       console.log("📥 RESPONSE RECEIVED:")
@@ -221,19 +231,31 @@ const VolunteerForm: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white p-8 rounded-lg shadow-sm">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Join SWIS Foundation</h1>
-            <p className="text-gray-600">Become a volunteer and make a difference in your community</p>
+    <div style={{ minHeight: "100vh", backgroundColor: "#f9fafb", padding: "48px 16px" }}>
+      <div style={{ maxWidth: "1024px", margin: "0 auto" }}>
+        <div
+          style={{
+            backgroundColor: "white",
+            padding: "32px",
+            borderRadius: "8px",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+          }}
+        >
+          <div style={{ marginBottom: "32px" }}>
+            <h1 style={{ fontSize: "30px", fontWeight: "bold", color: "#111827", marginBottom: "8px" }}>
+              Join SWIS Foundation
+            </h1>
+            <p style={{ color: "#6b7280" }}>Become a volunteer and make a difference in your community</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {/* Domain Selection */}
             <div>
-              <label htmlFor="domain" className="block text-sm font-medium text-gray-700 mb-2">
-                Volunteer Domain <span className="text-red-500">*</span>
+              <label
+                htmlFor="domain"
+                style={{ display: "block", fontSize: "14px", fontWeight: "500", color: "#374151", marginBottom: "8px" }}
+              >
+                Volunteer Domain <span style={{ color: "#ef4444" }}>*</span>
               </label>
               <select
                 id="domain"
@@ -241,7 +263,15 @@ const VolunteerForm: React.FC = () => {
                 value={formData.domain}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                style={{
+                  width: "100%",
+                  padding: "12px 16px",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "6px",
+                  fontSize: "16px",
+                  outline: "none",
+                  transition: "border-color 0.2s",
+                }}
               >
                 <option value="">Select a domain</option>
                 <option value="ccae">CCAE - Child Care and Education</option>
@@ -252,10 +282,19 @@ const VolunteerForm: React.FC = () => {
             </div>
 
             {/* Name Fields */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                  First Name <span className="text-red-500">*</span>
+                <label
+                  htmlFor="firstName"
+                  style={{
+                    display: "block",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "#374151",
+                    marginBottom: "8px",
+                  }}
+                >
+                  First Name <span style={{ color: "#ef4444" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -264,13 +303,30 @@ const VolunteerForm: React.FC = () => {
                   value={formData.firstName}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   placeholder="First Name"
+                  style={{
+                    width: "100%",
+                    padding: "12px 16px",
+                    border: "1px solid #d1d5db",
+                    borderRadius: "6px",
+                    fontSize: "16px",
+                    outline: "none",
+                    transition: "border-color 0.2s",
+                  }}
                 />
               </div>
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                  Last Name <span className="text-red-500">*</span>
+                <label
+                  htmlFor="lastName"
+                  style={{
+                    display: "block",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "#374151",
+                    marginBottom: "8px",
+                  }}
+                >
+                  Last Name <span style={{ color: "#ef4444" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -279,17 +335,34 @@ const VolunteerForm: React.FC = () => {
                   value={formData.lastName}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   placeholder="Last Name"
+                  style={{
+                    width: "100%",
+                    padding: "12px 16px",
+                    border: "1px solid #d1d5db",
+                    borderRadius: "6px",
+                    fontSize: "16px",
+                    outline: "none",
+                    transition: "border-color 0.2s",
+                  }}
                 />
               </div>
             </div>
 
             {/* Contact and Date of Birth */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
               <div>
-                <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-2">
-                  Contact Number <span className="text-red-500">*</span>
+                <label
+                  htmlFor="contact"
+                  style={{
+                    display: "block",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "#374151",
+                    marginBottom: "8px",
+                  }}
+                >
+                  Contact Number <span style={{ color: "#ef4444" }}>*</span>
                 </label>
                 <input
                   type="tel"
@@ -298,13 +371,30 @@ const VolunteerForm: React.FC = () => {
                   value={formData.contact}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   placeholder="Contact Number"
+                  style={{
+                    width: "100%",
+                    padding: "12px 16px",
+                    border: "1px solid #d1d5db",
+                    borderRadius: "6px",
+                    fontSize: "16px",
+                    outline: "none",
+                    transition: "border-color 0.2s",
+                  }}
                 />
               </div>
               <div>
-                <label htmlFor="dateOfBirth" className="block text-sm font-medium text-gray-700 mb-2">
-                  Date of Birth <span className="text-red-500">*</span>
+                <label
+                  htmlFor="dateOfBirth"
+                  style={{
+                    display: "block",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "#374151",
+                    marginBottom: "8px",
+                  }}
+                >
+                  Date of Birth <span style={{ color: "#ef4444" }}>*</span>
                 </label>
                 <input
                   type="date"
@@ -313,15 +403,26 @@ const VolunteerForm: React.FC = () => {
                   value={formData.dateOfBirth}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  style={{
+                    width: "100%",
+                    padding: "12px 16px",
+                    border: "1px solid #d1d5db",
+                    borderRadius: "6px",
+                    fontSize: "16px",
+                    outline: "none",
+                    transition: "border-color 0.2s",
+                  }}
                 />
               </div>
             </div>
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address <span className="text-red-500">*</span>
+              <label
+                htmlFor="email"
+                style={{ display: "block", fontSize: "14px", fontWeight: "500", color: "#374151", marginBottom: "8px" }}
+              >
+                Email Address <span style={{ color: "#ef4444" }}>*</span>
               </label>
               <input
                 type="email"
@@ -330,15 +431,26 @@ const VolunteerForm: React.FC = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                 placeholder="Email Address"
+                style={{
+                  width: "100%",
+                  padding: "12px 16px",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "6px",
+                  fontSize: "16px",
+                  outline: "none",
+                  transition: "border-color 0.2s",
+                }}
               />
             </div>
 
-            {/* Resume Upload - ENHANCED */}
+            {/* Resume Upload */}
             <div>
-              <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-2">
-                Resume (PDF only) <span className="text-gray-500">(Optional)</span>
+              <label
+                htmlFor="resume"
+                style={{ display: "block", fontSize: "14px", fontWeight: "500", color: "#374151", marginBottom: "8px" }}
+              >
+                Resume (PDF only) <span style={{ color: "#6b7280" }}>(Optional)</span>
               </label>
               <input
                 type="file"
@@ -346,23 +458,44 @@ const VolunteerForm: React.FC = () => {
                 name="resume"
                 accept=".pdf,application/pdf"
                 onChange={handleFileChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                style={{
+                  width: "100%",
+                  padding: "12px 16px",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "6px",
+                  fontSize: "16px",
+                  outline: "none",
+                  transition: "border-color 0.2s",
+                }}
               />
               {selectedFile && (
-                <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-md">
-                  <p className="text-sm text-green-700">
+                <div
+                  style={{
+                    marginTop: "8px",
+                    padding: "12px",
+                    backgroundColor: "#f0fdf4",
+                    border: "1px solid #bbf7d0",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <p style={{ fontSize: "14px", color: "#15803d", margin: 0 }}>
                     ✅ Selected: {selectedFile.name} ({(selectedFile.size / 1024).toFixed(2)} KB)
                   </p>
-                  <p className="text-xs text-green-600">Type: {selectedFile.type}</p>
+                  <p style={{ fontSize: "12px", color: "#16a34a", margin: "4px 0 0 0" }}>Type: {selectedFile.type}</p>
                 </div>
               )}
-              <p className="mt-1 text-xs text-gray-500">Upload your resume in PDF format (max 5MB)</p>
+              <p style={{ marginTop: "4px", fontSize: "12px", color: "#6b7280" }}>
+                Upload your resume in PDF format (max 5MB)
+              </p>
             </div>
 
             {/* Why Join Us */}
             <div>
-              <label htmlFor="whyJoinUs" className="block text-sm font-medium text-gray-700 mb-2">
-                Why do you want to join us? <span className="text-red-500">*</span>
+              <label
+                htmlFor="whyJoinUs"
+                style={{ display: "block", fontSize: "14px", fontWeight: "500", color: "#374151", marginBottom: "8px" }}
+              >
+                Why do you want to join us? <span style={{ color: "#ef4444" }}>*</span>
               </label>
               <textarea
                 id="whyJoinUs"
@@ -371,15 +504,27 @@ const VolunteerForm: React.FC = () => {
                 onChange={handleInputChange}
                 required
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
                 placeholder="Tell us why you want to volunteer with SWIS Foundation..."
+                style={{
+                  width: "100%",
+                  padding: "12px 16px",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "6px",
+                  fontSize: "16px",
+                  outline: "none",
+                  transition: "border-color 0.2s",
+                  resize: "vertical",
+                }}
               />
             </div>
 
             {/* Questions for Us */}
             <div>
-              <label htmlFor="questionsForUs" className="block text-sm font-medium text-gray-700 mb-2">
-                Any questions for us? <span className="text-gray-500">(Optional)</span>
+              <label
+                htmlFor="questionsForUs"
+                style={{ display: "block", fontSize: "14px", fontWeight: "500", color: "#374151", marginBottom: "8px" }}
+              >
+                Any questions for us? <span style={{ color: "#6b7280" }}>(Optional)</span>
               </label>
               <textarea
                 id="questionsForUs"
@@ -387,21 +532,44 @@ const VolunteerForm: React.FC = () => {
                 value={formData.questionsForUs}
                 onChange={handleInputChange}
                 rows={3}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
                 placeholder="Any questions or additional information you'd like to share..."
+                style={{
+                  width: "100%",
+                  padding: "12px 16px",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "6px",
+                  fontSize: "16px",
+                  outline: "none",
+                  transition: "border-color 0.2s",
+                  resize: "vertical",
+                }}
               />
             </div>
 
             {/* Status Messages */}
             {status.error && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-                <p className="text-red-600 text-sm">{status.error}</p>
+              <div
+                style={{
+                  padding: "16px",
+                  backgroundColor: "#fef2f2",
+                  border: "1px solid #fecaca",
+                  borderRadius: "6px",
+                }}
+              >
+                <p style={{ color: "#dc2626", fontSize: "14px", margin: 0 }}>{status.error}</p>
               </div>
             )}
 
             {status.success && (
-              <div className="p-4 bg-green-50 border border-green-200 rounded-md">
-                <p className="text-green-600 text-sm">{status.success}</p>
+              <div
+                style={{
+                  padding: "16px",
+                  backgroundColor: "#f0fdf4",
+                  border: "1px solid #bbf7d0",
+                  borderRadius: "6px",
+                }}
+              >
+                <p style={{ color: "#15803d", fontSize: "14px", margin: 0 }}>{status.success}</p>
               </div>
             )}
 
@@ -409,11 +577,17 @@ const VolunteerForm: React.FC = () => {
             <button
               type="submit"
               disabled={status.submitting}
-              className={`w-full py-3 px-6 rounded-md font-medium text-white transition-colors ${
-                status.submitting
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              }`}
+              style={{
+                width: "100%",
+                padding: "12px 24px",
+                borderRadius: "6px",
+                fontWeight: "500",
+                color: "white",
+                border: "none",
+                cursor: status.submitting ? "not-allowed" : "pointer",
+                backgroundColor: status.submitting ? "#9ca3af" : "#2563eb",
+                transition: "background-color 0.2s",
+              }}
             >
               {status.submitting ? "Submitting Application..." : "Submit Application"}
             </button>
@@ -421,11 +595,21 @@ const VolunteerForm: React.FC = () => {
 
           {/* Debug Info */}
           {selectedFile && (
-            <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-md">
-              <h3 className="font-bold text-blue-800 mb-2">🔍 Debug Info:</h3>
-              <p className="text-sm text-blue-700">File selected: {selectedFile.name}</p>
-              <p className="text-sm text-blue-700">File size: {selectedFile.size} bytes</p>
-              <p className="text-sm text-blue-700">File type: {selectedFile.type}</p>
+            <div
+              style={{
+                marginTop: "32px",
+                padding: "16px",
+                backgroundColor: "#eff6ff",
+                border: "1px solid #bfdbfe",
+                borderRadius: "6px",
+              }}
+            >
+              <h3 style={{ fontWeight: "bold", color: "#1e40af", marginBottom: "8px" }}>🔍 Debug Info:</h3>
+              <p style={{ fontSize: "14px", color: "#1d4ed8", margin: "4px 0" }}>File selected: {selectedFile.name}</p>
+              <p style={{ fontSize: "14px", color: "#1d4ed8", margin: "4px 0" }}>
+                File size: {selectedFile.size} bytes
+              </p>
+              <p style={{ fontSize: "14px", color: "#1d4ed8", margin: "4px 0" }}>File type: {selectedFile.type}</p>
             </div>
           )}
         </div>

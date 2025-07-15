@@ -1,7 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+
 import { Link } from 'react-router-dom';
-import { Users, Award, Clock, Heart, Target, Globe } from 'lucide-react';
+import { Users, Award, Clock, Heart, Target, Globe,ChevronLeft, ChevronRight, Droplet  } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+
 
 const Careers = () => {
   // Statistics data
@@ -12,6 +15,16 @@ const Careers = () => {
     { number: "6,00,000+", label: "Cost saved", icon: Heart },
     { number: "20+", label: "Core members", icon: Target },
   ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+    
+    // Hero carousel images
+    const heroImages = [
+      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+    ];
+  
 
   // Centers data
   const centers = [
@@ -38,41 +51,104 @@ const Careers = () => {
     }
   ];
 
+  useEffect(() => {
+      const timer = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+      }, 5000);
+      return () => clearInterval(timer);
+    }, [heroImages.length]);
+  
+    const nextSlide = () => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    };
+  
+    const prevSlide = () => {
+      setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+    };
+
   return (
     <div className="bg-[#FCFDFF]">
-  
-      {/* Hero Section - Similar to Reliance layout */}
-      <section className="relative min-h-screen bg-gradient-to-br from-[#023080] via-[#04307b] to-[#8e9fc5] overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
-            backgroundSize: "cover",
-            backgroundPosition: "center"
-          }}
-        ></div>
-        
-        <div className="relative z-10 min-h-screen flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
-            <div className="max-w-4xl">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center"
+     
+
+       {/* Hero Section with Slideshow - Fully Responsive */}
+            <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden bg-gradient-to-br from-[#023080] via-[#04307b] to-[#8e9fc5]">
+              {/* Hero Images */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 1 }}
+                  className="absolute inset-0"
+                >
+                  <img
+                    src={heroImages[currentSlide]}
+                    alt={`Hero ${currentSlide + 1}`}
+                    className="w-full h-full object-cover opacity-30"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#023080]/80 via-[#04307b]/60 to-transparent"></div>
+                </motion.div>
+              </AnimatePresence>
+      
+              {/* Hero Content - Responsive */}
+              <div className="relative z-10 h-full flex items-center">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
+                  <div className="max-w-4xl">
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                      className="mb-4 sm:mb-6 md:mb-8"
+                    >
+                      <div className="text-right mb-2 sm:mb-4">
+                        <span className="text-[#d2d5e0] text-sm sm:text-base md:text-lg font-light tracking-wide">SWIS Foundation</span>
+                        <div className="text-[#8e9fc5] text-xs sm:text-sm mt-1">Social Welfare & Impact Solutions</div>
+                      </div>
+                    </motion.div>
+      
+                    <motion.h1
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, delay: 0.5 }}
+                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-white mb-4 sm:mb-6 leading-tight"
+                    >
+                      Nurturing High Performance
+                      <div className="bg-[#023080] inline-block px-2 sm:px-4 md:px-6 py-1 sm:py-2 mt-2 sm:mt-4">
+                        <span className="text-[#d2d5e0] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">with care and empathy</span>
+                      </div>
+                    </motion.h1>
+                  </div>
+                </div>
+              </div>
+      
+              {/* Navigation Arrows - Responsive */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 rounded-full p-2 sm:p-3 transition-all duration-300"
               >
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight">
-                  Nurturing high performance
-                </h1>
-                <p className="text-2xl sm:text-3xl md:text-4xl text-[#d2d5e0] font-light">
-                  with care and empathy
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
+                <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 rounded-full p-2 sm:p-3 transition-all duration-300"
+              >
+                <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+              </button>
+      
+              {/* Slide Indicators - Responsive */}
+              <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 sm:space-x-3">
+                {heroImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                      index === currentSlide ? 'bg-white' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </section>
 
       {/* Life at SWIS Section - Similar to second image layout */}
       <section className="py-16 sm:py-20 lg:py-24 bg-[#F5F1E8] relative overflow-hidden">

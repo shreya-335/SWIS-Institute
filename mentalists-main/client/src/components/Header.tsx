@@ -39,6 +39,10 @@ const Header = () => {
 
           {/* Navigation Menu */}
           <nav className="hidden md:flex items-center space-x-8">
+            <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
+              Home
+            </a>
+
             <div className="relative group">
               <button className="flex items-center space-x-1 text-white hover:text-orange-400 transition-colors py-2">
                 <span>About Us</span>

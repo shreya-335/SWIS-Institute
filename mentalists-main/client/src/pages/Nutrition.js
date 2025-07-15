@@ -1,81 +1,46 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Heart, School, Users, ArrowRight, CheckCircle, Baby } from "lucide-react"
+import { motion, AnimatePresence, useInView } from "framer-motion"
+import { Heart, School, Users, ArrowRight, Baby } from "lucide-react"
 
 // Counter animation component
-const AnimatedCounter = ({ value, duration = 2, suffix = "" }) => {
+const AnimatedCounter = ({ value, duration = 2 }) => {
   const [count, setCount] = useState(0)
-  const [hasAnimated, setHasAnimated] = useState(false)
   const ref = React.useRef(null)
+  const isInView = useInView(ref, { once: true })
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true)
-          let startTime
-          const startValue = 0
-          const endValue = value
+    if (isInView) {
+      let startTime
+      const startValue = 0
+      const endValue = value
 
-          const animate = (currentTime) => {
-            if (!startTime) startTime = currentTime
-            const progress = Math.min((currentTime - startTime) / (duration * 1000), 1)
+      const animate = (currentTime) => {
+        if (!startTime) startTime = currentTime
+        const progress = Math.min((currentTime - startTime) / (duration * 1000), 1)
 
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-            const currentCount = startValue + (endValue - startValue) * easeOutQuart
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+        const currentCount = Math.floor(startValue + (endValue - startValue) * easeOutQuart)
 
-            if (Number.isInteger(value)) {
-              setCount(Math.floor(currentCount))
-            } else {
-              setCount(currentCount)
-            }
+        setCount(currentCount)
 
-            if (progress < 1) {
-              requestAnimationFrame(animate)
-            }
-          }
-
+        if (progress < 1) {
           requestAnimationFrame(animate)
         }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
       }
+
+      requestAnimationFrame(animate)
     }
-  }, [value, duration, hasAnimated])
+  }, [isInView, value, duration])
 
-  const displayValue = Number.isInteger(value) ? Math.floor(count) : count.toFixed(1)
-
-  return (
-    <span ref={ref}>
-      {displayValue}
-      {suffix}
-    </span>
-  )
+  return <span ref={ref}>{count}</span>
 }
 
 const Nutrition = () => {
+  const [currentSlide, setCurrentSlide] = useState(0)
   const [activeCard, setActiveCard] = useState(0)
   const [selectedTimelineItem, setSelectedTimelineItem] = useState(0)
-  const [impactBgSlide, setImpactBgSlide] = useState(0)
-
-  // Background images for the Impact Areas section
-  const impactAreasBgImages = [
-    "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
-    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
-    "https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
-  ]
 
   // Timeline data
   const timelineData = [
@@ -113,7 +78,7 @@ const Nutrition = () => {
   const programData = [
     {
       icon: <Baby className="w-8 h-8" />,
-      title: "Daily Meal Programs in Orphanages & Shelter Homes",
+      title: "Orphanages & Shelter",
       fullTitle: "Daily Meal Programs in Orphanages & Shelter Homes",
       description:
         "A study by Childline India (2021) found that 1 in 3 children in shelter homes suffer from inadequate nutrition. We address this by providing fresh, balanced meals packed with essential nutrients, helping improve immunity, cognitive development, and emotional well-being.",
@@ -127,7 +92,7 @@ const Nutrition = () => {
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: "Daily Meal Programs in Old Age Homes",
+      title: "Old Age Homes",
       fullTitle: "Daily Meal Programs in Old Age Homes",
       description:
         "According to HelpAge India (2022), over 50% of elderly in institutional care are undernourished or have diet-related health issues. Our meals are tailored to meet the needs of the elderly—rich in fiber, calcium, and protein, while being easy to digest and suitable for conditions like diabetes and hypertension.",
@@ -141,7 +106,7 @@ const Nutrition = () => {
     },
     {
       icon: <School className="w-8 h-8" />,
-      title: "Mid-Day Meal Enhancement in Low-Income Schools",
+      title: "School Enhancement",
       fullTitle: "Mid-Day Meal Enhancement in Low-Income Schools",
       description:
         "More than 115 million children rely on the Mid-Day Meal Scheme (MoE, 2023), yet many schools struggle with poor quality and hygiene. We collaborate with schools to enhance nutrition, improve hygiene, and introduce locally sourced, diverse meals—leading to better attendance and academic focus.",
@@ -155,7 +120,7 @@ const Nutrition = () => {
     },
     {
       icon: <Heart className="w-8 h-8" />,
-      title: "Meal Planning, Health Screening & Supplementation",
+      title: "Health & Supplementation",
       fullTitle: "Meal Planning, Health Screening & Supplementation",
       description:
         "NFHS-5 reports that 57% of women aged 15–49 and 68.9% of children aged 6–59 months are anemic. We conduct regular health screenings, provide iron and vitamin supplementation, and train caregivers in nutrient planning and hygiene, ensuring a holistic approach to nutrition.",
@@ -169,12 +134,37 @@ const Nutrition = () => {
     },
   ]
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setImpactBgSlide((prev) => (prev + 1) % impactAreasBgImages.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [impactAreasBgImages.length])
+  // Slideshow images
+  const slideImages = [
+    "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
+  ]
+
+  // Impact areas data with individual images
+  const impactAreas = [
+    {
+      icon: Baby,
+      title: "Orphanages",
+      image: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=400&h=250&fit=crop",
+      description: "Supporting children in orphanages and shelter homes with nutritious meals",
+    },
+    {
+      icon: School,
+      title: "Schools",
+      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop",
+      description: "Enhancing mid-day meal programs in low-income schools",
+    },
+    {
+      icon: Users,
+      title: "Old Age Homes",
+      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=250&fit=crop",
+      description: "Providing specialized nutrition for elderly residents",
+    },
+  ]
+
+  useEffect(() => {}, [slideImages.length])
 
   return (
     <div className="min-h-screen bg-white">
@@ -287,7 +277,7 @@ const Nutrition = () => {
       </section>
 
       {/* India's Nutrition Crisis Section */}
-      <section className="py-24 bg-gradient-to-br from-[#FCFDFF] to-[#d2d5e0]/30">
+      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -311,299 +301,186 @@ const Nutrition = () => {
       {/* Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-8 bg-white"
+          className="absolute top-0 left-0 right-0 h-6"
           style={{
+            backgroundColor: "#FCFDFF",
             clipPath:
-              "polygon(0 0, 100% 0, 95% 100%, 85% 70%, 75% 100%, 65% 60%, 55% 100%, 45% 65%, 35% 100%, 25% 75%, 15% 100%, 5% 60%, 0 100%)",
+              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 90%, 23% 100%, 21% 95%, 19% 100%, 17% 85%, 15% 100%, 13% 90%, 11% 100%, 9% 95%, 7% 100%, 5% 90%, 3% 100%, 1% 95%, 0 100%)",
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=1920&h=400&fit=crop"
-          alt="Children nutrition and meals"
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          alt="Youth learning and skill development"
           className="w-full h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-8"
-          style={{
-            backgroundColor: "#8e9fc5",
-            clipPath:
-              "polygon(0 100%, 100% 100%, 95% 0, 85% 30%, 75% 0, 65% 40%, 55% 0, 45% 35%, 35% 0, 25% 25%, 15% 0, 5% 40%, 0 0)",
-          }}
-        ></div>
-      </div>
-
-      {/* Statistics Section */}
-      <section className="py-24 bg-gradient-to-br from-[#8e9fc5] to-[#d2d5e0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-4xl font-bold mb-8">
-              Why It Matters: <span style={{ color: "#023080" }}>Key Nutrition Statistics</span>
-            </h2>
-            <p className="text-lg text-[#023080]/80 max-w-6xl mx-auto mb-16">
-              These statistics reveal the urgent need for comprehensive nutrition interventions across vulnerable
-              populations in India.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
-                  1<span className="text-4xl">in</span>3
-                </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
-                  children in shelter homes do not receive adequate nutrition
-                </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
-                  Source: Childline India Foundation, 2021
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
-                  <AnimatedCounter value={50} suffix="%+" />
-                </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
-                  of elderly in care homes suffer from undernutrition or chronic deficiencies
-                </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
-                  Source: HelpAge India, 2022
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
-                  <AnimatedCounter value={115} />M
-                </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
-                  children depend on Mid-Day Meals in India, yet quality, quantity, and safety remain major concerns
-                </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
-                  Source: Ministry of Education, Govt. of India, 2023
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Second Rough Edge Image Section */}
-      <div className="relative">
-        <div
-          className="absolute top-0 left-0 right-0 h-8 bg-white"
-          style={{
-            clipPath:
-              "polygon(0 0, 100% 0, 95% 100%, 85% 70%, 75% 100%, 65% 60%, 55% 100%, 45% 65%, 35% 100%, 25% 75%, 15% 100%, 5% 60%, 0 100%)",
-          }}
-        ></div>
-        <img
-          src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&h=400&fit=crop"
-          alt="Nutrition and healthy meals"
-          className="w-full h-64 object-cover"
-        />
-        <div
-          className="absolute bottom-0 left-0 right-0 h-8"
+          className="absolute bottom-0 left-0 right-0 h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
-              "polygon(0 100%, 100% 100%, 95% 0, 85% 30%, 75% 0, 65% 40%, 55% 0, 45% 35%, 35% 0, 25% 25%, 15% 0, 5% 40%, 0 0)",
+              "polygon(0 100%, 100% 100%, 99% 0, 97% 10%, 95% 0, 93% 15%, 91% 0, 89% 5%, 87% 0, 85% 10%, 83% 0, 81% 5%, 79% 0, 77% 15%, 75% 0, 73% 10%, 71% 0, 69% 5%, 67% 0, 65% 10%, 63% 0, 61% 5%, 59% 0, 57% 15%, 55% 0, 53% 10%, 51% 0, 49% 5%, 47% 0, 45% 10%, 43% 0, 41% 5%, 39% 0, 37% 15%, 35% 0, 33% 10%, 31% 0, 29% 5%, 27% 0, 25% 10%, 23% 0, 21% 5%, 19% 0, 17% 15%, 15% 0, 13% 10%, 11% 0, 9% 5%, 7% 0, 5% 10%, 3% 0, 1% 5%, 0 0)",
           }}
         ></div>
       </div>
 
       {/* Our Nutrition Outreach Includes Section */}
-      <section className="py-24 bg-gradient-to-br from-[#FCFDFF] to-[#d2d5e0]/30">
+      <section className="py-24" style={{ backgroundColor: "#023080" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-[#023080] mb-8">Our Nutrition Outreach Includes</h2>
-            <p className="text-xl text-[#04307b]/80 max-w-3xl mx-auto">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Our Nutrition Outreach Includes</h2>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
               At SWIS, we believe that access to nutritious food is a basic human right, not a privilege. Our
               interventions are rooted in empathy, dignity, and sustainability—ensuring that every child, every elder,
               and every student under our care receives meals that nourish both body and mind.
             </p>
           </motion.div>
 
-          {/* Program Navigation */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+          {/* Program Navigation Buttons */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {programData.map((program, index) => (
               <motion.button
                 key={index}
                 onClick={() => setActiveCard(index)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-8 py-4 rounded-2xl font-semibold transition-all duration-300 ${
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`p-4 rounded-2xl transition-all duration-300 text-center ${
                   activeCard === index
-                    ? "bg-[#023080] text-white shadow-2xl"
-                    : "bg-white text-[#04307b] hover:bg-[#d2d5e0]/30 shadow-lg hover:shadow-xl"
+                    ? "bg-white border-4 border-orange-400 shadow-xl"
+                    : "bg-white/80 border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
                 }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                {program.title.includes("Daily Meal Programs in Orphanages")
-                  ? "Orphanages & Shelter Homes"
-                  : program.title.includes("Daily Meal Programs in Old Age")
-                    ? "Old Age Homes"
-                    : program.title.includes("Mid-Day Meal Enhancement")
-                      ? "School Enhancement"
-                      : "Health & Supplementation"}
+                <div className="flex items-center justify-start gap-3 px-2">
+                  <div className="text-gray-600 flex-shrink-0">{program.icon}</div>
+                  <h3 className="text-sm font-semibold text-gray-800 text-left leading-tight">{program.title}</h3>
+                </div>
               </motion.button>
             ))}
           </div>
 
-          {/* Active Program Display */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCard}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -40 }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-3xl p-12 lg:p-16 shadow-2xl"
-            >
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                  <div
-                    className={`inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-r ${programData[activeCard].color} text-white mb-8 shadow-lg`}
-                  >
-                    {programData[activeCard].icon}
+          {/* Equal Sized Content Grid - Text Card Left, Image Right */}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Left Side - Active Program Content Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCard}
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 40 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl h-64 lg:h-80 flex flex-col"
+              >
+                <div className="flex items-start gap-6 mb-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
+                      {programData[activeCard].icon}
+                    </div>
                   </div>
-                  <h3 className="text-3xl lg:text-4xl font-bold text-[#023080] mb-8">
-                    {programData[activeCard].fullTitle}
-                  </h3>
-                  <p className="text-lg text-[#04307b]/80 leading-relaxed mb-10">
-                    {programData[activeCard].description}
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {programData[activeCard].features.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="flex items-center gap-4"
-                      >
-                        <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                        <span className="text-[#04307b] font-medium">{feature}</span>
-                      </motion.div>
-                    ))}
+                  <div className="flex-1">
+                    <h3 className="text-2xl  font-bold text-[#023080] mb-4">
+                      {programData[activeCard].fullTitle}
+                    </h3>
                   </div>
                 </div>
-                <div className="relative">
-                  <motion.img
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6 }}
-                    src={`https://images.unsplash.com/photo-${1594736797933 + activeCard * 100000000}?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`}
-                    alt={programData[activeCard].title}
-                    className="rounded-3xl shadow-2xl"
-                  />
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className={`absolute -top-6 -right-6 w-28 h-28 bg-gradient-to-r ${programData[activeCard].color} rounded-full flex items-center justify-center text-white shadow-2xl`}
-                  >
-                    {programData[activeCard].icon}
-                  </motion.div>
+                <div className="flex-1 flex flex-col justify-center">
+                  <p className="text-gray-700 text-md leading-relaxed">{programData[activeCard].description}</p>
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Right Side - Single Image */}
+            <div className="relative">
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="relative h-64 lg:h-80 rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img
+                  src={slideImages[0] || "/placeholder.svg"}
+                  alt="Nutrition program"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Where We Work Section */}
-      <section className="py-24 bg-gradient-to-r from-[#023080] to-[#04307b] text-white relative overflow-hidden">
-        {/* Background slideshow */}
-        <div className="absolute inset-0 overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={impactBgSlide}
-              src={impactAreasBgImages[impactBgSlide]}
-              alt={`Impact Background ${impactBgSlide + 1}`}
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 1.5 }}
-            />
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-black opacity-60"></div>
-        </div>
+      {/* second Rough Edge Image Section */}
+      <div className="relative">
+        <div
+          className="absolute top-0 left-0 right-0 h-6"
+          style={{
+            backgroundColor: "#023080",
+            clipPath:
+              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 90%, 23% 100%, 21% 95%, 19% 100%, 17% 85%, 15% 100%, 13% 90%, 11% 100%, 9% 95%, 7% 100%, 5% 90%, 3% 100%, 1% 95%, 0 100%)",
+          }}
+        ></div>
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          alt="Youth learning and skill development"
+          className="w-full h-64 object-cover"
+        />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-6"
+          style={{
+            backgroundColor: "#023080",
+            clipPath:
+              "polygon(0 100%, 100% 100%, 99% 0, 97% 10%, 95% 0, 93% 15%, 91% 0, 89% 5%, 87% 0, 85% 10%, 83% 0, 81% 5%, 79% 0, 77% 15%, 75% 0, 73% 10%, 71% 0, 69% 5%, 67% 0, 65% 10%, 63% 0, 61% 5%, 59% 0, 57% 15%, 55% 0, 53% 10%, 51% 0, 49% 5%, 47% 0, 45% 10%, 43% 0, 41% 5%, 39% 0, 37% 15%, 35% 0, 33% 10%, 31% 0, 29% 5%, 27% 0, 25% 10%, 23% 0, 21% 5%, 19% 0, 17% 15%, 15% 0, 13% 10%, 11% 0, 9% 5%, 7% 0, 5% 10%, 3% 0, 1% 5%, 0 0)",
+          }}
+        ></div>
+      </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      {/* Where We Work Section */}
+      <section className="py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8">Where We Work</h2>
-            <p className="text-xl text-[#d2d5e0]">Providing nutritious meals across vulnerable communities</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-10 mb-20">
-            {[
-              {
-                title: "Orphanages",
-                description: "Supporting children in orphanages and shelter homes with nutritious meals",
-                icon: <Baby className="w-10 h-10" />,
-              },
-              {
-                title: "Schools",
-                description: "Enhancing mid-day meal programs in low-income schools",
-                icon: <School className="w-10 h-10" />,
-              },
-              {
-                title: "Old Age Homes",
-                description: "Providing specialized nutrition for elderly residents",
-                icon: <Users className="w-10 h-10" />,
-              },
-            ].map((area, index) => (
+          <div className="grid md:grid-cols-3 gap-8">
+            {impactAreas.map((area, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05, y: -10 }}
-                className="bg-white/10 backdrop-blur-lg rounded-3xl p-10 text-center hover:bg-white/20 transition-all duration-300 group"
+                whileHover={{ scale: 1.02 }}
+                className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
-                <div className="text-[#d2d5e0] mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">
-                  {area.icon}
+                {/* Image Section */}
+                <div className="relative h-48 overflow-hidden">
+                  <img src={area.image || "/placeholder.svg"} alt={area.title} className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">{area.title}</h3>
-                <p className="text-[#d2d5e0]/90 text-lg">{area.description}</p>
+
+                {/* Content Section */}
+                <div className="p-6">
+                  <div className="flex items-center gap-4">
+                    <div className="text-[#023080]">
+                      <area.icon className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-xl font-bold text-[#023080]">{area.title}</h3>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -611,7 +488,7 @@ const Nutrition = () => {
       </section>
 
       {/* Our Impact Section */}
-      <section className="py-24 bg-gradient-to-br from-[#8e9fc5] to-[#d2d5e0]">
+      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
@@ -679,14 +556,14 @@ const Nutrition = () => {
         </div>
       </section>
 
-      {/* Fifth Rough Edge Image Section */}
+      {/* Fourth Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-8"
+          className="absolute top-0 left-0 right-0 h-6"
           style={{
-            backgroundColor: "#d2d5e0",
+            backgroundColor: "#FCFDFF",
             clipPath:
-              "polygon(0 0, 100% 0, 95% 100%, 85% 70%, 75% 100%, 65% 60%, 55% 100%, 45% 65%, 35% 100%, 25% 75%, 15% 100%, 5% 60%, 0 100%)",
+              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 90%, 23% 100%, 21% 95%, 19% 100%, 17% 85%, 15% 100%, 13% 90%, 11% 100%, 9% 95%, 7% 100%, 5% 90%, 3% 100%, 1% 95%, 0 100%)",
           }}
         ></div>
         <img
@@ -695,26 +572,18 @@ const Nutrition = () => {
           className="w-full h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-8"
+          className="absolute bottom-0 left-0 right-0 h-6"
           style={{
             backgroundColor: "#04307b",
             clipPath:
-              "polygon(0 100%, 100% 100%, 95% 0, 85% 30%, 75% 0, 65% 40%, 55% 0, 45% 35%, 35% 0, 25% 25%, 15% 0, 5% 40%, 0 0)",
+              "polygon(0 100%, 100% 100%, 99% 0, 97% 10%, 95% 0, 93% 15%, 91% 0, 89% 5%, 87% 0, 85% 10%, 83% 0, 81% 5%, 79% 0, 77% 15%, 75% 0, 73% 10%, 71% 0, 69% 5%, 67% 0, 65% 10%, 63% 0, 61% 5%, 59% 0, 57% 15%, 55% 0, 53% 10%, 51% 0, 49% 5%, 47% 0, 45% 10%, 43% 0, 41% 5%, 39% 0, 37% 15%, 35% 0, 33% 10%, 31% 0, 29% 5%, 27% 0, 25% 10%, 23% 0, 21% 5%, 19% 0, 17% 15%, 15% 0, 13% 10%, 11% 0, 9% 5%, 7% 0, 5% 10%, 3% 0, 1% 5%, 0 0)",
           }}
         ></div>
       </div>
 
       {/* 2030 Vision Section */}
-      <section className="py-24 bg-gradient-to-br from-[#04307b] to-[#023080] text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <motion.div
-            animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.3, 0.1] }}
-            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY }}
-            className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#8e9fc5]/20 to-transparent"
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <section className="py-24" style={{ backgroundColor: "#04307b" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -722,7 +591,7 @@ const Nutrition = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl lg:text-5xl font-bold mb-8">Our 2030 Vision</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-white">Our 2030 Vision</h2>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -767,6 +636,114 @@ const Nutrition = () => {
             >
               Be part of India's transformation. Help us nourish those who need it most.
             </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Fifth Rough Edge Image Section */}
+      <div className="relative">
+        <div
+          className="absolute top-0 left-0 right-0 h-6"
+          style={{
+            backgroundColor: "#04307b",
+            clipPath:
+              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 90%, 23% 100%, 21% 95%, 19% 100%, 17% 85%, 15% 100%, 13% 90%, 11% 100%, 9% 95%, 7% 100%, 5% 90%, 3% 100%, 1% 95%, 0 100%)",
+          }}
+        ></div>
+        <img
+          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
+          alt="Children achieving nutritional goals"
+          className="w-full h-64 object-cover"
+        />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-6"
+          style={{
+            backgroundColor: "#d2d5e0",
+            clipPath:
+              "polygon(0 100%, 100% 100%, 99% 0, 97% 10%, 95% 0, 93% 15%, 91% 0, 89% 5%, 87% 0, 85% 10%, 83% 0, 81% 5%, 79% 0, 77% 15%, 75% 0, 73% 10%, 71% 0, 69% 5%, 67% 0, 65% 10%, 63% 0, 61% 5%, 59% 0, 57% 15%, 55% 0, 53% 10%, 51% 0, 49% 5%, 47% 0, 45% 10%, 43% 0, 41% 5%, 39% 0, 37% 15%, 35% 0, 33% 10%, 31% 0, 29% 5%, 27% 0, 25% 10%, 23% 0, 21% 5%, 19% 0, 17% 15%, 15% 0, 13% 10%, 11% 0, 9% 5%, 7% 0, 5% 10%, 3% 0, 1% 5%, 0 0)",
+          }}
+        ></div>
+      </div>
+
+      {/* Statistics Section - Moved to end */}
+      <section className="py-24" style={{ backgroundColor: "#d2d5e0" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-4xl font-bold mb-8">
+              Why It Matters: <span style={{ color: "#023080" }}>Key Nutrition Statistics</span>
+            </h2>
+            <p className="text-lg text-[#023080]/80 max-w-6xl mx-auto mb-16">
+              These statistics reveal the urgent need for comprehensive nutrition interventions across vulnerable
+              populations in India.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white p-8 rounded-lg shadow-lg"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                  <AnimatedCounter value={1} />
+                  <span className="text-4xl">in</span>
+                  <AnimatedCounter value={3} />
+                </div>
+                <div className="text-gray-700 mb-4 text-lg font-semibold">
+                  children in shelter homes do not receive adequate nutrition
+                </div>
+                <div className="text-sm" style={{ color: "#023080" }}>
+                  Source: Childline India Foundation, 2021
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="bg-white p-8 rounded-lg shadow-lg"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                  <AnimatedCounter value={50} />
+                  %+
+                </div>
+                <div className="text-gray-700 mb-4 text-lg font-semibold">
+                  of elderly in care homes suffer from undernutrition or chronic deficiencies
+                </div>
+                <div className="text-sm" style={{ color: "#023080" }}>
+                  Source: HelpAge India, 2022
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="bg-white p-8 rounded-lg shadow-lg"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                  <AnimatedCounter value={115} />M
+                </div>
+                <div className="text-gray-700 mb-4 text-lg font-semibold">
+                  children depend on Mid-Day Meals in India, yet quality, quantity, and safety remain major concerns
+                </div>
+                <div className="text-sm" style={{ color: "#023080" }}>
+                  Source: Ministry of Education, Govt. of India, 2023
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>

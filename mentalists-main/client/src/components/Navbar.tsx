@@ -3,10 +3,22 @@
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 
+interface NavigationItem {
+  title: string
+  href: string
+  isSubheading?: boolean
+  parent?: string
+}
+
+interface NavigationSection {
+  title: string
+  items: NavigationItem[]
+}
+
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
-  const navigationItems = [
+  const navigationItems: NavigationSection[] = [
     {
       title: "About Us",
       items: [
@@ -26,16 +38,16 @@ const Navbar = () => {
     {
       title: "Interventions",
       items: [
-        { title: "SWIS Foundation", href: "#" },
-        { title: "Education", href: "#" },
-        { title: "Skill Development", href: "#" },
-        { title: "Nutrition", href: "#" },
-        { title: "Healthcare", href: "#" },
-        { title: "Relief of Poor", href: "#" },
-        { title: "SWIS Institute", href: "#" },
-        { title: "Centre for Social Impact & Innovation", href: "#" },
-        { title: "Centre for Social Awareness & Action", href: "#" },
-        { title: "Centre for Civil Administration & Engagement", href: "#" },
+        { title: "SWIS Institute", href: "#", isSubheading: true },
+        { title: "Centre for Social Impact & Innovation", href: "#", parent: "SWIS Institute" },
+        { title: "Centre for Social Awareness & Action", href: "#", parent: "SWIS Institute" },
+        { title: "Centre for Civil Administration & Engagement", href: "#", parent: "SWIS Institute" },
+        { title: "SWIS Foundation", href: "#", isSubheading: true },
+        { title: "Education", href: "#", parent: "SWIS Foundation" },
+        { title: "Skill Development", href: "#", parent: "SWIS Foundation" },
+        { title: "Nutrition", href: "#", parent: "SWIS Foundation" },
+        { title: "Healthcare", href: "#", parent: "SWIS Foundation" },
+        { title: "Relief of Poor", href: "#", parent: "SWIS Foundation" },
       ],
     },
     {
@@ -66,6 +78,61 @@ const Navbar = () => {
     },
   ]
 
+  const renderInterventionsDropdown = (items: NavigationItem[]) => {
+    const swisInstitute = items.filter((item) => item.parent === "SWIS Institute" || item.title === "SWIS Institute")
+    const swisFoundation = items.filter((item) => item.parent === "SWIS Foundation" || item.title === "SWIS Foundation")
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* SWIS Institute Column */}
+        <div>
+          {swisInstitute.map((subItem, index) => {
+            if (subItem.isSubheading) {
+              return (
+                <h3 key={index} className="font-bold text-lg mb-3 text-black border-b border-gray-300 pb-2">
+                  {subItem.title}
+                </h3>
+              )
+            } else {
+              return (
+                <a
+                  key={index}
+                  href={subItem.href}
+                  className="block text-black hover:text-gray-600 transition-colors py-2 text-sm mb-1"
+                >
+                  {subItem.title}
+                </a>
+              )
+            }
+          })}
+        </div>
+
+        {/* SWIS Foundation Column */}
+        <div>
+          {swisFoundation.map((subItem, index) => {
+            if (subItem.isSubheading) {
+              return (
+                <h3 key={index} className="font-bold text-lg mb-3 text-black border-b border-gray-300 pb-2">
+                  {subItem.title}
+                </h3>
+              )
+            } else {
+              return (
+                <a
+                  key={index}
+                  href={subItem.href}
+                  className="block text-black hover:text-gray-600 transition-colors py-2 text-sm mb-1"
+                >
+                  {subItem.title}
+                </a>
+              )
+            }
+          })}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="relative">
       {/* Dropdown Menus */}
@@ -75,28 +142,37 @@ const Navbar = () => {
           onMouseLeave={() => setActiveDropdown(null)}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {navigationItems
-                .find((item) => item.title === activeDropdown)
-                ?.items.map((subItem, index) => (
-                  <a
-                    key={index}
-                    href={subItem.href}
-                    className="block text-gray-700 hover:text-blue-600 transition-colors py-2 text-sm"
-                  >
-                    {subItem.title}
-                  </a>
-                ))}
-            </div>
+            {activeDropdown === "Interventions" ? (
+              renderInterventionsDropdown(navigationItems.find((item) => item.title === activeDropdown)?.items || [])
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {navigationItems
+                  .find((item) => item.title === activeDropdown)
+                  ?.items.map((subItem, index) => (
+                    <a
+                      key={index}
+                      href={subItem.href}
+                      className="block text-black hover:text-gray-600 transition-colors py-2 text-sm"
+                    >
+                      {subItem.title}
+                    </a>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       )}
 
       {/* Navigation Items with Hover */}
       <div className="hidden md:flex items-center space-x-8">
+        {/* Home Link */}
+        <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
+          Home
+        </a>
+
         {navigationItems.map((item) => (
           <div key={item.title} className="relative" onMouseEnter={() => setActiveDropdown(item.title)}>
-            <button className="flex items-center space-x-1 text-white hover:text-orange-400 transition-colors py-2">
+            <button className="flex items-center space-x-1 text-white hover:text-orange-400 transition-colors py-2 font-medium">
               <span>{item.title}</span>
               <ChevronDown className="w-4 h-4" />
             </button>

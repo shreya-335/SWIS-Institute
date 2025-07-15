@@ -3,11 +3,23 @@
 import { useState } from "react"
 import { ChevronDown, Search, Headphones, Sun, Menu, X } from "lucide-react"
 
+interface NavigationItem {
+  title: string
+  href: string
+  isSubheading?: boolean
+  parent?: string
+}
+
+interface NavigationSection {
+  title: string
+  items: NavigationItem[]
+}
+
 const CombinedHeader = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const navigationItems = [
+  const navigationItems: NavigationSection[] = [
     {
       title: "About Us",
       items: [
@@ -23,12 +35,16 @@ const CombinedHeader = () => {
     {
       title: "Interventions",
       items: [
-        { title: "Education", href: "#" },
-        { title: "Skill Development", href: "#" },
-        { title: "Nutrition", href: "#" },
-        { title: "Healthcare", href: "#" },
-        { title: "Relief of Poor", href: "#" },
-        { title: "SWIS Institute", href: "#" },
+        { title: "SWIS Institute", href: "#", isSubheading: true },
+        { title: "Centre for Social Impact & Innovation", href: "#", parent: "SWIS Institute" },
+        { title: "Centre for Social Awareness & Action", href: "#", parent: "SWIS Institute" },
+        { title: "Centre for Civil Administration & Engagement", href: "#", parent: "SWIS Institute" },
+        { title: "SWIS Foundation", href: "#", isSubheading: true },
+        { title: "Education", href: "#", parent: "SWIS Foundation" },
+        { title: "Skill Development", href: "#", parent: "SWIS Foundation" },
+        { title: "Nutrition", href: "#", parent: "SWIS Foundation" },
+        { title: "Healthcare", href: "#", parent: "SWIS Foundation" },
+        { title: "Relief of Poor", href: "#", parent: "SWIS Foundation" },
       ],
     },
     {
@@ -56,6 +72,61 @@ const CombinedHeader = () => {
       ],
     },
   ]
+
+  const renderInterventionsDropdown = (items: NavigationItem[]) => {
+    const swisInstitute = items.filter((item) => item.parent === "SWIS Institute" || item.title === "SWIS Institute")
+    const swisFoundation = items.filter((item) => item.parent === "SWIS Foundation" || item.title === "SWIS Foundation")
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* SWIS Institute Column */}
+        <div>
+          {swisInstitute.map((subItem, index) => {
+            if (subItem.isSubheading) {
+              return (
+                <h3 key={index} className="font-bold text-lg mb-3 text-black border-b border-gray-300 pb-2">
+                  {subItem.title}
+                </h3>
+              )
+            } else {
+              return (
+                <a
+                  key={index}
+                  href={subItem.href}
+                  className="block text-black hover:text-gray-600 transition-colors py-2 text-sm font-medium mb-1"
+                >
+                  {subItem.title}
+                </a>
+              )
+            }
+          })}
+        </div>
+
+        {/* SWIS Foundation Column */}
+        <div>
+          {swisFoundation.map((subItem, index) => {
+            if (subItem.isSubheading) {
+              return (
+                <h3 key={index} className="font-bold text-lg mb-3 text-black border-b border-gray-300 pb-2">
+                  {subItem.title}
+                </h3>
+              )
+            } else {
+              return (
+                <a
+                  key={index}
+                  href={subItem.href}
+                  className="block text-black hover:text-gray-600 transition-colors py-2 text-sm font-medium mb-1"
+                >
+                  {subItem.title}
+                </a>
+              )
+            }
+          })}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -96,6 +167,11 @@ const CombinedHeader = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
+              {/* Home Link */}
+              <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
+                Home
+              </a>
+
               {navigationItems.map((item) => (
                 <div
                   key={item.title}
@@ -103,7 +179,7 @@ const CombinedHeader = () => {
                   onMouseEnter={() => setActiveDropdown(item.title)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <button className="flex items-center space-x-1 text-white hover:text-orange-400 transition-colors py-2">
+                  <button className="flex items-center space-x-1 text-white hover:text-orange-400 transition-colors py-2 font-medium">
                     <span>{item.title}</span>
                     <ChevronDown className="w-4 h-4" />
                   </button>
@@ -142,19 +218,23 @@ const CombinedHeader = () => {
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {navigationItems
-                  .find((item) => item.title === activeDropdown)
-                  ?.items.map((subItem, index) => (
-                    <a
-                      key={index}
-                      href={subItem.href}
-                      className="block text-gray-700 hover:text-blue-600 transition-colors py-2 text-sm font-medium"
-                    >
-                      {subItem.title}
-                    </a>
-                  ))}
-              </div>
+              {activeDropdown === "Interventions" ? (
+                renderInterventionsDropdown(navigationItems.find((item) => item.title === activeDropdown)?.items || [])
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {navigationItems
+                    .find((item) => item.title === activeDropdown)
+                    ?.items.map((subItem, index) => (
+                      <a
+                        key={index}
+                        href={subItem.href}
+                        className="block text-black hover:text-gray-600 transition-colors py-2 text-sm font-medium"
+                      >
+                        {subItem.title}
+                      </a>
+                    ))}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -174,15 +254,26 @@ const CombinedHeader = () => {
               </div>
 
               <nav className="space-y-4">
+                {/* Home Link for Mobile */}
+                <div className="border-b border-gray-200 pb-4">
+                  <a
+                    href="#"
+                    className="block font-semibold text-black transition-colors py-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Home
+                  </a>
+                </div>
+
                 {navigationItems.map((item) => (
                   <div key={item.title} className="border-b border-gray-200 pb-4">
-                    <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                    <h3 className="font-semibold text-black mb-2">{item.title}</h3>
                     <div className="space-y-2 pl-4">
                       {item.items.map((subItem, index) => (
                         <a
                           key={index}
                           href={subItem.href}
-                          className="block text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                          className="block text-gray-600 hover:text-black transition-colors text-sm"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {subItem.title}

@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, ChangeEvent } from "react"
+import type React from "react"
+import { useState } from "react"
 
-const FileUploadTest = () => {
+const FileUploadTest: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [result, setResult] = useState<any>(null)
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     console.log("🧪 Test - File selected:", file)
     setSelectedFile(file || null)
@@ -47,42 +48,77 @@ const FileUploadTest = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-        <h1 className="text-2xl font-bold mb-6">🧪 File Upload Test</h1>
+    <div style={{ minHeight: "100vh", backgroundColor: "#f9fafb", padding: "32px" }}>
+      <div
+        style={{
+          maxWidth: "800px",
+          margin: "0 auto",
+          backgroundColor: "white",
+          padding: "24px",
+          borderRadius: "8px",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h1 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "24px" }}>🧪 File Upload Test</h1>
 
-        <div className="space-y-4">
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           <div>
-            <label className="block text-sm font-medium mb-2">Select PDF File:</label>
+            <label style={{ display: "block", fontSize: "14px", fontWeight: "500", marginBottom: "8px" }}>
+              Select PDF File:
+            </label>
             <input
               type="file"
               accept=".pdf,application/pdf"
               onChange={handleFileChange}
-              className="w-full p-2 border border-gray-300 rounded"
+              style={{
+                width: "100%",
+                padding: "8px",
+                border: "1px solid #d1d5db",
+                borderRadius: "4px",
+              }}
             />
           </div>
 
           {selectedFile && (
-            <div className="p-3 bg-green-50 border border-green-200 rounded">
-              <p className="text-sm text-green-700">
+            <div
+              style={{ padding: "12px", backgroundColor: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "4px" }}
+            >
+              <p style={{ fontSize: "14px", color: "#15803d" }}>
                 ✅ Selected: {selectedFile.name} ({(selectedFile.size / 1024).toFixed(2)} KB)
               </p>
-              <p className="text-xs text-green-600">Type: {selectedFile.type}</p>
+              <p style={{ fontSize: "12px", color: "#16a34a" }}>Type: {selectedFile.type}</p>
             </div>
           )}
 
           <button
             onClick={testUpload}
             disabled={!selectedFile}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
+            style={{
+              backgroundColor: selectedFile ? "#2563eb" : "#9ca3af",
+              color: "white",
+              padding: "8px 16px",
+              borderRadius: "4px",
+              border: "none",
+              cursor: selectedFile ? "pointer" : "not-allowed",
+            }}
           >
             🧪 Test Upload
           </button>
 
           {result && (
-            <div className="mt-4 p-4 bg-gray-50 border rounded">
-              <h3 className="font-bold mb-2">Test Result:</h3>
-              <pre className="text-xs overflow-auto">{JSON.stringify(result, null, 2)}</pre>
+            <div
+              style={{
+                marginTop: "16px",
+                padding: "16px",
+                backgroundColor: "#f9fafb",
+                border: "1px solid #e5e7eb",
+                borderRadius: "4px",
+              }}
+            >
+              <h3 style={{ fontWeight: "bold", marginBottom: "8px" }}>Test Result:</h3>
+              <pre style={{ fontSize: "12px", overflow: "auto", whiteSpace: "pre-wrap" }}>
+                {JSON.stringify(result, null, 2)}
+              </pre>
             </div>
           )}
         </div>

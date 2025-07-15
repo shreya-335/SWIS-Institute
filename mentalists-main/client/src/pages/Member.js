@@ -1,208 +1,628 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+"use client"
+
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronLeft, ChevronRight, X, Linkedin, Twitter, Globe, ArrowRight } from "lucide-react"
+
+const memberData = {
+  "SWIS Mentorship Team": [
+    {
+      name: "Ms. Rubali Chakraborty",
+      designation: "Ex-Paani Foundation | Ex-CIMA | Ex-Kotak Education Foundation",
+      shortDesignation: "Mentor", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "A finance expert with over 20 years of experience, currently serving as a Consultant at Calcutta Social Project. She has managed financial systems, donor documentation, and budgets for multiple NGOs, ensuring efficiency and transparency. As the former Head of Finance at Paani Foundation, she played a pivotal role in focusing on water conservation initiatives in Maharashtra. Her experience extends to strengthening financial systems at CIMA and Kotak Education Foundation, where she contributed to enhancing operational processes and compliance. She has also led teams on financial governance at Akanksha Foundation.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Mr. Samik Ghosh",
+      designation: "Ex-CIFF | Ex-Oxfam | Ex-IFPRI | Ex-Azim Premji Foundation",
+      shortDesignation: "Mentor", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "A Program Management, Monitoring, and Evaluation expert, with over 20 years of experience, specializing in international nutrition, public health, and sustainable development. He made significant contributions to the Integrated Food Policy Research Program at the International Food Policy Research Institute (IFPRI). His prior roles include serving at organizations like the Children's Investment Fund Foundation (CIFF), Oxfam India, and Azim Premji Foundation, where he worked on projects targeting sustainable development and public health issues. He also coordinated the Agriculture for Nutrition and Health Program under CGIAR.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Ms. Khushboo Singh",
+      designation: "Development Professional | CSR Expert | Ex-CEEW | Ex-PSI",
+      shortDesignation: "Mentor", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "A seasoned CSR and development professional with over 10 years of experience in driving sustainability and social impact initiatives. At Medanta Foundation, she has led transformative, health-centric programs that have enhanced access to quality care and improved community well-being. As a Fellow with the SBI Youth for India program, she addressed critical rural challenges, including public health issues and systemic development gaps in underserved communities. She was also part of the Jagriti Yatra, a nationwide journey. Her work with leading organizations like CEEW and PSI further strengthened her expertise across public health and development sectors.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Dr. Sarmistha Basu Ghosh",
+      designation: "Consultant and Thematic Expert in Teaching and Research",
+      shortDesignation: "Mentor", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Holding a Ph.D. in Organic Chemistry from the University of Burdwan, she has over 7 years of experience as a Consultant and Thematic Expert in Teaching and Research. Her career includes significant contributions to local NGOs and community institutions. She has previously worked at Camellia International School and Morning Bells Academy Prior to these roles, she served as a Project Assistant at the University of Burdwan, contributing to the advancement of scientific research. Her expertise spans medicinal chemistry, higher education, and community development, with a focus on improving lives through science and education.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+  ],
+  "SWIS Leadership Team": [
+    {
+      name: "Mr. Soubhik Kundu",
+      designation: "Board Member - SWIS Institute | SWIS Foundation | Life Member - IRCS | SXC",
+      shortDesignation: "Board Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Soubhik is a Board Member at Institute for Social Welfare and Impact Solutions (SWIS Institute) and the Chairman & Managing Trustee of SWIS Foundation, leading impactful community initiatives, driven by a mission to advance equity and inclusive leadership. He also serves as a Life Member of the Indian Red Cross Society (IRCS). Soubhik completed his early education at St. Patrick's School, Telangana, he has graduated in Economics from St. Xavier's College (Autonomous), Kolkata, post which he moved to pursue Masters in Political Science from Delhi University. He has previously worked with Singhal Enterprises, Scholaride Consulting, Pixstory, and Unschool.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Ms. Tanya Garg",
+      designation: "Board Member - SWIS Institute | IIM A | UICET PU",
+      shortDesignation: "Board Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Tanya is a Board Member at Institute for Social Welfare and Impact Solutions (SWIS Institute), where she ensures the smooth functioning and effective implementation of its initiatives. She has done her engineering in Food Technology and Processing from UICET, Punjab University post which she moved to pursue her MBA from the Indian Institute of Management Ahmedabad. Tanya has a strong foundation in stakeholder engagement and organisational dynamics. Drawing from her experience in demand planning at Marico Limited, she applies strategic thinking and operational efficiency which helps create high-impact, sustainable social initiatives.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Mr. Nakshatra Jagannath",
+      designation: "Board Member - SWIS Institute | Head - CCAE | Ex-D. E. Shaw Group | SXC",
+      shortDesignation: "Board Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Nakshatra is a Board Member at the Institute for Social Welfare and Impact Solutions (SWIS Institute), oversees the Centre for Civil Administration & Engagement (CCAE). A graduate of St. Xavier’s College (Autonomous), Kolkata, he has held roles at The D. E. Shaw Group, the Council for Strategic Affairs (USA), and Raisina House. Recognised among India’s Rising Leaders under 30 in Policy & Politics, he has led international policy conferences and is experienced in research, debating, and advocacy. In 2024, he represented India at the World Youth Festival in Sochi under the category “Young Leaders of Associations, Organisations, and Political Parties.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Ms. Harshita Sharma",
+      designation: "Board Member - SWIS Institute | Head - CSII | IIM BG | IGNOU | MH DU",
+      shortDesignation: "Board Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Harshita is a Board Member at Institute for Social Welfare and Impact Solutions (SWIS Institute), oversees Centre for Social Impact & Innovation (CSII). She holds a degree in Life Sciences from Miranda House, University of Delhi, followed by a Post Graduate Diploma in Corporate Social Responsibility (CSR) from IGNOU, focused on community-driven healthcare and sustainable business operations post which she moved to pursue her MBA in Hospital and Healthcare Management at Indian Institute of Management Bodh Gaya. She aims to improve healthcare accessibility and optimize hospital operations using innovative, patient-centric strategies.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Ms. Dikshitha Karahna",
+      designation: "Board Member - SWIS Institute | Head - CSAA | SMU | Loyola Academy | NIEPD",
+      shortDesignation: "Board Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Dikshitha is a Board Member at Institute for Social Welfare and Impact Solutions (SWIS Institute), oversees Centre for Awareness & Action (CSAA). She holds a degree in Psychology from Loyola Academy, she has gained valuable experience in Rehabilitation Psychology and Special Education at NIEPID post which she moved to pursue her Masters in English from Sikkim Manipal University (SMU). Driven by a passion for social work, promoting literacy and mental health advocacy, she is deeply committed to creating inclusive and empathetic spaces and has supported such causes through her involvement with Team Everest NGO",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+  ],
+  "SWIS Core Team": [
+    {
+      name: "Jiya Gudhaka",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Jiya Gudhaka is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Vishal Maheto",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Vishal Maheto is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Manya Panjwani",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Manya Panjwani is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Pooja Lakshmi",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Pooja Lakshmi is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Tanushka MS",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Tanushka MS is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Zoha Aza Khan",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Zoha Aza Khan is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Sulagna Ghosh",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Sulagna Ghosh is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Shristy Das",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Shristy Das is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Mukund Agarwal",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Mukund Agarwal is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "K. Anitha Reddy",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "K. Anitha Reddy is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Advika S.",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Advika S. is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Sanskriti",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Sanskriti is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Advika Yadav",
+      designation: "Core Team Member",
+      shortDesignation: "Core Team Member", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Advika Yadav is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+  ],
+  "SWIS Founding Supporters": [
+    {
+      name: "Anshul Mitra",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Anshul Mitra is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Khusboo Singhal",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Khusboo Singhal is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Aryamaan Biswas",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Aryamaan Biswas is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Vidhi Bhageria",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Vidhi Bhageria is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Veda Rodewald",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Veda Rodewald is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Pritika Gupta",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Pritika Gupta is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Alisha Dash",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Alisha Dash is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Navya KS",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Navya KS is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Praniti Mishra",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Praniti Mishra is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+    {
+      name: "Abantika Chakraborty",
+      designation: "Founding Supporter",
+      shortDesignation: "Founding Supporter", // Added for card display
+      imageUrl:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      bio: "Abantika Chakraborty is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
+      socialMedia: {
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+      },
+    },
+  ],
+}
+
+// Member Modal Component
+const MemberModal = ({ member, onClose }) => {
+  if (!member) return null
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+      onClick={onClose} // Close when clicking outside
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 50 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 50 }}
+        transition={{ duration: 0.3 }}
+        className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row relative"
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal content
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 z-10 p-2 rounded-full bg-white/80 hover:bg-white transition-colors"
+          aria-label="Close"
+        >
+          <X className="w-6 h-6" />
+        </button>
+        <div className="w-full md:w-1/2 flex-shrink-0 relative overflow-hidden">
+          <img
+            src={member.imageUrl || "/placeholder.svg"}
+            alt={member.name}
+            className="w-full h-full object-cover grayscale-0" // Always color in modal
+          />
+          {/* Name overlay on image in modal */}
+          <div className="absolute inset-x-0 bottom-0 bg-[#023080] bg-opacity-90 p-6 text-white">
+            <h3 className="text-2xl font-semibold mb-1 leading-tight">{member.name}</h3>
+            <div className="w-12 h-0.5 bg-[#8e9fc5] rounded-full mb-2"></div>
+            <p className="text-base text-[#d2d5e0] leading-relaxed">{member.shortDesignation || member.designation}</p>
+          </div>
+        </div>
+        <div className="w-full md:w-1/2 p-8 overflow-y-auto flex flex-col justify-center">
+          <p className="text-gray-700 leading-relaxed mb-6">{member.bio}</p>
+          {member.socialMedia && (
+            <div className="flex space-x-4 mt-4">
+              {member.socialMedia.linkedin && (
+                <a
+                  href={member.socialMedia.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#023080] hover:text-[#04307b] transition-colors"
+                  aria-label={`LinkedIn profile of ${member.name}`}
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              )}
+              {member.socialMedia.twitter && (
+                <a
+                  href={member.socialMedia.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#023080] hover:text-[#04307b] transition-colors"
+                  aria-label={`Twitter profile of ${member.name}`}
+                >
+                  <Twitter className="w-6 h-6" />
+                </a>
+              )}
+              {member.socialMedia.website && (
+                <a
+                  href={member.socialMedia.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#023080] hover:text-[#04307b] transition-colors"
+                  aria-label={`Website of ${member.name}`}
+                >
+                  <Globe className="w-6 h-6" />
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
 
 const Member = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedMember, setSelectedMember] = useState(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   // Hero carousel images
   const heroImages = [
     "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
     "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-    "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
-  ];
-
-  // Member data organized by teams
-  const memberData = {
-    "SWIS Mentorship Team": [
-      {
-        name: "Ms. Rubali Chakraborty",
-        designation: "Ex-Paani Foundation | Ex-CIMA | Ex-Kotak Education Foundation",
-        imageUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Mr. Samik Ghosh",
-        designation: "Ex-CIFF | Ex-OxFam | Ex-IFPRI | Ex-Azim Premji Foundation",
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Ms. Khushboo Singh",
-        designation: "Development Prof. | CSR Expert | Ex-CEEW | Ex-PSI",
-        imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Dr. Sarmistha Basu Ghosh",
-        designation: "Consultant and Thematic Expert in Teaching and Research",
-        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-    ],
-    "SWIS Leadership Team": [
-      {
-        name: "Mr. Soubhik Kundu",
-        designation: "Board Member - SWIS Institute | Life Member - IRCS | SXC",
-        imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Ms. Tanya Garg",
-        designation: "Board Member - SWIS Institute | IIM AI | UICET PU",
-        imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Mr. Nakshatra Jagannath",
-        designation: "Board Member - SWIS Institute | Head - CCAE | Ex-D. E. Shaw Group | SXC",
-        imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Ms. Harshita Sharma",
-        designation: "Board Member - SWIS Institute | Head - CSII | IIM BG | IGNOU | MH DU",
-        imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Ms. Dikshitha Karahna",
-        designation: "Board Member - SWIS Institute | Head - CSAA | SMU | Loyola Academy",
-        imageUrl: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-    ],
-    "SWIS Core Team": [
-      {
-        name: "Jiya Gudhaka",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Vishal Maheto",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Manya Panjwani",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Pooja Lakshmi",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Tanushka MS",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Zoha Aza Khan",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Sulagna Ghosh",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Shristy Das",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Mukund Agarwal",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "K. Anitha Reddy",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Advika S.",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Sanskriti",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Advika Yadav",
-        designation: "Core Team Member",
-        imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-    ],
-    "SWIS Founding Supporters": [
-      {
-        name: "Anshul Mitra",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Khusboo Singhal",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Aryamaan Biswas",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Vidhi Bhageria",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Veda Rodewald",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Pritika Gupta",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Alisha Dash",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Navya KS",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Praniti Mishra",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-      {
-        name: "Abantika Chakraborty",
-        designation: "Founding Supporter",
-        imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      },
-    ],
-  };
+    "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+  ]
 
   // Auto-slide for hero carousel
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [heroImages.length])
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-  };
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+  }
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-  };
+    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
+  }
+
+  const openModal = (member) => {
+    setSelectedMember(member)
+    document.body.style.overflow = "hidden" // Prevent scrolling when modal is open
+  }
+
+  const closeModal = () => {
+    setSelectedMember(null)
+    document.body.style.overflow = "" // Restore scrolling
+  }
+
+  const renderTeamSection = (teamName, sectionIndex) => {
+    const members = memberData[teamName]
+    if (!members) return null
+
+    // Only Mentorship and Leadership teams should have clickable cards and "Read More"
+    const showModalForSection = teamName === "SWIS Mentorship Team" || teamName === "SWIS Leadership Team"
+
+    return (
+      <section key={teamName} className={`py-16 lg:py-20 ${sectionIndex % 2 === 0 ? "bg-[#FCFDFF]" : "bg-white"}`}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#023080] mb-6">{teamName}</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#8e9fc5] to-[#04307b] rounded-full mx-auto"></div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {members.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="relative w-full h-96">
+                  <img
+                    src={member.imageUrl || "/placeholder.svg"}
+                    alt={member.name}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                  />
+                  {/* Blue section below the image - fixed height, slides up on hover */}
+                  <div className="absolute inset-x-0 bottom-0 h-[120px] bg-[#023080] bg-opacity-90 p-6 text-white flex flex-col justify-center transition-transform duration-300 group-hover:-translate-y-[40px]">
+                    <h3 className="text-xl font-semibold mb-1 leading-tight">{member.name}</h3>
+                    <div className="w-12 h-0.5 bg-[#8e9fc5] rounded-full mb-2"></div>
+                    <p className="text-sm text-[#d2d5e0] leading-relaxed">
+                      {member.shortDesignation || member.designation}
+                    </p>
+                  </div>
+
+                  {/* Read More button - appears on hover, positioned below the initial blue section */}
+                  {showModalForSection && (
+                    <button
+                      onClick={() => openModal(member)}
+                      className="absolute inset-x-0 bottom-0 h-[40px] bg-[#04307b] text-white flex items-center justify-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      aria-label={`Read more about ${member.name}`}
+                    >
+                      <span className="text-sm font-medium">read more</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <div className="bg-white">
-  
+      
+
       {/* Hero Section with Slideshow */}
       <section className="relative h-screen overflow-hidden bg-gradient-to-br from-[#023080] via-[#04307b] to-[#8e9fc5]">
         {/* Hero Images */}
@@ -216,7 +636,7 @@ const Member = () => {
             className="absolute inset-0"
           >
             <img
-              src={heroImages[currentSlide]}
+              src={heroImages[currentSlide] || "/placeholder.svg"}
               alt={`Hero ${currentSlide + 1}`}
               className="w-full h-full object-cover opacity-30"
             />
@@ -244,7 +664,7 @@ const Member = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-light text-white mb-6 leading-tight"
+                className="text-4xl md:text-5xl lg:text-7xl font-serif text-white mb-6 leading-tight"
               >
                 Board & Committee
                 <div className="bg-[#023080] inline-block px-4 md:px-6 py-2 mt-4">
@@ -256,10 +676,10 @@ const Member = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="text-lg md:text-xl text-[#d2d5e0] leading-relaxed max-w-3xl"
+                className="text-lg md:text-xl font-serif text-[#d2d5e0] leading-relaxed max-w-3xl"
               >
-                Meet the dedicated individuals who drive our mission forward through strategic leadership, 
-                mentorship, and unwavering commitment to social change.
+                Meet the dedicated individuals who drive our mission forward through strategic leadership, mentorship,
+                and unwavering commitment to social change.
               </motion.p>
             </div>
           </div>
@@ -269,12 +689,14 @@ const Member = () => {
         <button
           onClick={prevSlide}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 rounded-full p-3 transition-all duration-300"
+          aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6 text-white" />
         </button>
         <button
           onClick={nextSlide}
           className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 rounded-full p-3 transition-all duration-300"
+          aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6 text-white" />
         </button>
@@ -286,63 +708,16 @@ const Member = () => {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-white' : 'bg-white/50'
+                index === currentSlide ? "bg-white" : "bg-white/50"
               }`}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
       </section>
 
       {/* Member Sections */}
-      {Object.entries(memberData).map(([teamName, members], sectionIndex) => (
-        <section key={teamName} className={`py-16 lg:py-20 ${sectionIndex % 2 === 0 ? 'bg-[#F5F1E8]' : 'bg-white'}`}>
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#023080] mb-6">{teamName}</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-[#8e9fc5] to-[#04307b] rounded-full mx-auto"></div>
-            </motion.div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {members.map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div className="relative overflow-hidden h-96">
-                      <img
-                        src={member.imageUrl}
-                        alt={member.name}
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#023080]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-lg font-medium text-[#023080] mb-2 group-hover:text-[#04307b] transition-colors duration-300 leading-tight">
-                        {member.name}
-                      </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        {member.designation}
-                      </p>
-                      <div className="w-12 h-1 bg-[#8e9fc5] rounded-full mt-4 group-hover:w-16 transition-all duration-300"></div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+      {Object.entries(memberData).map(([teamName], sectionIndex) => renderTeamSection(teamName, sectionIndex))}
 
       {/* Footer CTA */}
       <section className="bg-gradient-to-r from-[#023080] to-[#04307b] py-16 lg:py-24 text-center">
@@ -353,20 +728,25 @@ const Member = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto px-6 lg:px-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-8">
-            Join Our Mission
-          </h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-8">Join Our Mission</h2>
           <p className="text-lg md:text-xl text-[#d2d5e0] mb-8 leading-relaxed">
-            Be part of our journey towards creating meaningful impact in communities across India.
-            Together, we can build a better future for all.
+            Be part of our journey towards creating meaningful impact in communities across India. Together, we can
+            build a better future for all.
           </p>
-          <a href="/JoinUs" className="bg-[#8e9fc5] hover:bg-[#d2d5e0] text-[#023080] px-8 py-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 text-lg">
+          <a
+            href="/JoinUs"
+            className="bg-[#8e9fc5] hover:bg-[#d2d5e0] text-[#023080] px-8 py-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 text-lg"
+          >
             Get Involved
           </a>
         </motion.div>
       </section>
-    </div>
-  );
-};
 
-export default Member;
+      <AnimatePresence>
+        {selectedMember && <MemberModal member={selectedMember} onClose={closeModal} />}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+export default Member

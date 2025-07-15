@@ -1,1 +1,1 @@
-# SWIS-foundation
+# SWIS-NGO
