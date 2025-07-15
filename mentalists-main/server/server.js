@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000
 const connectDB = async () => {
   try {
     console.log("🔗 Connecting to MongoDB Atlas...")
-
+    const MONGO_URI = process.env.MONGO_URI;
     await mongoose.connect(
       MONGO_URI,
       {
