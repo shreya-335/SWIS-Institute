@@ -49,8 +49,8 @@ const SimpleFileTest: React.FC = () => {
     console.log("  - Is resume a File?", resumeFile instanceof File)
 
     try {
-      console.log("📤 Sending request to server...")
-      const response = await fetch("http://localhost:5000/api/test-upload", {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/test-upload`, {
         method: "POST",
         body: formData,
       })

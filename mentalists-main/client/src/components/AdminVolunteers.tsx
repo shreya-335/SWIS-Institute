@@ -33,9 +33,10 @@ const AdminVolunteers: React.FC = () => {
     fetchVolunteers()
   }, [])
 
+  const apiUrl = process.env.REACT_APP_API_URL;
   const fetchVolunteers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/volunteers")
+      const response = await fetch(`${apiUrl}/volunteers`)
       const data = await response.json()
       setVolunteers(data.data)
       setLoading(false)
@@ -47,7 +48,7 @@ const AdminVolunteers: React.FC = () => {
 
   const updateVolunteerStatus = async (id: string, status: string, notes?: string) => {
     try {
-      await fetch(`http://localhost:5000/api/volunteers/${id}`, {
+      await fetch(`${apiUrl}/volunteers/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

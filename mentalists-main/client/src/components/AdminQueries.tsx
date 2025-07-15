@@ -27,9 +27,10 @@ const AdminQueries: React.FC = () => {
     fetchQueries()
   }, [])
 
+  const apiUrl = process.env.REACT_APP_API_URL;
   const fetchQueries = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/queries")
+      const response = await axios.get(`${apiUrl}/queries`)
       setQueries(response.data.data)
       setLoading(false)
     } catch (error) {
@@ -40,7 +41,7 @@ const AdminQueries: React.FC = () => {
 
   const updateQueryStatus = async (id: string, status: string, notes?: string) => {
     try {
-      await axios.put(`http://localhost:5000/api/queries/${id}`, { status, notes })
+      await axios.put(`${apiUrl}/queries/${id}`, { status, notes })
       fetchQueries() // Refresh the list
       setSelectedQuery(null)
     } catch (error) {

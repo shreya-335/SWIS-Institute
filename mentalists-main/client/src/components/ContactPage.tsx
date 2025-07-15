@@ -51,7 +51,8 @@ const ContactPage: React.FC = () => {
     setStatus({ submitting: true, submitted: false, error: null, success: null })
 
     try {
-      const response = await axios.post("http://localhost:5000/api/contact", formData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/contact`, formData, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -106,7 +106,8 @@ const JoinUs: React.FC = () => {
         selectedInitiative: formData.domain,
       }
 
-      const response = await axios.post("http://localhost:5000/api/volunteer-simple", submitData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/volunteer-simple`, submitData, {
         headers: {
           "Content-Type": "application/json",
         },

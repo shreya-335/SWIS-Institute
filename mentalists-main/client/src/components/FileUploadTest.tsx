@@ -33,7 +33,8 @@ const FileUploadTest: React.FC = () => {
     console.log("📤 FormData created, sending to test endpoint...")
 
     try {
-      const response = await fetch("http://localhost:5000/api/test-upload", {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/test-upload`, {
         method: "POST",
         body: formData,
       })

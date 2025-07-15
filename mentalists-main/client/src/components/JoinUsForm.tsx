@@ -88,8 +88,9 @@ const JoinUsForm: React.FC = () => {
     setStatus({ submitting: true, submitted: false, error: null, success: null })
 
     try {
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await axios.post(
-        "http://localhost:5000/api/join",
+        `${apiUrl}/join`,
         {
           ...formData,
           age: Number.parseInt(formData.age),

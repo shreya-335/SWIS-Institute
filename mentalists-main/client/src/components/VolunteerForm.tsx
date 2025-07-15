@@ -161,13 +161,14 @@ const VolunteerForm: React.FC = () => {
       }
 
       console.log("📤 SENDING REQUEST TO SERVER...")
-      console.log("  - URL: http://localhost:5000/api/volunteer-simple")
+      const apiUrl = process.env.REACT_APP_API_URL;
+      console.log(`  - URL: ${apiUrl}/volunteer-simple`)
       console.log("  - Method: POST")
       console.log("  - Body type:", submitData.constructor.name)
       console.log("  - Content-Type: (will be auto-set by browser for multipart/form-data)")
 
       // 🔧 FIXED: Send FormData without setting Content-Type header
-      const response = await fetch("http://localhost:5000/api/volunteer-simple", {
+      const response = await fetch(`${apiUrl}/volunteer-simple`, {
         method: "POST",
         body: submitData,
         // CRITICAL: Do NOT set Content-Type header - let browser set it automatically
