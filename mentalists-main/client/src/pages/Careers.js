@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import { Users, Award, Clock, Heart, Target, Globe,ChevronLeft, ChevronRight, Droplet  } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import soubhikbg from '../img/S1.png';
+import csaaS2 from '../img/csaaS2.jpg';
 
-
+//nvdlnv
+//vijgvkgn 
+//hvjdhvjk
 
 const Careers = () => {
   // Statistics data
@@ -39,7 +43,7 @@ const Careers = () => {
       name: "CSAA",
       title: "Center for Social Action & Advocacy",
       description: "Be part of our mission to create sustainable change through strategic social action and advocacy",
-      image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: csaaS2,
       applyLink: "/csaa"
     },
     {
@@ -111,11 +115,12 @@ const Careers = () => {
                       initial={{ opacity: 0, y: 50 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1, delay: 0.5 }}
-                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-white mb-4 sm:mb-6 leading-tight"
-                    >
+                      className="text-2xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-white mb-4 sm:mb-6 leading-tight"
+                   style={{ fontFamily: '"Times New Roman", serif' }} >
                       Nurturing High Performance
                       <div className="bg-[#023080] inline-block px-2 sm:px-4 md:px-6 py-1 sm:py-2 mt-2 sm:mt-4">
-                        <span className="text-[#d2d5e0] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">with care and empathy</span>
+                        <span className="text-[#d2d5e0] text-lg sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl"
+                          style={{ fontFamily: '"system-ui" ' }}>with care and empathy</span>
                       </div>
                     </motion.h1>
                   </div>
@@ -203,7 +208,7 @@ const Careers = () => {
                 <div className="space-y-4">
                   <div className="relative h-48 rounded-2xl overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                      src={soubhikbg}
                       alt="Innovation"
                       className="w-full h-full object-cover"
                     />
@@ -213,7 +218,7 @@ const Careers = () => {
                   </div>
                   <div className="relative h-32 rounded-2xl overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                      src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=8"
                       alt="Diversity & Inclusion"
                       className="w-full h-full object-cover"
                     />
@@ -251,67 +256,79 @@ const Careers = () => {
       </section>
 
       {/* Quote Section - Similar to third image layout */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-[#F5F1E8] relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-            {/* Quote Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="flex-1 lg:pr-8"
-            >
-              <div className="text-6xl sm:text-7xl text-[#8e9fc5] font-serif mb-6">"</div>
-              
-              <blockquote className="text-xl sm:text-2xl md:text-3xl text-[#023080] font-light leading-relaxed mb-8">
-                SWIS is more than a workplace...
-                <br />
-                It is a place for you to discover yourself more fully.
-                <br />
-                At SWIS, you should be able to experience more, acquire new skills, learn continuously, and apply all that learning to your own success and the success of this organisation.
-                <br />
-                We provide world-class facilities so that our people can work wholeheartedly.
-              </blockquote>
-              
-              <div className="text-6xl sm:text-7xl text-[#8e9fc5] font-serif mb-8 text-right">"</div>
-              
-              <div className="mt-8">
-                <div className="text-4xl sm:text-5xl md:text-6xl font-light text-[#023080] mb-2">
-                  Soubhik
-                </div>
-                <div className="text-4xl sm:text-5xl md:text-6xl font-light text-[#023080]">
-                  Kundu
-                </div>
-                <div className="text-base sm:text-lg text-gray-600 mt-4">
-                  Chairman & Managing Trustee, SWIS
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Portrait with circular design elements */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="flex-1 max-w-md lg:max-w-lg relative"
-            >
-              <div className="relative">
-                {/* Large circular background */}
-                <div className="absolute inset-0 w-96 h-96 border-2 border-[#d2d5e0] rounded-full opacity-30 transform translate-x-12 translate-y-12"></div>
-                <div className="absolute inset-0 w-80 h-80 border-2 border-[#8e9fc5] rounded-full opacity-20 transform translate-x-20 translate-y-8"></div>
-                
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Soubhik Kundu - Chairman & Managing Trustee"
-                  className="relative z-10 w-full h-auto rounded-2xl shadow-2xl"
-                />
-              </div>
-            </motion.div>
+    <section className="py-16 sm:py-20 lg:py-24 bg-[#F5F1E8] relative overflow-hidden">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      
+      {/* Quote Content */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="flex-1 lg:pr-8"
+      >
+        {/* Quote with styled quote marks */}
+        <div className="relative">
+          {/* Opening quote mark */}
+          <div className="absolute -top-6 -left-6 text-9xl text-[#8e9fc5] font-serif opacity-70">
+            “
+          </div>
+          
+          {/* Quote Text */}
+          <blockquote className="text-xl sm:text-2xl md:text-3xl text-[#023080] font-light leading-relaxed mb-8 pl-8 pr-8 pt-8">
+            SWIS is more than a workplace...<br />
+            It is a place for you to discover yourself more.<br />
+            At SWIS, you should be able to experience more, acquire new skills, learn continuously, and apply all that learning to your own success and the success of this organisation.<br />
+            We provide world-class facilities so that our people can work wholeheartedly.
+          </blockquote>
+          
+          {/* Closing quote mark */}
+          <div className="absolute -bottom-24 -right-6 text-9xl text-[#8e9fc5] font-serif opacity-70">
+            ”
           </div>
         </div>
-      </section>
+        
+        {/* Author info */}
+        <div className="mt-8">
+          <div className="text-4xl sm:text-5xl md:text-6xl font-light text-[#023080] mb-2"
+          style={{ fontFamily: '"Times New Roman", serif' }}>
+            Soubhik
+          </div>
+          <div className="text-4xl sm:text-5xl md:text-6xl font-light text-[#023080] mb-4"
+          style={{ fontFamily: '"Times New Roman", serif' }}>
+            Kundu
+          </div>
+          <div className="text-base sm:text-lg text-gray-600 mt-2">
+            Chairman & Managing Trustee, SWIS
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Portrait with circular design elements */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="flex-1 max-w-md lg:max-w-lg relative"
+      >
+        <div className="relative">
+          {/* Large circular background */}
+          <div className="absolute inset-0 w-96 h-96 border-2 border-[#d2d5e0] rounded-full opacity-30 transform translate-x-12 translate-y-12"></div>
+          <div className="absolute inset-0 w-80 h-80 border-2 border-[#8e9fc5] rounded-full opacity-20 transform translate-x-20 translate-y-8"></div>
+          
+          {/* Profile Image */}
+          <img
+            src={soubhikbg}
+            alt="Soubhik Kundu - Chairman & Managing Trustee"
+            className="relative z-10 w-[300px] h-auto rounded-2xl shadow-2xl"
+          />
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* Statistics Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-[#023080]">

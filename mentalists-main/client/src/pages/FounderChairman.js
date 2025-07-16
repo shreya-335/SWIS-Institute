@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -413,46 +412,39 @@ const FounderChairman = () => {
 
       {/* Shareholders' Speeches */}
       <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="py-16 sm:py-20 lg:py-24"
-        style={{ backgroundColor: '#023080' }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, type: "spring", stiffness: 50 }}
+        style={{ backgroundColor: '#023080', color: '#FCFDFF', padding: '2rem', textAlign: 'center' }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h2
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-light mb-12 lg:mb-16 text-white"
-          >
-            Speeches at Reliance Shareholders' Meetings
-          </motion.h2>
-          
-          <div className="backdrop-blur-sm bg-white/95 rounded-3xl p-8 sm:p-12 lg:p-16 max-w-6xl mx-auto shadow-2xl border border-white/20">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {[
-                { date: "APR 08, 2002", desc: "Equity Shareholders Meeting" },
-                { date: "JUN 15, 2001", desc: "27th Annual General Meeting" },
-                { date: "JUN 13, 2000", desc: "26th Annual General Meeting" },
-                { date: "JUN 24, 1999", desc: "25th Annual General Meeting" },
-                { date: "JUN 26, 1998", desc: "24th Annual General Meeting" },
-                { date: "OCT 16, 1997", desc: "Extraordinary General Meeting" }
-              ].map((speech, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ delay: idx * 0.1, duration: 0.6 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="backdrop-blur-sm bg-gradient-to-br from-[#d2d5e0] to-white/90 p-6 sm:p-8 rounded-2xl text-center shadow-md hover:shadow-lg transition-all duration-300 border border-[#8e9fc5]/30"
-                >
-                  <p className="font-bold text-base sm:text-lg mb-3" style={{ color: '#04307b' }}>{speech.date}</p>
-                  <p className="text-sm sm:text-base" style={{ color: '#8e9fc5' }}>{speech.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+        <motion.h2
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, type: "spring", stiffness: 50 }}
+          style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}
+        >
+          Speeches at swis
+        </motion.h2>
+        <div style={{ backgroundColor: '#fff', color: '#000', padding: '1rem', borderRadius: '8px', maxWidth: '750px', margin: '0 auto', display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+          {[
+            { date: "APR 08, 2002", desc: "Equity Shareholders Meeting" },
+            { date: "JUN 15, 2001", desc: "27th Annual General Meeting" },
+            { date: "JUN 13, 2000", desc: "26th Annual General Meeting" },
+            { date: "JUN 24, 1999", desc: "25th Annual General Meeting" },
+            { date: "JUN 26, 1998", desc: "24th Annual General Meeting" },
+            { date: "OCT 16, 1997", desc: "Extraordinary General Meeting" }
+          ].map((speech, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ delay: idx * 0.1, duration: 0.5, type: "spring", stiffness: 50 }}
+              style={{ width: '180px', textAlign: 'center', margin: '0.5rem', backgroundColor: '#e0e0e0', padding: '0.5rem', borderRadius: '8px' }}
+            >
+              <p style={{ fontSize: '0.9rem' }}>{speech.date}</p>
+              <p style={{ fontSize: '0.9rem' }}>{speech.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </motion.section>
 

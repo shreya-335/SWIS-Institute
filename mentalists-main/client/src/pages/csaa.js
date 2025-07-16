@@ -300,7 +300,7 @@ const ObjectivesSection = ({ isVisible }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className={`text-center mb-12 sm:mb-16 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-6">
-            Objectives of this Initiative
+            ObjectivesofthisInitiative
           </h2>
           <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
             A comprehensive approach to fostering social leadership through education, empathy, and innovation.

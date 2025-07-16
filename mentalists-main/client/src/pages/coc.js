@@ -260,8 +260,8 @@ const CodeOfConduct = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#04307b' }}>
-      {/* Top Spacer Section - Increased padding */}
-      <div className="h-20 md:h-24 lg:h-28"></div>
+      {/* Top Spacer Section - Keeps space for navbar/header */}
+      <div className="h-12 md:h-16 lg:h-20"></div>
 
       {/* Header Section */}
       <section className="text-white py-6" style={{ backgroundColor: '#04307b' }}>
@@ -272,20 +272,20 @@ const CodeOfConduct = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            {/* Add more padding above title */}
-            <h1 className="text-4xl md:text-6xl font-normal mb-4 pt-8" style={{ fontFamily: '"Times New Roman", serif' }}>
+            {/* Add padding above title */}
+            <h1 className="text-4xl md:text-6xl font-normal mb-4 pt-4" style={{ fontFamily: '"Times New Roman", serif' }}>
               Code of Conduct
             </h1>
             
-            {/* Bring in one line with reduced size */}
-            <p className="text-lg md:text-xl text-blue-100 max-w-4xl mx-auto leading-tight mb-3" style={{ fontFamily: '"system-ui"' }}>
+            {/* Reduce space after subtitle */}
+            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-3" style={{ fontFamily: '"system-ui"' }}>
               Ethical, professional, and behavioral standards for all individuals associated with SWIS Institute
             </p>
 
-            {/* 2 lines with increased size */}
+            {/* Minimal margin after info box */}
             <div className="mt-2 p-3 bg-blue-800/50 rounded-lg inline-block mb-4">
-              <p className="text-base md:text-lg text-blue-200" style={{ fontFamily: '"system-ui"' }}>
-                The term "members" refers to all individuals associated with the organization,<br />including full-time, part-time, and contractual staff, volunteers, fellows, interns, board members, and alumni.
+              <p className="text-sm text-blue-200" style={{ fontFamily: '"system-ui"' }}>
+                The term "members" refers to all individuals associated with the organization,including full-time, part-time, and contractual staff, volunteers, fellows, interns, board members, and alumni.
               </p>
             </div>
           </motion.div>

@@ -1,8 +1,14 @@
+
 "use client"
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import { Users, Laptop, Lightbulb, Briefcase, ArrowRight, Home, Mountain, Shield } from "lucide-react"
+import skill1 from "../img/skill1.jpeg"
+import skill2 from "../img/skill2.jpeg"
+import skill3 from "../img/skill3.jpeg"
+import skill4 from "../img/skill4.jpeg"
+import skill32 from "../img/skill32.jpeg"
 
 // Counter animation component
 const AnimatedCounter = ({ value, duration = 2 }) => {
@@ -37,9 +43,7 @@ const AnimatedCounter = ({ value, duration = 2 }) => {
   return <span ref={ref}>{count}</span>
 }
 
-const Skill2 = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [activeCard, setActiveCard] = useState(0)
+const SkillDevelopment = () => {
   const [selectedTimelineItem, setSelectedTimelineItem] = useState(0)
 
   // Timeline data for hero section
@@ -49,28 +53,28 @@ const Skill2 = () => {
       percentage: "4.7%",
       description: "of workforce formally skilled",
       subtitle: "The Beginning",
-      background: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
+      background: skill1,
     },
     {
       year: "2020",
       percentage: "53%",
       description: "youth need reskilling by 2025",
       subtitle: "Growing Challenge",
-      background: "https://images.unsplash.com/photo-1552581234-26160f608093?w=800&h=600&fit=crop",
+      background: skill2,
     },
     {
       year: "2024",
       percentage: "47%",
       description: "graduates not employable",
       subtitle: "Current Reality",
-      background: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+      background: skill3,
     },
     {
       year: "2030",
       percentage: "15K+",
       description: "youth to be skilled annually",
       subtitle: "Our Vision",
-      background: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
+      background: skill4,
     },
   ]
 
@@ -119,35 +123,32 @@ const Skill2 = () => {
     },
   ]
 
-  // Slideshow images
-  const slideImages = [
-    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1552581234-26160f608093?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
-  ]
+  // Slideshow images (used for program content image)
+  const slideImages = [skill1, skill2, skill3, skill4]
 
   // Impact areas data with individual images
   const impactAreas = [
     {
       icon: Home,
       title: "Urban Areas",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop",
+      image: skill2,
       description: "Urban slums and marginalized communities",
     },
     {
       icon: Mountain,
       title: "Rural Areas",
-      image: "https://images.unsplash.com/photo-1552581234-26160f608093?w=400&h=250&fit=crop",
+      image: skill1,
       description: "Rural villages and farming communities",
     },
     {
       icon: Shield,
       title: "Shelter Homes",
-      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop",
+      image: skill4,
       description: "Supporting vulnerable youth in care",
     },
   ]
+
+  const [activeCard, setActiveCard] = useState(0)
 
   return (
     <div className="min-h-screen bg-white">
@@ -170,10 +171,12 @@ const Skill2 = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-8"
             >
-              <span className="text-[#d2d5e0] text-lg font-medium tracking-wider uppercase">SWIS FOUNDATION</span>
+              <span className="text-[#d2d5e0] text-base sm:text-lg font-medium tracking-wider uppercase">
+                SWIS FOUNDATION
+              </span>
             </motion.div>
-            <h1 className="text-6xl font-serif mb-8">Skill Development</h1>
-            <p className="text-2xl mb-12 max-w-3xl mx-auto">
+            <h1 style={{ fontFamily: '"Times New Roman", serif' }} className="text-4xl sm:text-5xl md:text-6xl font-serif mb-8 ">Skill Development</h1>
+            <p style={{ fontFamily: '"system-ui" ' }} className="text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
               Skills for Tomorrow, <span className="text-blue-300 italic">Empowering India's Youth</span>
             </p>
           </motion.div>
@@ -183,37 +186,39 @@ const Skill2 = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative flex justify-center items-center space-x-16 mt-16"
+            className="relative flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-16 mt-16"
           >
             {/* Continuous connecting line */}
-            <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2"></div>
+            <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2 hidden sm:block"></div>
 
             {timelineData.map((item, index) => (
               <div key={index} className="relative flex flex-col items-center z-10">
                 <motion.button
                   onClick={() => setSelectedTimelineItem(index)}
-                  className={`flex flex-col items-center p-6 rounded-lg transition-all duration-300 bg-black bg-opacity-40 ${
+                  className={`flex flex-col items-center p-2 sm:p-3 md:p-6 rounded-lg transition-all duration-300 bg-black bg-opacity-40 ${
                     selectedTimelineItem === index
-                      ? "bg-white bg-opacity-20 scale-110"
+                      ? "bg-white bg-opacity-20 scale-105 sm:scale-110"
                       : "hover:bg-white hover:bg-opacity-10"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="text-4xl font-bold" style={{ color: "#FCFDFF" }}>
+                  <div className="text-xl sm:text-2xl md:text-4xl font-bold" style={{ color: "#FCFDFF" }}>
                     {item.year}
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full my-3 ${selectedTimelineItem === index ? "bg-white" : "bg-white bg-opacity-50"}`}
+                    className={`w-4 h-4 sm:w-6 sm:h-6 rounded-full my-2 sm:my-3 ${selectedTimelineItem === index ? "bg-white" : "bg-white bg-opacity-50"}`}
                   ></div>
                   <div
-                    className="text-3xl font-bold"
-                    style={{ color: "#023080", backgroundColor: "#FCFDFF", padding: "8px 16px", borderRadius: "8px" }}
+                    className="text-lg sm:text-xl md:text-3xl font-bold"
+                    style={{ color: "#023080", backgroundColor: "#FCFDFF", padding: "4px 8px", borderRadius: "8px" }}
                   >
                     {item.percentage}
                   </div>
-                  <div className="text-sm mt-3 text-center max-w-32">{item.description}</div>
-                  <div className="text-xs mt-2 text-[#d2d5e0] font-medium">{item.subtitle}</div>
+                  <div className="text-xs sm:text-sm mt-2 sm:mt-3 text-center max-w-[80px] sm:max-w-32">
+                    {item.description}
+                  </div>
+                  <div className="text-xs mt-1 sm:mt-2 text-[#d2d5e0] font-medium">{item.subtitle}</div>
                 </motion.button>
               </div>
             ))}
@@ -227,7 +232,7 @@ const Skill2 = () => {
             transition={{ duration: 0.6 }}
             className="mt-16 max-w-4xl mx-auto"
           >
-            <p className="text-xl text-[#d2d5e0]/90 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-[#d2d5e0]/90 leading-relaxed">
               {selectedTimelineItem === 0 &&
                 "India faces a growing skill gap—over 65% of its population is under the age of 35, yet only a fraction are job-ready."}
               {selectedTimelineItem === 1 &&
@@ -250,18 +255,18 @@ const Skill2 = () => {
               href="/JoinUs"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-[#023080] px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group"
+              className="bg-white text-[#023080] px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group"
             >
               Join Us
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.a>
           </motion.div>
         </div>
       </section>
 
       {/* Challenge Overview Section */}
-      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#FCFDFF" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -269,8 +274,10 @@ const Skill2 = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-[#023080] mb-12">The Skill Gap Challenge</h2>
-            <p className="text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
+            <h2 style={{ fontFamily: '"Times New Roman", serif' }} className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#023080] mb-8 sm:mb-12">
+              The Skill Gap Challenge
+            </h2>
+            <p style={{ fontFamily: '"system-ui"' }} className="text-lg sm:text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
               India faces a growing skill gap—over 65% of its population is under the age of 35, yet only a fraction are
               job-ready. According to the India Skills Report 2024, less than 50% of graduates are considered
               employable. This gap is even wider in rural, tribal, and marginalized communities where access to
@@ -283,7 +290,7 @@ const Skill2 = () => {
       {/* Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#FCFDFF",
             clipPath:
@@ -291,12 +298,12 @@ const Skill2 = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          src={skill1}
           alt="Youth learning and skill development"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
@@ -306,46 +313,48 @@ const Skill2 = () => {
       </div>
 
       {/* Our Efforts Include Section */}
-      <section className="py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
           </motion.div>
 
           {/* Program Navigation Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {programData.map((program, index) => (
               <motion.button
                 key={index}
                 onClick={() => setActiveCard(index)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`p-4 rounded-2xl transition-all duration-300 text-center ${
+                className={`p-3 sm:p-4 rounded-2xl transition-all duration-300 text-center ${
                   activeCard === index
-                    ? "bg-white border-4 border-orange-400 shadow-xl"
-                    : "bg-white/80 border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
+                    ? "bg-white border-2 sm:border-4 border-orange-400 shadow-xl"
+                    : "bg-white/80 border border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-center justify-start gap-3 px-2">
-                  <div className="text-gray-600 flex-shrink-0">{program.icon}</div>
-                  <h3 className="text-sm font-semibold text-gray-800 text-left leading-tight">{program.title}</h3>
+                <div className="flex items-center justify-start gap-2 sm:gap-3 px-1 sm:px-2">
+                  <div className="text-gray-600 flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8">{program.icon}</div>
+                  <h3 className="text-xs sm:text-sm font-semibold text-gray-800 text-left leading-tight">
+                    {program.title}
+                  </h3>
                 </div>
               </motion.button>
             ))}
           </div>
 
           {/* Equal Sized Content Grid - Text Card Left, Image Right */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Left Side - Active Program Content Card */}
             <AnimatePresence mode="wait">
               <motion.div
@@ -354,22 +363,24 @@ const Skill2 = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 40 }}
                 transition={{ duration: 0.6 }}
-                className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl h-64 lg:h-80 flex flex-col"
+                className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl h-auto sm:h-64 lg:h-80 flex flex-col"
               >
-                <div className="flex items-start gap-6 mb-6">
+                <div className="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
                       {programData[activeCard].icon}
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-[#023080] mb-4">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#023080] mb-2 sm:mb-4">
                       {programData[activeCard].fullTitle}
                     </h3>
                   </div>
                 </div>
                 <div className="flex-1 flex flex-col justify-center">
-                  <p className="text-gray-700 text-lg leading-relaxed">{programData[activeCard].description}</p>
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
+                    {programData[activeCard].description}
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -398,20 +409,20 @@ const Skill2 = () => {
       {/* Third Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
-              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 90%, 23% 100%, 21% 95%, 19% 100%, 17% 85%, 15% 100%, 13% 90%, 11% 100%, 9% 95%, 7% 100%, 5% 90%, 3% 100%, 1% 95%, 0 100%)",
+              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 100%, 23% 95%, 21% 100%, 19% 95%, 17% 100%, 15% 85%, 13% 100%, 11% 90%, 9% 100%, 7% 95%, 5% 100%, 3% 90%, 1% 100%, 0 100%)",
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&h=400&fit=crop"
+          src={skill32}
           alt="Youth skill development"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
@@ -421,19 +432,19 @@ const Skill2 = () => {
       </div>
 
       {/* Where We Work Section */}
-      <section className="py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8">Where We Work</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-8">Where We Work</h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {impactAreas.map((area, index) => (
               <motion.div
                 key={index}
@@ -445,17 +456,17 @@ const Skill2 = () => {
                 className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
                 {/* Image Section */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 sm:h-48 overflow-hidden">
                   <img src={area.image || "/placeholder.svg"} alt={area.title} className="w-full h-full object-cover" />
                 </div>
 
                 {/* Content Section */}
-                <div className="p-6">
-                  <div className="flex items-center gap-4">
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <div className="text-[#023080]">
-                      <area.icon className="w-8 h-8" />
+                      <area.icon className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-[#023080]">{area.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-[#023080]">{area.title}</h3>
                   </div>
                 </div>
               </motion.div>
@@ -465,69 +476,69 @@ const Skill2 = () => {
       </section>
 
       {/* Our Impact Section */}
-      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#FCFDFF" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 text-[#023080]"
+            className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 text-[#023080]"
           >
             Our Impact
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={4000} />+
               </div>
-              <div className="text-xl text-gray-700">Youth Impacted</div>
+              <div className="text-base sm:text-xl text-gray-700">Youth Impacted</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={50} />+
               </div>
-              <div className="text-xl text-gray-700">Trainers & Mentors</div>
+              <div className="text-base sm:text-xl text-gray-700">Trainers & Mentors</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={7} />+
               </div>
-              <div className="text-xl text-gray-700">Locations</div>
+              <div className="text-base sm:text-xl text-gray-700">Locations</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={3} />+
               </div>
-              <div className="text-xl text-gray-700">States</div>
+              <div className="text-base sm:text-xl text-gray-700">States</div>
             </motion.div>
           </div>
         </div>
@@ -536,7 +547,7 @@ const Skill2 = () => {
       {/* Fourth Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#FCFDFF",
             clipPath:
@@ -544,12 +555,12 @@ const Skill2 = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=400&fit=crop"
+          src={skill4}
           alt="Youth achieving goals"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#04307b",
             clipPath:
@@ -559,8 +570,8 @@ const Skill2 = () => {
       </div>
 
       {/* Impact Goal Section */}
-      <section className="py-24" style={{ backgroundColor: "#04307b" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#04307b" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -568,17 +579,17 @@ const Skill2 = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-white">Our 2030 Vision</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white">Our 2030 Vision</h2>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-5xl lg:text-7xl font-bold text-[#d2d5e0] mb-8"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#d2d5e0] mb-8"
             >
               15,000+
             </motion.div>
-            <p className="text-lg lg:text-xl text-[#d2d5e0]/90 max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-base sm:text-lg lg:text-xl text-[#d2d5e0]/90 max-w-4xl mx-auto leading-relaxed mb-12">
               To enable 15,000+ young people annually by 2030 to access relevant skills, employment pathways, or start
               small businesses—especially those from underserved and vulnerable backgrounds.
             </p>
@@ -595,10 +606,10 @@ const Skill2 = () => {
                 href="/JoinUs"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#023080] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#d2d5e0] transition-all duration-300 transform hover:shadow-2xl inline-flex items-center gap-3 group"
+                className="bg-white text-[#023080] px-6 sm:px-10 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg hover:bg-[#d2d5e0] transition-all duration-300 transform hover:shadow-2xl inline-flex items-center gap-3 group"
               >
                 Join Our Mission
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </motion.a>
             </motion.div>
 
@@ -608,7 +619,7 @@ const Skill2 = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
               viewport={{ once: true }}
-              className="text-[#d2d5e0]/80 text-sm"
+              className="text-[#d2d5e0]/80 text-xs sm:text-sm"
             >
               Be part of India's transformation. Help us bridge the skill gap.
             </motion.p>
@@ -616,25 +627,25 @@ const Skill2 = () => {
         </div>
       </section>
 
-      {/* second Rough Edge Image Section */}
+      {/* Second Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
-            backgroundColor: "#023080",
+            backgroundColor: "#04307b",
             clipPath:
-              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 90%, 23% 100%, 21% 95%, 19% 100%, 17% 85%, 15% 100%, 13% 90%, 11% 100%, 9% 95%, 7% 100%, 5% 90%, 3% 100%, 1% 95%, 0 100%)",
+              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 100%, 23% 95%, 21% 100%, 19% 95%, 17% 100%, 15% 85%, 13% 100%, 11% 90%, 9% 100%, 7% 95%, 5% 100%, 3% 90%, 1% 100%, 0 100%)",
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          src={skill2}
           alt="Youth learning and skill development"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
-            backgroundColor: "#023080",
+            backgroundColor: "#d2d5e0",
             clipPath:
               "polygon(0 100%, 100% 100%, 99% 0, 97% 10%, 95% 0, 93% 15%, 91% 0, 89% 5%, 87% 0, 85% 10%, 83% 0, 81% 5%, 79% 0, 77% 15%, 75% 0, 73% 10%, 71% 0, 69% 5%, 67% 0, 65% 10%, 63% 0, 61% 5%, 59% 0, 57% 15%, 55% 0, 53% 10%, 51% 0, 49% 5%, 47% 0, 45% 10%, 43% 0, 41% 5%, 39% 0, 37% 15%, 35% 0, 33% 10%, 31% 0, 29% 5%, 27% 0, 25% 10%, 23% 0, 21% 5%, 19% 0, 17% 15%, 15% 0, 13% 10%, 11% 0, 9% 5%, 7% 0, 5% 10%, 3% 0, 1% 5%, 0 0)",
           }}
@@ -642,7 +653,7 @@ const Skill2 = () => {
       </div>
 
       {/* Statistics About Skill Development in India Section */}
-      <section className="py-24" style={{ backgroundColor: "#d2d5e0" }}>
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#d2d5e0" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -651,30 +662,34 @@ const Skill2 = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl font-bold mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8">
               Statistics About <span style={{ color: "#023080" }}>Skill Development</span> in India
             </h2>
-            <p className="text-lg text-[#023080]/80 max-w-6xl mx-auto mb-16">
+            <p className="text-base sm:text-lg text-[#023080]/80 max-w-6xl mx-auto mb-12 sm:mb-16">
               Despite numerous government schemes and institutional efforts, the skill development landscape in India
               still faces major gaps. These numbers underline the urgent need for inclusive and accessible skilling
               pathways to prepare youth for the future of work.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                   <AnimatedCounter value={47} />%
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">of Indian graduates are not employable</div>
-                <div className="text-gray-600 mb-4">due to lack of industry-relevant skills</div>
-                <div className="text-sm" style={{ color: "#023080" }}>
+                <div className="text-sm sm:text-lg font-semibold text-gray-700 mb-2 sm:mb-4">
+                  of Indian graduates are not employable
+                </div>
+                <div className="text-xs sm:text-base text-gray-600 mb-2 sm:mb-4">
+                  due to lack of industry-relevant skills
+                </div>
+                <div className="text-xs sm:text-sm" style={{ color: "#023080" }}>
                   Source: India Skills Report 2024
                 </div>
               </motion.div>
@@ -684,17 +699,17 @@ const Skill2 = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                   <AnimatedCounter value={53} />%
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
+                <div className="text-sm sm:text-lg font-semibold text-gray-700 mb-2 sm:mb-4">
                   of youth in India will require reskilling
                 </div>
-                <div className="text-gray-600 mb-4">by 2025 to meet industry demands</div>
-                <div className="text-sm" style={{ color: "#023080" }}>
+                <div className="text-xs sm:text-base text-gray-600 mb-2 sm:mb-4">by 2025 to meet industry demands</div>
+                <div className="text-xs sm:text-sm" style={{ color: "#023080" }}>
                   Source: World Economic Forum, 2020
                 </div>
               </motion.div>
@@ -704,17 +719,19 @@ const Skill2 = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                   <AnimatedCounter value={4.7} />%
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
+                <div className="text-sm sm:text-lg font-semibold text-gray-700 mb-2 sm:mb-4">
                   of the total workforce is formally skilled
                 </div>
-                <div className="text-gray-600 mb-4">compared to 52% in the US and 68% in the UK</div>
-                <div className="text-sm" style={{ color: "#023080" }}>
+                <div className="text-xs sm:text-base text-gray-600 mb-2 sm:mb-4">
+                  compared to 52% in the US and 68% in the UK
+                </div>
+                <div className="text-xs sm:text-sm" style={{ color: "#023080" }}>
                   Source: National Policy on Skill Development and Entrepreneurship 2015
                 </div>
               </motion.div>
@@ -726,4 +743,4 @@ const Skill2 = () => {
   )
 }
 
-export default Skill2
+export default SkillDevelopment

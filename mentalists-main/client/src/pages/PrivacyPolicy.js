@@ -72,7 +72,7 @@ const PrivacyPolicy = () => {
       */}
 
       {/* Header */}
-      <header className="py-8 md:py-10 border-b border-[#d2d5e0]">
+      <header className="py-8 md:py-10 border-b border-[#8e9fc5]">
         <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#ffffff] mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>Privacy Policy</h1>
           <p className="text-lg md:text-xl max-w-4xl" style={{ fontFamily: '"system-ui"' }}>
@@ -84,7 +84,7 @@ const PrivacyPolicy = () => {
 
       {/* Policy Sections */}
       <main className="max-w-7xl mx-auto px-4 py-10">
-        <div className="bg-[#d2d5e0] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
+        <div className="bg-[#FCFDFF] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
           {sections.map((section, i) => (
             <section key={i} className="flex items-start space-x-4">
               <div className="flex-shrink-0 mt-1">
