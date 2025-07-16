@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import soubhikbg from "../img/sbg1.png";
+import edu1 from "../img/edu2.jpg";
+import skill1 from "../img/skill1.jpg";
+
 
 // Inline Button Component
 const Button = React.forwardRef(({ className = "", variant = "default", size = "default", ...props }, ref) => {
@@ -50,52 +54,77 @@ CardContent.displayName = "CardContent";
 // Main Component
 const Allinone = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#023080] pt-24
+    ">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center" style={{ backgroundColor: "#023080" }}>
-        <div className="container mx-auto px-4 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-white"
-            >
-              <div className="text-6xl mb-6 font-light">"</div>
-              <p className="text-xl lg:text-2xl mb-8 leading-relaxed font-light">
-                SWIS is the place for those who dare to tackle the seemingly impossible challenges of our society and invent solutions that overcome them.
-              </p>
-              <div className="text-6xl mb-6 font-light text-right">"</div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="mt-12"
-              >
-                <h2 className="text-4xl lg:text-5xl font-light mb-2">Soubhik</h2>
-                <h2 className="text-4xl lg:text-5xl font-light mb-4">Kundu</h2>
-                <p className="text-lg opacity-90">Chairman & Managing Director, SWIS</p>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center lg:justify-end"
-            >
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full border-4 border-white/20 flex items-center justify-center overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                  alt="Soubhik Kundu - Chairman & Managing Director"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
-            </motion.div>
+   <section className="py-16 sm:py-20 lg:py-24  relative overflow-hidden " style={{ backgroundColor: "#023080" }}>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      
+      {/* Quote Content */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="flex-1 lg:pr-8"
+      >
+        {/* Quote with styled quote marks */}
+        <div className="relative">
+          {/* Opening quote mark */}
+          <div className="absolute -top-6 -left-6 text-9xl text-[#F5F1E8] font-serif opacity-70">
+            “
+          </div>
+          
+          {/* Quote Text */}
+          <blockquote className="text-xl sm:text-2xl md:text-3xl text-[#F5F1E8] font-light leading-relaxed mb-8 pl-8 pr-8 pt-8">
+            Dedication over designation, sincerity over seniority, values over valuables, effort over results, loyalty over royalty — because real impact comes not from titles or trophies, but from purpose, passion, and perseverance.
+          </blockquote>
+          
+          {/* Closing quote mark */}
+          <div className="absolute -bottom-24 -right-6 text-9xl text-[#F5F1E8] font-serif opacity-70">
+            ”
           </div>
         </div>
-      </section>
+        
+        {/* Author info */}
+        <div className="mt-8">
+          <div className="text-4xl sm:text-5xl md:text-6xl font-light text-[#F5F1E8] mb-2"
+          style={{ fontFamily: '"Times New Roman", serif' }}>
+            Soubhik
+          </div>
+          <div className="text-4xl sm:text-5xl md:text-6xl font-light text-[#F5F1E8] mb-4"
+          style={{ fontFamily: '"Times New Roman", serif' }}>
+            Kundu
+          </div>
+          <div className="text-base sm:text-lg text-gray-600 mt-2 text-[#F5F1E8]">
+            Chairman & Managing Trustee, SWIS
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Portrait with circular design elements */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex-1 flex justify-center"
+          >
+            <img
+              src={soubhikbg}
+              alt="Soubhik Kundu"
+              className="h-[450px] lg:h-[550px] object-cover filter grayscale transition-all duration-500"
+              style={{
+                maskImage: "linear-gradient(to bottom, black 95%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 95%, transparent 100%)",
+              }}
+            />
+          </motion.div>
+    </div>
+  </div>
+</section>
+
 
       {/* Our Interventions Section */}
       <section className="py-20" style={{ backgroundColor: "#FCFDFF" }}>
@@ -107,7 +136,7 @@ const Allinone = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl lg:text-6xl font-light mb-6" style={{ color: "#023080" }}>
+            <h2 className="text-5xl lg:text-6xl font-light mb-6" style={{ color: "#023080", fontFamily: '"Times New Roman", serif'  }}>
               Our Interventions
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -117,8 +146,8 @@ const Allinone = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {[
-              { title: "Education", image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&h=300&fit=crop", path: "/education" },
-              { title: "Skill Development", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop", path: "/SkillDevelopment" },
+              { title: "Education", image: edu1, path: "/education" },
+              { title: "Skill Development", image: skill1, path: "/SkillDevelopment" },
               { title: "Nutrition", image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&h=300&fit=crop", path: "/nutrition" },
               { title: "Healthcare", image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&h=300&fit=crop", path: "/healthcare" },
               { title: "Relief of Poor", image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=500&h=300&fit=crop", path: "/relief-of-poor" }
@@ -168,7 +197,7 @@ const Allinone = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl lg:text-6xl font-light mb-8" style={{ color: "#023080" }}>
+            <h2 className="text-5xl lg:text-6xl font-light mb-8" style={{ color: "#023080" , fontFamily: '"Times New Roman", serif' }}>
               Diversity & Inclusion
             </h2>
           </motion.div>
@@ -225,7 +254,7 @@ const Allinone = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-5xl lg:text-6xl font-light text-white mb-8">
+            <h2 className="text-5xl lg:text-6xl font-medium text-white mb-8">
               Grievance Redressal Mechanism
             </h2>
           </motion.div>
@@ -251,17 +280,7 @@ const Allinone = () => {
               </CardContent>
             </Card>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="mt-8 text-center"
-            >
-              <Button className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-3 text-lg">
-                Equal Opportunity Policy document (PDF) →
-              </Button>
-            </motion.div>
+       
 
             <div className="mt-12 text-white text-sm space-y-2">
               <p className="font-semibold">Disclaimer:</p>

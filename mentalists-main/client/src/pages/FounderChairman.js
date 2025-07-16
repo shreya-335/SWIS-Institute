@@ -400,7 +400,7 @@ const FounderChairman = () => {
           transition={{ duration: 1, type: "spring", stiffness: 50 }}
           style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}
         >
-          Speeches at Reliance Shareholders' Meetings
+          Speeches at swis
         </motion.h2>
         <div style={{ backgroundColor: '#fff', color: '#000', padding: '1rem', borderRadius: '8px', maxWidth: '750px', margin: '0 auto', display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
           {[
