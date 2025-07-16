@@ -46,6 +46,7 @@ const ScrollHeader = () => {
   }
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null) // New state for mobile submenus
 
   // Import images using require for better compatibility
   const bluelogo = require("../img/bluelogo.png")
@@ -146,7 +147,6 @@ const ScrollHeader = () => {
           description: "Food security and nutrition",
           parent: "SWIS Foundation",
         },
-        
       ],
     },
     {
@@ -162,6 +162,7 @@ const ScrollHeader = () => {
   const handleLinkClick = () => {
     setActiveDropdown(null)
     setMobileMenuOpen(false)
+    setActiveMobileSubmenu(null) // Close any open mobile submenus
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
     }
@@ -476,7 +477,7 @@ const ScrollHeader = () => {
         {/* Desktop Dropdown Menu */}
         {activeDropdown && (
           <div
-            className="absolute top-full left-0 right-0 bg-white shadow-xl border-t z-40 -mt-px"
+            className="absolute top-full left-0 right-0 bg-white shadow-xl border-t z-40 -mt-px hidden lg:block"
             style={{ backgroundColor: "#FCFDFF" }}
             onMouseEnter={() => handleMouseEnter(activeDropdown)}
             onMouseLeave={handleMouseLeave}
@@ -499,8 +500,10 @@ const ScrollHeader = () => {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
-          <div className="fixed top-0 right-0 h-full w-80 shadow-xl" style={{ backgroundColor: "#FCFDFF" }}>
-            <div className="p-6">
+          <div className="fixed top-0 right-0 h-full w-full max-w-xs shadow-xl" style={{ backgroundColor: "#FCFDFF" }}>
+            <div className="p-6 overflow-y-auto h-full">
+              {" "}
+              {/* Added overflow-y-auto and h-full */}
               <div className="flex items-center justify-between mb-8">
                 <Link to="/homepage" onClick={handleLinkClick}>
                   <img src={bluelogo || "/placeholder.svg"} alt="SWIS Foundation" className="h-12 w-auto" />
@@ -513,7 +516,6 @@ const ScrollHeader = () => {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-
               <nav className="space-y-4">
                 {/* Home Link for Mobile */}
                 <div className="border-b pb-4" style={{ borderColor: "#d2d5e0" }}>
@@ -529,25 +531,33 @@ const ScrollHeader = () => {
 
                 {navigationItems.map((item) => (
                   <div key={item.title} className="border-b pb-4" style={{ borderColor: "#d2d5e0" }}>
-                    <h3 className="font-semibold mb-2" style={{ color: "#023080" }}>
-                      {item.title}
-                    </h3>
-                    <div className="space-y-2 pl-4">
-                      {item.items
-                        .filter((subItem) => !subItem.isSubheading)
-                        .slice(0, 5)
-                        .map((subItem, index) => (
-                          <Link
-                            key={index}
-                            to={subItem.href}
-                            onClick={handleLinkClick}
-                            className="block transition-colors text-sm py-1 hover:text-[#04307b]"
-                            style={{ color: "#8e9fc5" }}
-                          >
-                            {subItem.title}
-                          </Link>
-                        ))}
-                    </div>
+                    <button
+                      className="w-full flex items-center justify-between font-semibold py-2"
+                      style={{ color: "#023080" }}
+                      onClick={() => setActiveMobileSubmenu(activeMobileSubmenu === item.title ? null : item.title)}
+                    >
+                      <span>{item.title}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${activeMobileSubmenu === item.title ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {activeMobileSubmenu === item.title && (
+                      <div className="space-y-2 pl-4 pt-2">
+                        {item.items
+                          .filter((subItem) => !subItem.isSubheading)
+                          .map((subItem, index) => (
+                            <Link
+                              key={index}
+                              to={subItem.href}
+                              onClick={handleLinkClick}
+                              className="block transition-colors text-sm py-1 hover:text-[#04307b]"
+                              style={{ color: "#8e9fc5" }}
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                      </div>
+                    )}
                   </div>
                 ))}
 

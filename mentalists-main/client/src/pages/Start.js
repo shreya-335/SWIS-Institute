@@ -73,36 +73,31 @@ const Homepage = () => {
     Education: {
       title: "Education",
       content: [
-        "Our mission to democratize access to quality education drives our relentless work with underserved children across India. At SWIS, we partner with shelter homes, government schools, and slum communities to provide holistic educational support—from trained teachers and digital learning tools to personalized mentoring. By focusing on foundational learning, inclusive pedagogy, and bridge programs, we aim to eliminate learning poverty and create pathways to academic success.",
-        "Education is not just a right; it is a powerful tool for breaking intergenerational cycles of poverty. Our interventions go beyond classroom instruction—we work with communities, parents, and local schools to foster a culture of learning. By integrating life skills, career guidance, and awareness on rights and civic responsibilities, we are raising a generation of empowered, informed, and socially conscious citizens.",
+        "Our mission is to democratize access to quality education for underserved children across India. We partner with shelter homes, government schools, and slum communities to provide holistic educational support, including trained teachers, digital learning tools, and personalized mentoring. Our focus is on foundational learning and inclusive pedagogy to eliminate learning poverty and create pathways to academic success.",
       ],
     },
     SkillDevelopment: {
       title: "Skill Development",
       content: [
-        "At SWIS, we believe in equipping youth with the skills they need to thrive in today's fast-changing world. Through targeted skill development initiatives—ranging from digital and financial education to vocational training and leadership workshops—we prepare individuals for real-world challenges and opportunities. Our programs are demand-driven, industry-aligned, and focused on making youth job-ready and future-proof.",
-        "We work closely with educational institutions, grassroots trainers, and professional mentors to ensure each participant builds a tangible skill set. Whether it's preparing for employment, becoming a social entrepreneur, or gaining confidence through public speaking and negotiation, our goal is to turn potential into impact. Every skill learned at SWIS becomes a stepping stone to economic independence and personal dignity.",
+        "At SWIS, we equip youth with essential skills for today's fast-changing world. Through targeted initiatives like digital and financial education, vocational training, and leadership workshops, we prepare individuals for real-world challenges. Our programs are demand-driven and industry-aligned, focused on making youth job-ready and future-proof, leading to economic independence and personal dignity.",
       ],
     },
     Nutrition: {
       title: "Nutrition",
       content: [
-        "Good nutrition is the foundation of good health, learning, and productivity—yet it remains out of reach for many children in underserved communities. SWIS runs sustainable nutrition programs that ensure children receive wholesome, freshly prepared meals at shelter homes, orphanages and schools we support. Our goal is to fight malnutrition with dignity, efficiency, and community participation.",
-        "We don't just serve food—we build a culture of nutrition. Our interventions include nutrition education, weekly meal planning with local produce, and regular health check-ups. By combining food security with awareness, we're helping families make informed choices and ensuring children have the physical and mental stamina to pursue their dreams.",
+        "Good nutrition is fundamental for health, learning, and productivity. SWIS runs sustainable nutrition programs ensuring children receive wholesome, freshly prepared meals at supported shelter homes, orphanages, and schools. Our goal is to combat malnutrition with dignity, efficiency, and active community participation, fostering a culture of nutrition through education and health check-ups.",
       ],
     },
     Healthcare: {
       title: "Healthcare",
       content: [
-        "SWIS's healthcare initiatives address the deep inequities that deny basic medical access to vulnerable populations. We conduct regular health camps, provide access to diagnostics and essential medicines, and work with experts to deliver preventive care in both urban slums and remote villages. Our healthcare outreach is people-centered, culturally sensitive, and action-oriented.",
-        "From menstrual hygiene awareness to mental health counseling, our approach is comprehensive and inclusive. By collaborating with public health professionals and local volunteers, we bring dignity to care and bridge the last-mile health gap. At SWIS, we believe that everyone—regardless of where they're born—deserves the right to live a healthy and hopeful life.",
+        "SWIS's healthcare initiatives address deep inequities in medical access for vulnerable populations. We conduct regular health camps, provide access to diagnostics and essential medicines, and deliver preventive care in urban slums and remote villages. Our outreach is people-centered, culturally sensitive, and action-oriented, bridging the last-mile health gap and ensuring everyone's right to a healthy life.",
       ],
     },
     "Relief of Poor": {
       title: "Relief of Poor",
       content: [
-        "In the face of emergencies or chronic poverty, SWIS stands as a pillar of support. Whether it's distributing relief during natural disasters or supporting families during financial crises, our focus is on swift, empathetic, and meaningful action. We identify the most vulnerable—daily wage earners, women-led households, orphaned children—and deliver targeted aid where it's needed most.",
-        "But our work goes beyond temporary relief. We empower the poor through sustainable interventions: linking them to government schemes, providing access to education, healthcare, and skilling opportunities, and enabling long-term community development. Our vision is not just to provide aid—but to restore agency, dignity, and hope to every life we touch.",
+        "In emergencies or chronic poverty, SWIS provides swift, empathetic, and meaningful support. We distribute relief during natural disasters and support families during financial crises, identifying the most vulnerable—daily wage earners, women-led households, and orphaned children—to deliver targeted aid. Beyond temporary relief, we empower the poor through sustainable interventions, linking them to government schemes and providing access to education, healthcare, and skilling opportunities.",
       ],
     },
   }
@@ -165,7 +160,7 @@ const Homepage = () => {
     return (
       <div className="py-8">
         <div className="text-center mb-6">
-          <h3 className="text-2xl font-semibold mb-2" style={{ color: "#04307b" }}>
+          <h3 className="text-2xl mb-2" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
             {title}
           </h3>
           <div className="w-16 h-1 mx-auto" style={{ backgroundColor: "#04307b" }}></div>
@@ -246,21 +241,22 @@ const Homepage = () => {
     <div className="min-h-screen" style={{ backgroundColor: "#FCFDFF" }}>
       {/* Hero Section */}
       <section
-        className="relative h-screen flex items-end justify-start bg-cover bg-center"
+        className="relative h-screen flex items-end bg-cover bg-center"
         style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&h=1080&fit=crop")',
           backgroundAttachment: "fixed",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
+        <div className="relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 pb-20 pl-8">
+          {/* Increased pb for more space */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             className="text-white"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-8 font-medium">
+            <h1 className="text-5xl md:text-7xl mb-8" style={{ fontFamily: '"Times New Roman", serif' }}>
               Turning Compassion
               <br />
               into Action
@@ -268,12 +264,12 @@ const Homepage = () => {
             <div className="w-32 h-1 mb-8" style={{ backgroundColor: "#d2d5e0" }}></div>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Link to="/New">
-                <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 font-medium">
+                <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
                   Our History <ArrowRight size={16} />
                 </button>
               </Link>
               <Link to="/Member">
-                <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 font-medium">
+                <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
                   Our Team <ArrowRight size={16} />
                 </button>
               </Link>
@@ -281,7 +277,6 @@ const Homepage = () => {
           </motion.div>
         </div>
       </section>
-
       {/* We Care Section - Using Provided Image */}
       <section className="py-0" style={{ backgroundColor: "#fdf2df" }}>
         <motion.div
@@ -296,18 +291,18 @@ const Homepage = () => {
             alt="WE CARE - SWIS is an Indian non-profit committed to radically impact the life of 2M+ people in the next 2 decades"
             className="w-full h-auto object-cover"
           />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <p className="text-center text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
-              WE CARE - SWIS is an Indian non-profit committed to radically impact the life of 2M+ people in the next 2
-              decades
+          <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-xl">
+            <p className="text-gray-700 leading-relaxed">
+              {
+                "SWIS is an Indian non-profit committed to radically impact the lives of 2M+ people in the next two decades."
+              }
             </p>
           </div>
         </motion.div>
       </section>
-
       {/* Our Interventions Section */}
       <section
-        className="relative py-20 min-h-screen flex items-center"
+        className="relative py-20 flex items-center"
         style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop")',
           backgroundSize: "cover",
@@ -316,7 +311,7 @@ const Homepage = () => {
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left Content */}
             <motion.div
@@ -324,18 +319,20 @@ const Homepage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-white"
+              className="text-white min-h-[500px] overflow-hidden"
             >
               <div className="flex items-center gap-3 mb-6">
                 <Heart size={24} style={{ color: "#d2d5e0" }} />
-                <span className="text-lg font-medium tracking-wide" style={{ color: "#d2d5e0" }}>
+                <span className="text-lg tracking-wide" style={{ color: "#d2d5e0" }}>
                   OUR INTERVENTIONS
                 </span>
               </div>
-              <h2 className="text-6xl mb-8 font-serif">{interventions[activeIntervention].title}</h2>
+              <h2 className="text-6xl mb-8" style={{ fontFamily: '"Times New Roman", serif' }}>
+                {interventions[activeIntervention].title}
+              </h2>
               <div className="space-y-6 mb-8">
                 {interventions[activeIntervention].content.map((paragraph, index) => (
-                  <p key={index} className="text-md leading-relaxed font-small opacity-90">
+                  <p key={index} className="text-md leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
@@ -344,20 +341,19 @@ const Homepage = () => {
                 activeIntervention === "SkillDevelopment" ||
                 activeIntervention === "Nutrition") && (
                 <Link to={`/${activeIntervention.toLowerCase()}`}>
-                  <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 font-medium">
+                  <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
                     read more <ArrowRight size={16} />
                   </button>
                 </Link>
               )}
             </motion.div>
-
             {/* Right Navigation */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="lg:pl-12"
+              className="lg:pl-12 min-h-[500px]"
             >
               <div className="space-y-8">
                 {Object.keys(interventions).map((intervention, index) => (
@@ -370,10 +366,10 @@ const Homepage = () => {
                     className={`cursor-pointer transition-all duration-300 ${
                       activeIntervention === intervention ? "opacity-100" : "opacity-60 hover:opacity-80"
                     }`}
-                    onClick={() => setActiveIntervention(intervention)}
+                    onMouseEnter={() => setActiveIntervention(intervention)} // Changed to onMouseEnter
                   >
                     <div className="relative">
-                      <h3 className="text-2xl font-medium text-white font-serif mb-2">{intervention.toUpperCase()}</h3>
+                      <h3 className="text-2xl text-white mb-2">{intervention.toUpperCase()}</h3>
                       <div
                         className={`h-0.5 transition-all duration-300 ${
                           activeIntervention === intervention ? "w-full bg-orange-400" : "w-0 bg-white"
@@ -387,7 +383,6 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-
       {/* Combined Centers Section with Exact Reference Navigation */}
       <section className="py-20" style={{ backgroundColor: "#04307b" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -399,7 +394,8 @@ const Homepage = () => {
             viewport={{ once: true }}
             className="mb-16"
           >
-            <div className="grid grid-cols-3 gap-0 max-w-6xl mx-auto">
+            <div className="flex justify-between gap-4 max-w-6xl mx-auto w-full">
+              {/* Changed to flex justify-between and w-full */}
               {Object.keys(centers).map((center) => {
                 // Define icons for each center
                 const centerIcons = {
@@ -411,27 +407,23 @@ const Homepage = () => {
                   <button
                     key={center}
                     onClick={() => setActiveCenter(center)}
-                    className={`relative py-8 px-8 text-left transition-all duration-300 ${
-                      activeCenter === center ? "text-white" : "text-white/70 hover:text-white/90"
+                    className={`flex-1 flex items-center justify-center gap-3 px-6 py-3 rounded-full transition-all duration-300 ${
+                      /* Added flex-1 and justify-center */
+                      activeCenter === center
+                        ? "bg-orange-400 text-white"
+                        : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
                     }`}
                   >
-                    <div className="relative">
-                      <div
-                        className={`absolute top-0 left-0 right-0 h-1 transition-all duration-300 ${
-                          activeCenter === center ? "bg-orange-400" : "bg-white"
-                        }`}
-                      ></div>
-                      <div className="pt-6 flex items-center gap-3">
-                        {centerIcons[center]}
-                        <h3 className="text-2xl font-normal">{center}</h3>
-                      </div>
-                    </div>
+                    {centerIcons[center]}
+                    <h3 className="text-2xl" style={{ fontFamily: '"Times New Roman", serif' }}>
+                      {center}
+                    </h3>{" "}
+                    {/* Applied Times New Roman */}
                   </button>
                 )
               })}
             </div>
           </motion.div>
-
           {/* Content */}
           <div className="w-full">
             <motion.div
@@ -444,24 +436,20 @@ const Homepage = () => {
               {/* Glass morphism card */}
               <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-12 shadow-2xl">
                 <div className="text-white max-w-none">
-                  <h2 className="text-6xl font-semibold mb-6 font-serif leading-tight">
+                  <h2 className="text-6xl mb-6 leading-tight" style={{ fontFamily: '"Times New Roman", serif' }}>
                     {centers[activeCenter].subtitle}
                   </h2>
-                  <h3 className="text-2xl font-medium mb-8 font-serif opacity-90">{centers[activeCenter].title}</h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {centers[activeCenter].content.map((paragraph, index) => (
-                      <p key={index} className="text-md leading-relaxed font-small opacity-90">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
+                  <h3 className="text-2xl mb-8 opacity-90" style={{ fontFamily: '"Times New Roman", serif' }}>
+                    {centers[activeCenter].title}
+                  </h3>
+                  {/* Combined paragraph in one row */}
+                  <p className="text-md leading-relaxed">{centers[activeCenter].content}</p>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
-
       {/* Partners & Collaborations Section */}
       <section className="py-20" style={{ backgroundColor: "#d2d5e0" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -472,15 +460,15 @@ const Homepage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl mb-8 font-serif" style={{ color: "#04307b" }}>
+            <h2 className="text-6xl mb-8" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
               Partners & Collaborations
             </h2>
-            <p className="text-xl max-w-4xl mx-auto font-medium leading-relaxed" style={{ color: "#04307b" }}>
-              Building meaningful partnerships across institutions, markets, and civil society to create lasting social
-              impact
+            <p className="text-xl md:text-2xl max-w-xl mx-auto leading-relaxed" style={{ color: "#04307b" }}>
+              {
+                "Building meaningful partnerships across institutions, markets, and civil society for lasting social impact."
+              }
             </p>
           </motion.div>
-
           {/* Institutions Strip */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
@@ -490,7 +478,6 @@ const Homepage = () => {
           >
             <EnhancedLogoStrip logos={institutionLogos} direction="left" title="Institutions" bgColor="#FCFDFF" />
           </motion.div>
-
           {/* Markets Strip */}
           <motion.div
             initial={{ opacity: 0, x: 100 }}
@@ -500,7 +487,6 @@ const Homepage = () => {
           >
             <EnhancedLogoStrip logos={marketLogos} direction="right" title="Markets" bgColor="#FCFDFF" />
           </motion.div>
-
           {/* Civil Society Strip */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
@@ -512,10 +498,10 @@ const Homepage = () => {
           </motion.div>
         </div>
       </section>
-
       {/* Enhanced Reach and Presence Section */}
       <section className="py-32 min-h-screen flex items-center" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pl-16">
+          {/* Increased pl-8 to pl-16 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left side - Title and Description */}
             <motion.div
@@ -525,16 +511,15 @@ const Homepage = () => {
               viewport={{ once: true }}
               className="text-white"
             >
-              <h2 className="text-6xl font-semibold mb-8 leading-tight font-serif">
+              <h2 className="text-6xl mb-8 leading-tight" style={{ fontFamily: '"Times New Roman", serif' }}>
                 Reach &<br />
                 Presence
               </h2>
               <div className="w-24 h-1 mb-8" style={{ backgroundColor: "#d2d5e0" }}></div>
-              <p className="text-xl leading-relaxed opacity-90 font-medium">
+              <p className="text-xl leading-relaxed opacity-90">
                 SWIS operates across multiple states in India, bringing sustainable change to communities nationwide.
               </p>
             </motion.div>
-
             {/* Center - Large India Map */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -552,7 +537,6 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-
       {/* Impact Grid Section */}
       <section className="py-20" style={{ backgroundColor: "#FCFDFF" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -563,16 +547,16 @@ const Homepage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-semibold mb-8 font-serif" style={{ color: "#04307b" }}>
+            <h2 className="text-6xl mb-8" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
               Our Impact
             </h2>
-            <p className="text-xl max-w-3xl mx-auto font-medium" style={{ color: "#04307b" }}>
-              Transforming lives across India through sustainable interventions and community engagement.
+            <p className="text-xl md:text-2xl max-w-xl mx-auto" style={{ color: "#04307b" }}>
+              {"Transforming lives across India through sustainable interventions and community engagement."}
             </p>
           </motion.div>
-
           {/* Updated Grid Layout */}
-          <div className="grid grid-cols-3 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {/* Reduced max-w from 3xl to 2xl for smaller boxes */}
             {/* Row 1 */}
             {/* 12+ Locations */}
             <motion.div
@@ -583,10 +567,11 @@ const Homepage = () => {
               className="aspect-square rounded-2xl flex flex-col items-center justify-center text-white text-center p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-5xl font-semibold mb-3 font-serif">12+</h3>
-              <p className="text-2xl font-medium font-medium">Locations</p>
+              <h3 className="text-4xl sm:text-5xl mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
+                12+
+              </h3>
+              <p className="text-xl sm:text-2xl">Locations</p>
             </motion.div>
-
             {/* Children studying image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -601,7 +586,6 @@ const Homepage = () => {
                 className="w-full h-full object-cover"
               />
             </motion.div>
-
             {/* 3K+ Benefited */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -611,10 +595,11 @@ const Homepage = () => {
               className="aspect-square rounded-2xl flex flex-col items-center justify-center text-white text-center p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-5xl font-semibold mb-3 font-serif">3K+</h3>
-              <p className="text-2xl font-medium font-medium">Benefited</p>
+              <h3 className="text-4xl sm:text-5xl mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
+                3K+
+              </h3>
+              <p className="text-xl sm:text-2xl">Benefited</p>
             </motion.div>
-
             {/* Row 2 */}
             {/* Group learning image */}
             <motion.div
@@ -630,7 +615,6 @@ const Homepage = () => {
                 className="w-full h-full object-cover"
               />
             </motion.div>
-
             {/* 10K+ Impacted - Center large box */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -640,10 +624,11 @@ const Homepage = () => {
               className="aspect-square rounded-2xl flex flex-col items-center justify-center text-white text-center p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-6xl font-semibold mb-4 font-serif">10K+</h3>
-              <p className="text-3xl font-medium font-medium">Impacted</p>
+              <h3 className="text-5xl sm:text-6xl mb-4" style={{ fontFamily: '"Times New Roman", serif' }}>
+                10K+
+              </h3>
+              <p className="text-2xl sm:text-3xl">Impacted</p>
             </motion.div>
-
             {/* Classroom image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -658,7 +643,6 @@ const Homepage = () => {
                 className="w-full h-full object-cover"
               />
             </motion.div>
-
             {/* Row 3 */}
             {/* 25+ Partners */}
             <motion.div
@@ -669,10 +653,11 @@ const Homepage = () => {
               className="aspect-square rounded-2xl flex flex-col items-center justify-center text-white text-center p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-5xl font-semibold mb-3 font-serif">25+</h3>
-              <p className="text-2xl font-medium font-medium">Partners</p>
+              <h3 className="text-4xl sm:text-5xl mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
+                25+
+              </h3>
+              <p className="text-xl sm:text-2xl">Partners</p>
             </motion.div>
-
             {/* Team image - spans 2 columns */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -690,10 +675,10 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-
       {/* Life at SWIS Section */}
       <section className="py-20 relative" style={{ backgroundColor: "#04307b" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pl-16">
+          {/* Added pl-8 to pl-16 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -702,9 +687,13 @@ const Homepage = () => {
               viewport={{ once: true }}
               className="text-white"
             >
-              <h2 className="text-5xl mb-8 font-serif font-semibold">Life at SWIS</h2>
-              <h3 className="text-2xl font-medium mb-6 font-serif">Why work at SWIS?</h3>
-              <p className="text-lg leading-relaxed mb-8 font-medium">
+              <h2 className="text-5xl mb-8" style={{ fontFamily: '"Times New Roman", serif' }}>
+                Life at SWIS
+              </h2>
+              <h3 className="text-2xl mb-6" style={{ fontFamily: '"Times New Roman", serif' }}>
+                Why work at SWIS?
+              </h3>
+              <p className="text-lg leading-relaxed mb-8">
                 SWIS is one of the most impactful non-profit organizations in India. With the help of a robust,
                 consistent, and merit-driven framework for people management, SWIS continues to maintain an inclusive,
                 progressive, and high-performance environment, where purpose-driven talent is enabled with unprecedented
@@ -712,19 +701,18 @@ const Homepage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/Member">
-                <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 font-medium">
-                  meet our people <ArrowRight size={16} />
-                </button>
+                  <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
+                    meet our people <ArrowRight size={16} />
+                  </button>
                 </Link>
                 <a
                   href="/JoinUs"
-                  className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 font-medium"
+                  className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2"
                 >
                   search & apply <ArrowRight size={16} />
                 </a>
               </div>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -779,7 +767,7 @@ const Homepage = () => {
                     alt="Team collaboration"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-2 left-2 bg-red-600 text-white px-2 py-1 text-xs rounded font-medium">
+                  <div className="absolute bottom-2 left-2 bg-red-600 text-white px-2 py-1 text-xs rounded">
                     Best Employers
                   </div>
                 </div>

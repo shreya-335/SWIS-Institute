@@ -18,6 +18,7 @@ interface NavigationSection {
 const CombinedHeader = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null)
 
   const navigationItems: NavigationSection[] = [
     {
@@ -128,6 +129,11 @@ const CombinedHeader = () => {
     )
   }
 
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false)
+    setActiveMobileSubmenu(null)
+  }
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 via-black/40 to-transparent">
@@ -213,7 +219,7 @@ const CombinedHeader = () => {
         {/* Desktop Dropdown Menu */}
         {activeDropdown && (
           <div
-            className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-40"
+            className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-40 hidden lg:block"
             onMouseEnter={() => setActiveDropdown(activeDropdown)}
             onMouseLeave={() => setActiveDropdown(null)}
           >
@@ -244,7 +250,7 @@ const CombinedHeader = () => {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
-          <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-xl">
+          <div className="fixed top-0 right-0 h-full w-full max-w-xs bg-white shadow-xl overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-8">
                 <img src="/swis-logo.png" alt="SWIS Foundation" className="h-8 w-auto" />
@@ -259,7 +265,7 @@ const CombinedHeader = () => {
                   <a
                     href="#"
                     className="block font-semibold text-black transition-colors py-2"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={handleLinkClick}
                   >
                     Home
                   </a>
@@ -267,21 +273,48 @@ const CombinedHeader = () => {
 
                 {navigationItems.map((item) => (
                   <div key={item.title} className="border-b border-gray-200 pb-4">
-                    <h3 className="font-semibold text-black mb-2">{item.title}</h3>
-                    <div className="space-y-2 pl-4">
-                      {item.items.map((subItem, index) => (
-                        <a
-                          key={index}
-                          href={subItem.href}
-                          className="block text-gray-600 hover:text-black transition-colors text-sm"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {subItem.title}
-                        </a>
-                      ))}
-                    </div>
+                    <button
+                      className="w-full flex items-center justify-between font-semibold text-black py-2"
+                      onClick={() => setActiveMobileSubmenu(activeMobileSubmenu === item.title ? null : item.title)}
+                    >
+                      <span>{item.title}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${activeMobileSubmenu === item.title ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {activeMobileSubmenu === item.title && (
+                      <div className="space-y-2 pl-4 pt-2">
+                        {item.items.map((subItem, index) => (
+                          <a
+                            key={index}
+                            href={subItem.href}
+                            className="block text-gray-600 hover:text-black transition-colors text-sm"
+                            onClick={handleLinkClick}
+                          >
+                            {subItem.title}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
+                {/* Add other direct links for mobile if any */}
+                <div className="space-y-3 pt-4">
+                  <a
+                    href="#"
+                    onClick={handleLinkClick}
+                    className="block font-semibold text-black transition-colors py-2"
+                  >
+                    Join Us
+                  </a>
+                  <a
+                    href="#"
+                    onClick={handleLinkClick}
+                    className="block font-semibold text-black transition-colors py-2"
+                  >
+                    Contact Us
+                  </a>
+                </div>
               </nav>
             </div>
           </div>

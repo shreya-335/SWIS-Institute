@@ -38,11 +38,7 @@ const AnimatedCounter = ({ value, duration = 2 }) => {
 }
 
 const Education = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [activeCard, setActiveCard] = useState(0)
   const [selectedTimelineItem, setSelectedTimelineItem] = useState(0)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [impactBgSlide, setImpactBgSlide] = useState(0)
 
   // Timeline data
   const timelineData = [
@@ -126,7 +122,7 @@ const Education = () => {
     },
   ]
 
-  // Slideshow images
+  // Slideshow images (used for program content image)
   const slideImages = [
     "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
     "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
@@ -156,20 +152,7 @@ const Education = () => {
     },
   ]
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slideImages.length)
-    }, 4000)
-    return () => clearInterval(timer)
-  }, [slideImages.length])
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slideImages.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slideImages.length) % slideImages.length)
-  }
+  const [activeCard, setActiveCard] = useState(0)
 
   return (
     <div className="min-h-screen bg-white">
@@ -192,10 +175,12 @@ const Education = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-8"
             >
-              <span className="text-[#d2d5e0] text-lg font-medium tracking-wider uppercase">SWIS FOUNDATION</span>
+              <span className="text-[#d2d5e0] text-base sm:text-lg font-medium tracking-wider uppercase">
+                SWIS FOUNDATION
+              </span>
             </motion.div>
-            <h1 className="text-6xl font-serif mb-8">Education</h1>
-            <p className="text-2xl mb-12 max-w-3xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif mb-8">Education</h1>
+            <p className="text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
               An educated India, <span className="text-blue-300 italic">within our lifetime</span>
             </p>
           </motion.div>
@@ -205,37 +190,39 @@ const Education = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative flex justify-center items-center space-x-16 mt-16"
+            className="relative flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-16 mt-16"
           >
             {/* Continuous connecting line */}
-            <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2"></div>
+            <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2 hidden sm:block"></div>
 
             {timelineData.map((item, index) => (
               <div key={index} className="relative flex flex-col items-center z-10">
                 <motion.button
                   onClick={() => setSelectedTimelineItem(index)}
-                  className={`flex flex-col items-center p-6 rounded-lg transition-all duration-300 bg-black bg-opacity-40 ${
+                  className={`flex flex-col items-center p-2 sm:p-3 md:p-6 rounded-lg transition-all duration-300 bg-black bg-opacity-40 ${
                     selectedTimelineItem === index
-                      ? "bg-white bg-opacity-20 scale-110"
+                      ? "bg-white bg-opacity-20 scale-105 sm:scale-110"
                       : "hover:bg-white hover:bg-opacity-10"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="text-4xl font-bold" style={{ color: "#FCFDFF" }}>
+                  <div className="text-xl sm:text-2xl md:text-4xl font-bold" style={{ color: "#FCFDFF" }}>
                     {item.year}
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full my-3 ${selectedTimelineItem === index ? "bg-white" : "bg-white bg-opacity-50"}`}
+                    className={`w-4 h-4 sm:w-6 sm:h-6 rounded-full my-2 sm:my-3 ${selectedTimelineItem === index ? "bg-white" : "bg-white bg-opacity-50"}`}
                   ></div>
                   <div
-                    className="text-3xl font-bold"
-                    style={{ color: "#023080", backgroundColor: "#FCFDFF", padding: "8px 16px", borderRadius: "8px" }}
+                    className="text-lg sm:text-xl md:text-3xl font-bold"
+                    style={{ color: "#023080", backgroundColor: "#FCFDFF", padding: "4px 8px", borderRadius: "8px" }}
                   >
                     {item.percentage}
                   </div>
-                  <div className="text-sm mt-3 text-center max-w-32">{item.description}</div>
-                  <div className="text-xs mt-2 text-[#d2d5e0] font-medium">{item.subtitle}</div>
+                  <div className="text-xs sm:text-sm mt-2 sm:mt-3 text-center max-w-[80px] sm:max-w-32">
+                    {item.description}
+                  </div>
+                  <div className="text-xs mt-1 sm:mt-2 text-[#d2d5e0] font-medium">{item.subtitle}</div>
                 </motion.button>
               </div>
             ))}
@@ -249,7 +236,7 @@ const Education = () => {
             transition={{ duration: 0.6 }}
             className="mt-16 max-w-4xl mx-auto"
           >
-            <p className="text-xl text-[#d2d5e0]/90 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-[#d2d5e0]/90 leading-relaxed">
               {selectedTimelineItem === 0 &&
                 "At independence, India faced massive educational challenges with nearly 9 out of 10 people lacking basic literacy."}
               {selectedTimelineItem === 1 &&
@@ -272,18 +259,18 @@ const Education = () => {
               href="/JoinUs"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-[#023080] px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group"
+              className="bg-white text-[#023080] px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group"
             >
               Join Us
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.a>
           </motion.div>
         </div>
       </section>
 
       {/* Main Content Section */}
-      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#FCFDFF" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -291,7 +278,7 @@ const Education = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
               India is home to over 250 million school-going children, the largest in the world. Yet, the ASER 2023
               report reveals that over 60% of Class 5 students in rural India cannot read a Class 2-level textbook.
               Dropout rates remain alarmingly high, especially among marginalized communities and girls.
@@ -303,7 +290,7 @@ const Education = () => {
       {/* Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#FCFDFF",
             clipPath:
@@ -313,10 +300,10 @@ const Education = () => {
         <img
           src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
           alt="Children in education"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
@@ -326,46 +313,48 @@ const Education = () => {
       </div>
 
       {/* Our Efforts Include Section */}
-      <section className="py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
           </motion.div>
 
           {/* Program Navigation Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {programData.map((program, index) => (
               <motion.button
                 key={index}
                 onClick={() => setActiveCard(index)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`p-4 rounded-2xl transition-all duration-300 text-center ${
+                className={`p-3 sm:p-4 rounded-2xl transition-all duration-300 text-center ${
                   activeCard === index
-                    ? "bg-white border-4 border-orange-400 shadow-xl"
-                    : "bg-white/80 border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
+                    ? "bg-white border-2 sm:border-4 border-orange-400 shadow-xl"
+                    : "bg-white/80 border border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-center justify-start gap-3 px-2">
-                  <div className="text-gray-600 flex-shrink-0">{program.icon}</div>
-                  <h3 className="text-sm font-semibold text-gray-800 text-left leading-tight">{program.title}</h3>
+                <div className="flex items-center justify-start gap-2 sm:gap-3 px-1 sm:px-2">
+                  <div className="text-gray-600 flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8">{program.icon}</div>
+                  <h3 className="text-xs sm:text-sm font-semibold text-gray-800 text-left leading-tight">
+                    {program.title}
+                  </h3>
                 </div>
               </motion.button>
             ))}
           </div>
 
           {/* Equal Sized Content Grid - Text Card Left, Image Right */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Left Side - Active Program Content Card */}
             <AnimatePresence mode="wait">
               <motion.div
@@ -374,22 +363,24 @@ const Education = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 40 }}
                 transition={{ duration: 0.6 }}
-                className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl h-64 lg:h-80 flex flex-col"
+                className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl h-auto sm:h-64 lg:h-80 flex flex-col"
               >
-                <div className="flex items-start gap-6 mb-6">
+                <div className="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
                       {programData[activeCard].icon}
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-[#023080] mb-4">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#023080] mb-2 sm:mb-4">
                       {programData[activeCard].fullTitle}
                     </h3>
                   </div>
                 </div>
                 <div className="flex-1 flex flex-col justify-center">
-                  <p className="text-gray-700 text-lg leading-relaxed">{programData[activeCard].description}</p>
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
+                    {programData[activeCard].description}
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -418,7 +409,7 @@ const Education = () => {
       {/* second Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
@@ -428,10 +419,10 @@ const Education = () => {
         <img
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
           alt="Youth learning and skill development"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
@@ -441,19 +432,19 @@ const Education = () => {
       </div>
 
       {/* Our Impact Areas - Updated to match the provided image */}
-      <section className="py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8">Our Impact Areas</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-8">Our Impact Areas</h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {impactAreas.map((area, index) => (
               <motion.div
                 key={index}
@@ -465,17 +456,17 @@ const Education = () => {
                 className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
                 {/* Image Section */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 sm:h-48 overflow-hidden">
                   <img src={area.image || "/placeholder.svg"} alt={area.title} className="w-full h-full object-cover" />
                 </div>
 
                 {/* Content Section */}
-                <div className="p-6">
-                  <div className="flex items-center gap-4">
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <div className="text-[#023080]">
-                      <area.icon className="w-8 h-8" />
+                      <area.icon className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-[#023080]">{area.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-[#023080]">{area.title}</h3>
                   </div>
                 </div>
               </motion.div>
@@ -485,69 +476,69 @@ const Education = () => {
       </section>
 
       {/* Our Impact Section */}
-      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#FCFDFF" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 text-[#023080]"
+            className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 text-[#023080]"
           >
             Our Impact
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={5} />+
               </div>
-              <div className="text-xl text-gray-700">Locations</div>
+              <div className="text-base sm:text-xl text-gray-700">Locations</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={8} />+
               </div>
-              <div className="text-xl text-gray-700">Partnered Learning Centres</div>
+              <div className="text-base sm:text-xl text-gray-700">Partnered Learning Centres</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={40} />+
               </div>
-              <div className="text-xl text-gray-700">Teachers</div>
+              <div className="text-base sm:text-xl text-gray-700">Teachers</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={2000} />+
               </div>
-              <div className="text-xl text-gray-700">Beneficiaries</div>
+              <div className="text-base sm:text-xl text-gray-700">Beneficiaries</div>
             </motion.div>
           </div>
         </div>
@@ -556,7 +547,7 @@ const Education = () => {
       {/* Fifth Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#FCFDFF",
             clipPath:
@@ -566,10 +557,10 @@ const Education = () => {
         <img
           src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
           alt="Children achieving goals"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#04307b",
             clipPath:
@@ -579,8 +570,8 @@ const Education = () => {
       </div>
 
       {/* Impact Goal Section */}
-      <section className="py-24" style={{ backgroundColor: "#04307b" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#04307b" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -588,17 +579,17 @@ const Education = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-white">Our 2030 Vision</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white">Our 2030 Vision</h2>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-5xl lg:text-7xl font-bold text-[#d2d5e0] mb-8"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#d2d5e0] mb-8"
             >
               10,000+
             </motion.div>
-            <p className="text-lg lg:text-xl text-[#d2d5e0]/90 max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-base sm:text-lg lg:text-xl text-[#d2d5e0]/90 max-w-4xl mx-auto leading-relaxed mb-12">
               Enable a capacity to impact 10,000+ children annually by 2030 to access and complete basic education,
               especially in underserved regions.
             </p>
@@ -615,10 +606,10 @@ const Education = () => {
                 href="/JoinUs"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#023080] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#d2d5e0] transition-all duration-300 transform hover:shadow-2xl inline-flex items-center gap-3 group"
+                className="bg-white text-[#023080] px-6 sm:px-10 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg hover:bg-[#d2d5e0] transition-all duration-300 transform hover:shadow-2xl inline-flex items-center gap-3 group"
               >
                 Join Our Mission
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </motion.a>
             </motion.div>
 
@@ -628,7 +619,7 @@ const Education = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
               viewport={{ once: true }}
-              className="text-[#d2d5e0]/80 text-sm"
+              className="text-[#d2d5e0]/80 text-xs sm:text-sm"
             >
               Be part of India's transformation. Help us build an educated nation.
             </motion.p>
@@ -638,7 +629,7 @@ const Education = () => {
       {/* Fifth Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#04307b",
             clipPath:
@@ -648,10 +639,10 @@ const Education = () => {
         <img
           src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
           alt="Children achieving goals"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#d2d5e0",
             clipPath:
@@ -661,7 +652,7 @@ const Education = () => {
       </div>
 
       {/* Statistics About Child Education in India Section */}
-      <section className="py-24" style={{ backgroundColor: "#d2d5e0" }}>
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#d2d5e0" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -670,32 +661,34 @@ const Education = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl font-bold mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8">
               Statistics About <span style={{ color: "#023080" }}>Child Education</span> in India
             </h2>
-            <p className="text-lg text-[#023080]/80 max-w-6xl mx-auto mb-16">
+            <p className="text-base sm:text-lg text-[#023080]/80 max-w-6xl mx-auto mb-12 sm:mb-16">
               Despite progress made in recent years and a large number of NGOs working for education in India, the below
               numbers highlight the urgent need to provide help for the education of children. Children are the building
               blocks of our nation, their future depends on us.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                   <AnimatedCounter value={46} />
                 </div>
-                <div className="text-2xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                   million
                 </div>
-                <div className="text-gray-700 mb-4">children, between 6-18 years of age, do not go to school</div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-4">
+                  children, between 6-18 years of age, do not go to school
+                </div>
+                <div className="text-xs sm:text-sm text-gray-500">
                   <div style={{ color: "#023080" }}>Estimate: RGI Census</div>
                   <div style={{ color: "#023080" }}>Population Projection 2016</div>
                   <div style={{ color: "#023080" }}>and UDISE 2016-17</div>
@@ -707,17 +700,19 @@ const Education = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                   <AnimatedCounter value={33} />
                 </div>
-                <div className="text-2xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                   million
                 </div>
-                <div className="text-gray-700 mb-4">child labourers go to work instead of school</div>
-                <div className="text-sm" style={{ color: "#023080" }}>
+                <div className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-4">
+                  child labourers go to work instead of school
+                </div>
+                <div className="text-xs sm:text-sm" style={{ color: "#023080" }}>
                   Census 2011
                 </div>
               </motion.div>
@@ -727,13 +722,13 @@ const Education = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                   <AnimatedCounter value={3} />%
                 </div>
-                <div className="text-gray-700 mb-4">
+                <div className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-4">
                   of schools in India provide complete school education from Class 1 to 12
                 </div>
               </motion.div>
