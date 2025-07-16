@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import soubhikbg from '../img/S1.png';
 import csaaS2 from '../img/csaaS2.jpg';
 
-
+//nvdlnv
 
 const Careers = () => {
   // Statistics data
