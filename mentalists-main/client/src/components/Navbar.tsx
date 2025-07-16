@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Menu, X } from "lucide-react"
 
 interface NavigationItem {
   title: string
@@ -17,6 +17,8 @@ interface NavigationSection {
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null)
 
   const navigationItems: NavigationSection[] = [
     {
@@ -133,12 +135,17 @@ const Navbar = () => {
     )
   }
 
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false)
+    setActiveMobileSubmenu(null)
+  }
+
   return (
     <div className="relative">
-      {/* Dropdown Menus */}
+      {/* Desktop Dropdown Menus */}
       {activeDropdown && (
         <div
-          className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-40"
+          className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-40 hidden md:block"
           onMouseLeave={() => setActiveDropdown(null)}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -163,7 +170,7 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Navigation Items with Hover */}
+      {/* Desktop Navigation Items */}
       <div className="hidden md:flex items-center space-x-8">
         {/* Home Link */}
         <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
@@ -182,6 +189,95 @@ const Navbar = () => {
           </div>
         ))}
       </div>
+
+      {/* Mobile Menu Button */}
+      <button
+        className="md:hidden text-white hover:text-orange-400 transition-colors"
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+      >
+        {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
+      {/* Mobile Menu Overlay and Sidebar */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          {/* Overlay */}
+          <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
+
+          {/* Sidebar */}
+          <div className="fixed top-0 right-0 h-full w-full max-w-xs bg-white shadow-xl overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-8">
+                {/* Placeholder for logo if needed in mobile menu */}
+                <span className="text-lg font-bold text-black">SWIS Foundation</span>
+                <button onClick={() => setMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-700">
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <nav className="space-y-4">
+                {/* Home Link for Mobile */}
+                <div className="border-b border-gray-200 pb-4">
+                  <a
+                    href="#"
+                    className="block font-semibold text-black transition-colors py-2"
+                    onClick={handleLinkClick}
+                  >
+                    Home
+                  </a>
+                </div>
+
+                {navigationItems.map((item) => (
+                  <div key={item.title} className="border-b border-gray-200 pb-4">
+                    <button
+                      className="w-full flex items-center justify-between font-semibold text-black py-2"
+                      onClick={() => setActiveMobileSubmenu(activeMobileSubmenu === item.title ? null : item.title)}
+                    >
+                      <span>{item.title}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${activeMobileSubmenu === item.title ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {activeMobileSubmenu === item.title && (
+                      <div className="space-y-2 pl-4 pt-2">
+                        {item.items
+                          .filter((subItem) => !subItem.isSubheading)
+                          .map((subItem, index) => (
+                            <a
+                              key={index}
+                              href={subItem.href}
+                              className="block text-gray-600 hover:text-black transition-colors text-sm"
+                              onClick={handleLinkClick}
+                            >
+                              {subItem.title}
+                            </a>
+                          ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {/* Add other direct links for mobile if any, similar to ScrollHeader */}
+                <div className="space-y-3 pt-4">
+                  <a
+                    href="#"
+                    onClick={handleLinkClick}
+                    className="block font-semibold text-black transition-colors py-2"
+                  >
+                    Join Us
+                  </a>
+                  <a
+                    href="#"
+                    onClick={handleLinkClick}
+                    className="block font-semibold text-black transition-colors py-2"
+                  >
+                    Contact Us
+                  </a>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
