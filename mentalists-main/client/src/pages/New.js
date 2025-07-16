@@ -1,18 +1,20 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, Droplet } from "lucide-react"
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Droplet } from 'lucide-react';
+import soubhikbg from '../img/sbg1.png';
+import hero1 from '../img/historyhero1.jpg';
+import hero2 from '../img/historyhero2.jpg';
+import hero3 from '../img/historyhero3.jpg';
 
 const New = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   // Hero carousel images
   const heroImages = [
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-    "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-  ]
+    hero1,
+    hero2,
+    hero3 
+  ];
 
   // Timeline data with your provided content including H1 2025
   const timelineData = [
@@ -233,62 +235,72 @@ const New = () => {
         </div>
       </section>
 
-      {/* Chairman Quote Section - Continuation of Our History */}
-      <section className="bg-[#023080] py-12 sm:py-16 lg:py-24 relative overflow-hidden">
-        {/* Connecting line from above */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-12 sm:h-16 bg-[#d2d5e0] opacity-60"></div>
+     <section className="bg-[#023080] py-20 px-4 sm:px-6 lg:px-12 text-white relative overflow-hidden">
+  {/* Top connector line */}
+  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-12 bg-[#d2d5e0] opacity-60"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
-            {/* Quote Content - Left Side */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="flex-1 text-center lg:text-left"
-            >
-              <blockquote className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white leading-relaxed mb-8 sm:mb-12">
-                "Our purpose has to be clear. Our compassion stronger.
-                <br />
-                Our commitment deeper. And our impact wider.
-                <br />
-                This is my dream for SWIS and for India."
-              </blockquote>
+  {/* Centered Quote */}
+  <motion.blockquote
+    initial={{ opacity: 0, y: -20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className="text-center max-w-5xl mx-auto text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-light leading-relaxed mb-8 font-[Times_New_Roman,_serif]"
+  >
+    "Our purpose has to be clear. Our compassion stronger.<br />
+    Our commitment deeper. And our impact wider.<br />
+    This is my dream for SWIS and for India."
+  </motion.blockquote>
 
-              <div className="text-lg sm:text-xl md:text-2xl text-[#8e9fc5] font-light mb-2">Soubhik Kundu</div>
-              <div className="text-base sm:text-lg text-[#d2d5e0]">Chairman & Managing Trustee</div>
-              <div className="text-base sm:text-lg text-[#d2d5e0] font-medium">SWIS Foundation</div>
+  {/* Bottom Grid: Name and Image */}
+  <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-end justify-between gap-6 px-4">
+    {/* Left - Name and Title */}
+    <motion.div
+      initial={{ opacity: 0, x: -40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="flex-1 text-left"
+    >
+      <div className="text-6xl sm:text-7xl lg:text-8xl text-white  font-medium mb-2"
+        style={{ fontFamily: '"Times New Roman", serif' }}>
+        Soubhik<br></br> Kundu
+      </div>
+      <div className="text-xl sm:text-2xl text-[#d2d5e0] font-light">
+        Chairman & Managing Trustee
+      </div>
+      <div className="text-xl sm:text-2xl text-[#d2d5e0] font-medium">
+        SWIS Foundation
+      </div>
 
-              {/* Decorative Line */}
-              <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-[#8e9fc5] to-[#d2d5e0] rounded-full mt-6 sm:mt-8 mx-auto lg:mx-0"></div>
-            </motion.div>
+      {/* Decorative Line */}
+      <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-[#8e9fc5] to-[#d2d5e0] rounded-full mt-4"></div>
+    </motion.div>
 
-            {/* Portrait Image - Right Side */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="flex-1 max-w-md lg:max-w-lg mt-8 lg:mt-0"
-            >
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#8e9fc5]/20 to-[#d2d5e0]/20 rounded-2xl transform rotate-3"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                  alt="Soubhik Kundu - Chairman & Managing Trustee"
-                  className="relative z-10 w-full h-auto rounded-2xl shadow-2xl object-cover"
-                />
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 sm:w-32 sm:h-32 bg-[#8e9fc5] rounded-full opacity-20"></div>
-                <div className="absolute -top-4 -left-4 w-16 h-16 sm:w-20 sm:h-20 bg-[#d2d5e0] rounded-full opacity-30"></div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+    {/* Right - Image */}
+    <motion.div
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="flex-1 flex justify-center"
+    >
+      <img
+        src={soubhikbg}
+        alt="Soubhik Kundu"
+        className="h-[450px] lg:h-[550px] object-cover filter grayscale transition-all duration-500"
+        style={{
+          maskImage: "linear-gradient(to bottom, black 95%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 95%, transparent 100%)",
+        }}
+      />
+    </motion.div>
+  </div>
 
-        {/* Connecting line to below */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-12 sm:h-16 bg-[#d2d5e0] opacity-60"></div>
-      </section>
+  {/* Bottom connector line */}
+  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-12 bg-[#d2d5e0] opacity-60"></div>
+</section>
+
 
       {/* Timeline Section - Fully Responsive */}
       <section className="relative bg-[#F5F1E8] py-12 sm:py-16 lg:py-20">
