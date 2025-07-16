@@ -1,5 +1,5 @@
-import { CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { CheckCircle } from "lucide-react"
+import { Link } from "react-router-dom" // Ensure this is from react-router-dom
 
 const TermsAndConditions = () => {
   const sections = [
@@ -10,13 +10,11 @@ const TermsAndConditions = () => {
     },
     {
       title: "Website Content",
-      content:
-        "All content provided on the Site is for informational purposes only.",
+      content: "All content provided on the Site is for informational purposes only.",
     },
     {
       title: "Donations",
-      content:
-        "All donations made to SWIS are voluntary and non-refundable unless explicitly stated otherwise.",
+      content: "All donations made to SWIS are voluntary and non-refundable unless explicitly stated otherwise.",
     },
     {
       title: "Refund Policy",
@@ -48,34 +46,36 @@ const TermsAndConditions = () => {
       content:
         "SWIS reserves the right to modify or revise these Terms and Conditions at any time. Your continued use of the Site after any such changes constitutes acceptance of the updated Terms and Conditions.",
     },
-  ];
+  ]
 
   return (
-    <div className="min-h-screen bg-[#FCFDFF] font-sans">
+    <div className="min-h-screen bg-[#023080] text-[#FCFDFF] font-sans">
+      {/* Top Spacer Section - Keeps space for navbar/header */}
+      <div className="h-20 md:h-24 lg:h-32"></div>
+
       {/* Header */}
-      <header className="py-8 md:py-10 border-b border-[#d2d5e0]">
+      <header className="py-8 md:py-10 border-b border-[#8e9fc5]">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-2xl md:text-3xl font-semibold text-[#023080] mb-3">
+          <h1 className="text-center text-4xl md:text-5xl font-serif font- text-[#FCFDFF] mb-3">
             Terms and Conditions
           </h1>
-          <p className="text-[#04307b] text-base md:text-lg max-w-4xl">
-            Please read these Terms and Conditions carefully before using the SWIS website. These terms govern your use of our services and outline your rights and responsibilities.
+          <p className="text-center mx-auto text-[#d2d5e0] text-base md:text-lg max-w-4xl">
+            Please read these Terms and Conditions carefully before using the SWIS website. These terms govern your use
+            of our services and outline your rights and responsibilities.
           </p>
         </div>
       </header>
 
       {/* Sections */}
       <main className="max-w-7xl mx-auto px-4 py-10">
-        <div className="bg-[#d2d5e0] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
+        <div className="bg-[#FCFDFF] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
           {sections.map((section, index) => (
             <section key={index} className="flex items-start space-x-4">
               <div className="flex-shrink-0 mt-1">
                 <CheckCircle className="h-5 w-5 text-[#023080]" />
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#023080] mb-1">
-                  {section.title}
-                </h3>
+                <h3 className="text-lg md:text-xl font-semibold text-[#023080] mb-1">{section.title}</h3>
                 <p className="text-[#04307b]">{section.content}</p>
               </div>
             </section>
@@ -88,18 +88,15 @@ const TermsAndConditions = () => {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-sm md:text-base">
             If you have questions about these Terms, please{" "}
-            <Link
-            to="/ContactPage"
-            className="underline hover:text-[#d2d5e0] transition"
-          >
-            contact us
-          </Link>
+            <Link to="/ContactPage" className="underline hover:text-[#d2d5e0] transition">
+              contact us
+            </Link>
             .
           </p>
         </div>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default TermsAndConditions;
+export default TermsAndConditions
