@@ -64,7 +64,6 @@ const RoutesWithNavbar = () => {
         <Route path="/ContactPage" element={<ContactPage />} />
         <Route path="/FileUploadTest" element={<FileUploadTest />} />
         <Route path="/JoinUs" element={<JoinUs />} />
-        <Route path="/anushka" element={<JoinUs />} />
         <Route path="/Careers" element={<Careers />} />
         <Route path="/Education" element={<Education />} />
         <Route path="/Nutrition" element={<Nutrition />} />

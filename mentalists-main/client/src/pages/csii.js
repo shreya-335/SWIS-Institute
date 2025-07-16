@@ -210,16 +210,16 @@ const ObjectivesSection = ({ isVisible }) => {
 // MetricsSection Component
 const MetricsSection = ({ isVisible, countAnimated }) => {
   const impactMetrics = [
-    { number: 9, suffix: "", label: "States", icon: <Globe className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "small" },
-    { number: 3, suffix: "", label: "Centres", icon: <Target className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "small" },
-    { number: 9, suffix: "", label: "Programs", icon: <Award className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "small" },
-    { number: 100, suffix: "K+", label: "Households served", icon: <Users className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "large" },
-    { number: 16, suffix: "K+", label: "Youth employed", icon: <TrendingUp className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "large" },
-    { number: 100, suffix: "+", label: "Nonprofits supported", icon: <Award className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "small" },
-    { number: 3, suffix: "", label: "Grand challenges launched", icon: <Lightbulb className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "small" },
-    { number: 4, suffix: "", label: "Annual convenings executed", icon: <Globe className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "small" },
-    { number: 29, suffix: "", label: "Senior leaders working with state governments", icon: <Users className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", size: "large" }
-  ];
+    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+    { number: 3, suffix: "", label: "Centres Established", icon: <Target className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+    { number: 50, suffix: "+", label: "Programs", icon: <BookOpen className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+    { number: 500, suffix: "+", label: "Youth Employed", icon: <TrendingUp className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1531497865148-8f7f4ff64f1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+    { number: 8, suffix: "", label: "Annual Convenings", icon: <Award className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1603415526960-f7e0328d8da8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1531497865148-8f7f4ff64f1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" }
+  ];  
 
   return (
     <section id="metrics" className="py-20 bg-gradient-to-br from-[#FCFDFF] via-[#d2d5e0] to-[#8e9fc5] relative overflow-hidden">
@@ -229,7 +229,8 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
           <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">Driving impactful social change through measurable outcomes</p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 auto-rows-fr">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
+
           {impactMetrics.map((metric, index) => (
             <div
               key={index}

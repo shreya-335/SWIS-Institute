@@ -50,7 +50,11 @@ mongoose.connection.on("disconnected", () => {
 // Middleware
 app.use(
   cors({
-    origin: ["https://swis-institute.vercel.app", "http://localhost:3000"],
+    origin: [
+      "https://www.theswis.org",
+      "https://swis-institute.vercel.app",
+      "http://localhost:3000"
+    ],
     credentials: true,
   })
 )
