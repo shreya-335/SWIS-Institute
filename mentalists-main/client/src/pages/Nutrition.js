@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
-import { Heart, School, Users, ArrowRight, Baby } from "lucide-react"
+import { BookOpen, Building, Users, Monitor, ArrowRight, Home, Mountain, Shield } from "lucide-react"
 
 // Counter animation component
 const AnimatedCounter = ({ value, duration = 2 }) => {
@@ -37,134 +37,122 @@ const AnimatedCounter = ({ value, duration = 2 }) => {
   return <span ref={ref}>{count}</span>
 }
 
-const Nutrition = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [activeCard, setActiveCard] = useState(0)
+const Education = () => {
   const [selectedTimelineItem, setSelectedTimelineItem] = useState(0)
 
   // Timeline data
   const timelineData = [
     {
       year: "1947",
-      percentage: "50%",
-      description: "of India was hungry",
+      percentage: "88%",
+      description: "of India was uneducated",
       subtitle: "Independence Era",
-      background: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
+      background: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
     },
     {
       year: "2005",
-      percentage: "35%",
-      description: "of India was hungry",
+      percentage: "40%",
+      description: "of India was uneducated",
       subtitle: "Progress Made",
       background: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
     },
     {
       year: "2015",
       percentage: "27%",
-      description: "of India was hungry",
+      description: "of India was uneducated",
       subtitle: "Continued Growth",
-      background: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
+      background: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
     },
     {
       year: "2024",
-      percentage: "22%",
-      description: "of India was hungry",
+      percentage: "20%",
+      description: "of India was uneducated",
       subtitle: "Current Reality",
-      background: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
+      background: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
     },
   ]
 
   // Programs data
   const programData = [
     {
-      icon: <Baby className="w-8 h-8" />,
-      title: "Orphanages & Shelter",
-      fullTitle: "Daily Meal Programs in Orphanages & Shelter Homes",
+      icon: <BookOpen className="w-8 h-8" />,
+      title: "Quality Education",
+      fullTitle: "Providing Quality Education",
       description:
-        "A study by Childline India (2021) found that 1 in 3 children in shelter homes suffer from inadequate nutrition. We address this by providing fresh, balanced meals packed with essential nutrients, helping improve immunity, cognitive development, and emotional well-being.",
+        "Over 50% of children in India can't read simple text by age 10 (World Bank, 2022), reflecting a deep learning crisis in basic education.",
       features: [
-        "Fresh, balanced meals",
-        "Essential nutrients focus",
-        "Immunity building",
-        "Cognitive development support",
+        "Remedial learning programs",
+        "Reading comprehension",
+        "Basic numeracy skills",
+        "Learning assessments",
       ],
       color: "from-[#023080] to-[#04307b]",
     },
     {
-      icon: <Users className="w-8 h-8" />,
-      title: "Old Age Homes",
-      fullTitle: "Daily Meal Programs in Old Age Homes",
+      icon: <Building className="w-8 h-8" />,
+      title: "Infrastructure",
+      fullTitle: "Improving School Infrastructure",
       description:
-        "According to HelpAge India (2022), over 50% of elderly in institutional care are undernourished or have diet-related health issues. Our meals are tailored to meet the needs of the elderly—rich in fiber, calcium, and protein, while being easy to digest and suitable for conditions like diabetes and hypertension.",
+        "Only 38.5% of schools have all basic facilities like electricity, toilets, drinking water, and boundary walls (UDISE+ 2022–23).",
       features: [
-        "Tailored elderly nutrition",
-        "Rich in fiber & calcium",
-        "Easy to digest meals",
-        "Health condition specific",
+        "Basic facilities setup",
+        "Safe learning environment",
+        "Accessibility improvements",
+        "Resource centers",
       ],
       color: "from-[#8e9fc5] to-[#023080]",
     },
     {
-      icon: <School className="w-8 h-8" />,
-      title: "School Enhancement",
-      fullTitle: "Mid-Day Meal Enhancement in Low-Income Schools",
+      icon: <Users className="w-8 h-8" />,
+      title: "Teacher Training",
+      fullTitle: "Training Community Teachers",
       description:
-        "More than 115 million children rely on the Mid-Day Meal Scheme (MoE, 2023), yet many schools struggle with poor quality and hygiene. We collaborate with schools to enhance nutrition, improve hygiene, and introduce locally sourced, diverse meals—leading to better attendance and academic focus.",
-      features: [
-        "Enhanced nutrition quality",
-        "Improved hygiene standards",
-        "Locally sourced meals",
-        "Better attendance rates",
-      ],
+        "More than 11% of elementary-level teachers remain untrained, and many face poor student-teacher ratios exceeding 50:1 in some states.",
+      features: ["Professional development", "Teaching methodologies", "Classroom management", "Student engagement"],
       color: "from-[#d2d5e0] to-[#8e9fc5]",
     },
     {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Health & Supplementation",
-      fullTitle: "Meal Planning, Health Screening & Supplementation",
+      icon: <Monitor className="w-8 h-8" />,
+      title: "Digital Classrooms",
+      fullTitle: "Setting Up Digital Classrooms & Libraries",
       description:
-        "NFHS-5 reports that 57% of women aged 15–49 and 68.9% of children aged 6–59 months are anemic. We conduct regular health screenings, provide iron and vitamin supplementation, and train caregivers in nutrient planning and hygiene, ensuring a holistic approach to nutrition.",
-      features: [
-        "Regular health screenings",
-        "Iron & vitamin supplements",
-        "Caregiver training",
-        "Holistic nutrition approach",
-      ],
+        "Less than 30% of schools have internet access, and only 32% have a functional library, widening the learning gap in underserved areas.",
+      features: ["Digital learning tools", "Internet connectivity", "Library resources", "Technology training"],
       color: "from-[#8e9fc5] to-[#023080]",
     },
   ]
 
-  // Slideshow images
+  // Slideshow images (used for program content image)
   const slideImages = [
-    "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
     "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
   ]
 
   // Impact areas data with individual images
   const impactAreas = [
     {
-      icon: Baby,
-      title: "Orphanages",
-      image: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=400&h=250&fit=crop",
-      description: "Supporting children in orphanages and shelter homes with nutritious meals",
+      icon: Home,
+      title: "Urban slums",
+      image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&h=250&fit=crop",
+      description: "Supporting children in urban slums and marginalized city communities",
     },
     {
-      icon: School,
-      title: "Schools",
+      icon: Mountain,
+      title: "Rural villages",
       image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop",
-      description: "Enhancing mid-day meal programs in low-income schools",
+      description: "Bringing quality education to remote rural areas and farming communities",
     },
     {
-      icon: Users,
-      title: "Old Age Homes",
-      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=250&fit=crop",
-      description: "Providing specialized nutrition for elderly residents",
+      icon: Shield,
+      title: "Shelter homes",
+      image: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=400&h=250&fit=crop",
+      description: "Providing educational support to vulnerable children in care facilities",
     },
   ]
 
-  useEffect(() => {}, [slideImages.length])
+  const [activeCard, setActiveCard] = useState(0)
 
   return (
     <div className="min-h-screen bg-white">
@@ -187,11 +175,13 @@ const Nutrition = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-8"
             >
-              <span className="text-[#d2d5e0] text-lg font-medium tracking-wider uppercase">SWIS FOUNDATION</span>
+              <span className="text-[#d2d5e0] text-base sm:text-lg font-medium tracking-wider uppercase">
+                SWIS FOUNDATION
+              </span>
             </motion.div>
-            <h1 className="text-6xl font-serif mb-8">Nutrition</h1>
-            <p className="text-2xl mb-12 max-w-3xl mx-auto">
-              A nutritious India, <span className="text-blue-300 italic">within our lifetime</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif mb-8">Education</h1>
+            <p className="text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
+              An educated India, <span className="text-blue-300 italic">within our lifetime</span>
             </p>
           </motion.div>
 
@@ -200,37 +190,39 @@ const Nutrition = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative flex justify-center items-center space-x-16 mt-16"
+            className="relative flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-16 mt-16"
           >
             {/* Continuous connecting line */}
-            <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2"></div>
+            <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2 hidden sm:block"></div>
 
             {timelineData.map((item, index) => (
               <div key={index} className="relative flex flex-col items-center z-10">
                 <motion.button
                   onClick={() => setSelectedTimelineItem(index)}
-                  className={`flex flex-col items-center p-6 rounded-lg transition-all duration-300 bg-black bg-opacity-40 ${
+                  className={`flex flex-col items-center p-2 sm:p-3 md:p-6 rounded-lg transition-all duration-300 bg-black bg-opacity-40 ${
                     selectedTimelineItem === index
-                      ? "bg-white bg-opacity-20 scale-110"
+                      ? "bg-white bg-opacity-20 scale-105 sm:scale-110"
                       : "hover:bg-white hover:bg-opacity-10"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="text-4xl font-bold" style={{ color: "#FCFDFF" }}>
+                  <div className="text-xl sm:text-2xl md:text-4xl font-bold" style={{ color: "#FCFDFF" }}>
                     {item.year}
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full my-3 ${selectedTimelineItem === index ? "bg-white" : "bg-white bg-opacity-50"}`}
+                    className={`w-4 h-4 sm:w-6 sm:h-6 rounded-full my-2 sm:my-3 ${selectedTimelineItem === index ? "bg-white" : "bg-white bg-opacity-50"}`}
                   ></div>
                   <div
-                    className="text-3xl font-bold"
-                    style={{ color: "#023080", backgroundColor: "#FCFDFF", padding: "8px 16px", borderRadius: "8px" }}
+                    className="text-lg sm:text-xl md:text-3xl font-bold"
+                    style={{ color: "#023080", backgroundColor: "#FCFDFF", padding: "4px 8px", borderRadius: "8px" }}
                   >
                     {item.percentage}
                   </div>
-                  <div className="text-sm mt-3 text-center max-w-32">{item.description}</div>
-                  <div className="text-xs mt-2 text-[#d2d5e0] font-medium">{item.subtitle}</div>
+                  <div className="text-xs sm:text-sm mt-2 sm:mt-3 text-center max-w-[80px] sm:max-w-32">
+                    {item.description}
+                  </div>
+                  <div className="text-xs mt-1 sm:mt-2 text-[#d2d5e0] font-medium">{item.subtitle}</div>
                 </motion.button>
               </div>
             ))}
@@ -244,15 +236,15 @@ const Nutrition = () => {
             transition={{ duration: 0.6 }}
             className="mt-16 max-w-4xl mx-auto"
           >
-            <p className="text-xl text-[#d2d5e0]/90 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-[#d2d5e0]/90 leading-relaxed">
               {selectedTimelineItem === 0 &&
-                "At independence, India faced massive hunger challenges with half the population lacking adequate nutrition."}
+                "At independence, India faced massive educational challenges with nearly 9 out of 10 people lacking basic literacy."}
               {selectedTimelineItem === 1 &&
-                "Significant progress was made through various nutrition programs and food security initiatives."}
+                "Significant progress was made through various educational initiatives and government programs."}
               {selectedTimelineItem === 2 &&
-                "Continued efforts brought down hunger rates, but malnutrition remained a persistent challenge."}
+                "Continued efforts brought down illiteracy rates, but quality education remained a challenge."}
               {selectedTimelineItem === 3 &&
-                "Today, while hunger has decreased, nutrition quality and access to healthy meals remain critical issues."}
+                "Today, while literacy has improved, learning outcomes and quality education access remain critical issues."}
             </p>
           </motion.div>
 
@@ -267,18 +259,18 @@ const Nutrition = () => {
               href="/JoinUs"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-[#023080] px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group"
+              className="bg-white text-[#023080] px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group"
             >
               Join Us
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.a>
           </motion.div>
         </div>
       </section>
 
-      {/* India's Nutrition Crisis Section */}
-      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* Main Content Section */}
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#FCFDFF" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -286,13 +278,10 @@ const Nutrition = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-[#023080] mb-12">India's Nutrition Crisis</h2>
-            <p className="text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
-              India faces a silent nutrition crisis—over 35% of children under five are stunted and 32% are underweight
-              (NFHS-5). The impact is worse in rural, tribal, and underserved communities. Hunger knows no age. Children
-              in orphanages, the elderly in old age homes, and students in low-income schools often receive irregular,
-              inadequate meals. Despite government schemes like the Mid-Day Meal Program, gaps in implementation leave
-              many without consistent nutrition or care.
+            <p className="text-lg sm:text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
+              India is home to over 250 million school-going children, the largest in the world. Yet, the ASER 2023
+              report reveals that over 60% of Class 5 students in rural India cannot read a Class 2-level textbook.
+              Dropout rates remain alarmingly high, especially among marginalized communities and girls.
             </p>
           </motion.div>
         </div>
@@ -301,7 +290,7 @@ const Nutrition = () => {
       {/* Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#FCFDFF",
             clipPath:
@@ -309,12 +298,12 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
-          alt="Youth learning and skill development"
-          className="w-full h-64 object-cover"
+          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
+          alt="Children in education"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
@@ -323,52 +312,49 @@ const Nutrition = () => {
         ></div>
       </div>
 
-      {/* Our Nutrition Outreach Includes Section */}
-      <section className="py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* Our Efforts Include Section */}
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Our Nutrition Outreach Includes</h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              At SWIS, we believe that access to nutritious food is a basic human right, not a privilege. Our
-              interventions are rooted in empathy, dignity, and sustainability—ensuring that every child, every elder,
-              and every student under our care receives meals that nourish both body and mind.
-            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
           </motion.div>
 
           {/* Program Navigation Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {programData.map((program, index) => (
               <motion.button
                 key={index}
                 onClick={() => setActiveCard(index)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`p-4 rounded-2xl transition-all duration-300 text-center ${
+                className={`p-3 sm:p-4 rounded-2xl transition-all duration-300 text-center ${
                   activeCard === index
-                    ? "bg-white border-4 border-orange-400 shadow-xl"
-                    : "bg-white/80 border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
+                    ? "bg-white border-2 sm:border-4 border-orange-400 shadow-xl"
+                    : "bg-white/80 border border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-center justify-start gap-3 px-2">
-                  <div className="text-gray-600 flex-shrink-0">{program.icon}</div>
-                  <h3 className="text-sm font-semibold text-gray-800 text-left leading-tight">{program.title}</h3>
+                <div className="flex items-center justify-start gap-2 sm:gap-3 px-1 sm:px-2">
+                  <div className="text-gray-600 flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8">{program.icon}</div>
+                  <h3 className="text-xs sm:text-sm font-semibold text-gray-800 text-left leading-tight">
+                    {program.title}
+                  </h3>
                 </div>
               </motion.button>
             ))}
           </div>
 
           {/* Equal Sized Content Grid - Text Card Left, Image Right */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Left Side - Active Program Content Card */}
             <AnimatePresence mode="wait">
               <motion.div
@@ -377,22 +363,24 @@ const Nutrition = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 40 }}
                 transition={{ duration: 0.6 }}
-                className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl h-64 lg:h-80 flex flex-col"
+                className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl h-auto sm:h-64 lg:h-80 flex flex-col"
               >
-                <div className="flex items-start gap-6 mb-6">
+                <div className="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
                       {programData[activeCard].icon}
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl  font-bold text-[#023080] mb-4">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#023080] mb-2 sm:mb-4">
                       {programData[activeCard].fullTitle}
                     </h3>
                   </div>
                 </div>
                 <div className="flex-1 flex flex-col justify-center">
-                  <p className="text-gray-700 text-md leading-relaxed">{programData[activeCard].description}</p>
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
+                    {programData[activeCard].description}
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -408,7 +396,7 @@ const Nutrition = () => {
               >
                 <img
                   src={slideImages[0] || "/placeholder.svg"}
-                  alt="Nutrition program"
+                  alt="Education program"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
@@ -421,7 +409,7 @@ const Nutrition = () => {
       {/* second Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
@@ -431,10 +419,10 @@ const Nutrition = () => {
         <img
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
           alt="Youth learning and skill development"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#023080",
             clipPath:
@@ -443,20 +431,20 @@ const Nutrition = () => {
         ></div>
       </div>
 
-      {/* Where We Work Section */}
-      <section className="py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* Our Impact Areas - Updated to match the provided image */}
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8">Where We Work</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-8">Our Impact Areas</h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {impactAreas.map((area, index) => (
               <motion.div
                 key={index}
@@ -468,17 +456,17 @@ const Nutrition = () => {
                 className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
                 {/* Image Section */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 sm:h-48 overflow-hidden">
                   <img src={area.image || "/placeholder.svg"} alt={area.title} className="w-full h-full object-cover" />
                 </div>
 
                 {/* Content Section */}
-                <div className="p-6">
-                  <div className="flex items-center gap-4">
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <div className="text-[#023080]">
-                      <area.icon className="w-8 h-8" />
+                      <area.icon className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-[#023080]">{area.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-[#023080]">{area.title}</h3>
                   </div>
                 </div>
               </motion.div>
@@ -488,78 +476,78 @@ const Nutrition = () => {
       </section>
 
       {/* Our Impact Section */}
-      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#FCFDFF" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 text-[#023080]"
+            className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 text-[#023080]"
           >
             Our Impact
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
-                <AnimatedCounter value={2} />+
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                <AnimatedCounter value={5} />+
               </div>
-              <div className="text-xl text-gray-700">States</div>
+              <div className="text-base sm:text-xl text-gray-700">Locations</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
-                <AnimatedCounter value={4} />+
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                <AnimatedCounter value={8} />+
               </div>
-              <div className="text-xl text-gray-700">Locations</div>
+              <div className="text-base sm:text-xl text-gray-700">Partnered Learning Centres</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
-                <AnimatedCounter value={10000} />+
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                <AnimatedCounter value={40} />+
               </div>
-              <div className="text-xl text-gray-700">Meals Served</div>
+              <div className="text-base sm:text-xl text-gray-700">Teachers</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
-                <AnimatedCounter value={150} />+
+              <div className="text-4xl sm:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                <AnimatedCounter value={2000} />+
               </div>
-              <div className="text-xl text-gray-700">Beneficiaries Impacted</div>
+              <div className="text-base sm:text-xl text-gray-700">Beneficiaries</div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Fourth Rough Edge Image Section */}
+      {/* Fifth Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#FCFDFF",
             clipPath:
@@ -567,12 +555,12 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=400&fit=crop"
-          alt="Nutrition impact and healthy communities"
-          className="w-full h-64 object-cover"
+          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
+          alt="Children achieving goals"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#04307b",
             clipPath:
@@ -581,9 +569,9 @@ const Nutrition = () => {
         ></div>
       </div>
 
-      {/* 2030 Vision Section */}
-      <section className="py-24" style={{ backgroundColor: "#04307b" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* Impact Goal Section */}
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#04307b" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -591,20 +579,19 @@ const Nutrition = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-white">Our 2030 Vision</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white">Our 2030 Vision</h2>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-5xl lg:text-7xl font-bold text-[#d2d5e0] mb-8"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#d2d5e0] mb-8"
             >
-              600K+
+              10,000+
             </motion.div>
-            <p className="text-lg lg:text-xl text-[#d2d5e0]/90 max-w-4xl mx-auto leading-relaxed mb-12">
-              By 2030, provide 600K+ healthy meals annually to vulnerable populations across shelter homes, schools, and
-              senior care centers—fighting hunger, improving health, and restoring dignity for those most often
-              forgotten.
+            <p className="text-base sm:text-lg lg:text-xl text-[#d2d5e0]/90 max-w-4xl mx-auto leading-relaxed mb-12">
+              Enable a capacity to impact 10,000+ children annually by 2030 to access and complete basic education,
+              especially in underserved regions.
             </p>
 
             {/* Join Mission Button */}
@@ -619,10 +606,10 @@ const Nutrition = () => {
                 href="/JoinUs"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#023080] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#d2d5e0] transition-all duration-300 transform hover:shadow-2xl inline-flex items-center gap-3 group"
+                className="bg-white text-[#023080] px-6 sm:px-10 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg hover:bg-[#d2d5e0] transition-all duration-300 transform hover:shadow-2xl inline-flex items-center gap-3 group"
               >
                 Join Our Mission
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </motion.a>
             </motion.div>
 
@@ -632,18 +619,17 @@ const Nutrition = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
               viewport={{ once: true }}
-              className="text-[#d2d5e0]/80 text-sm"
+              className="text-[#d2d5e0]/80 text-xs sm:text-sm"
             >
-              Be part of India's transformation. Help us nourish those who need it most.
+              Be part of India's transformation. Help us build an educated nation.
             </motion.p>
           </motion.div>
         </div>
       </section>
-
       {/* Fifth Rough Edge Image Section */}
       <div className="relative">
         <div
-          className="absolute top-0 left-0 right-0 h-6"
+          className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#04307b",
             clipPath:
@@ -652,11 +638,11 @@ const Nutrition = () => {
         ></div>
         <img
           src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
-          alt="Children achieving nutritional goals"
-          className="w-full h-64 object-cover"
+          alt="Children achieving goals"
+          className="w-full h-48 sm:h-64 object-cover"
         />
         <div
-          className="absolute bottom-0 left-0 right-0 h-6"
+          className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
             backgroundColor: "#d2d5e0",
             clipPath:
@@ -665,8 +651,8 @@ const Nutrition = () => {
         ></div>
       </div>
 
-      {/* Statistics Section - Moved to end */}
-      <section className="py-24" style={{ backgroundColor: "#d2d5e0" }}>
+      {/* Statistics About Child Education in India Section */}
+      <section className="py-16 sm:py-24" style={{ backgroundColor: "#d2d5e0" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -675,33 +661,37 @@ const Nutrition = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl font-bold mb-8">
-              Why It Matters: <span style={{ color: "#023080" }}>Key Nutrition Statistics</span>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8">
+              Statistics About <span style={{ color: "#023080" }}>Child Education</span> in India
             </h2>
-            <p className="text-lg text-[#023080]/80 max-w-6xl mx-auto mb-16">
-              These statistics reveal the urgent need for comprehensive nutrition interventions across vulnerable
-              populations in India.
+            <p className="text-base sm:text-lg text-[#023080]/80 max-w-6xl mx-auto mb-12 sm:mb-16">
+              Despite progress made in recent years and a large number of NGOs working for education in India, the below
+              numbers highlight the urgent need to provide help for the education of children. Children are the building
+              blocks of our nation, their future depends on us.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
-                  <AnimatedCounter value={1} />
-                  <span className="text-4xl">in</span>
-                  <AnimatedCounter value={3} />
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                  <AnimatedCounter value={46} />
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
-                  children in shelter homes do not receive adequate nutrition
+                <div className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                  million
                 </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
-                  Source: Childline India Foundation, 2021
+                <div className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-4">
+                  children, between 6-18 years of age, do not go to school
+                </div>
+                <div className="text-xs sm:text-sm text-gray-500">
+                  <div style={{ color: "#023080" }}>Estimate: RGI Census</div>
+                  <div style={{ color: "#023080" }}>Population Projection 2016</div>
+                  <div style={{ color: "#023080" }}>and UDISE 2016-17</div>
                 </div>
               </motion.div>
 
@@ -710,18 +700,20 @@ const Nutrition = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
-                  <AnimatedCounter value={50} />
-                  %+
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                  <AnimatedCounter value={33} />
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
-                  of elderly in care homes suffer from undernutrition or chronic deficiencies
+                <div className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                  million
                 </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
-                  Source: HelpAge India, 2022
+                <div className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-4">
+                  child labourers go to work instead of school
+                </div>
+                <div className="text-xs sm:text-sm" style={{ color: "#023080" }}>
+                  Census 2011
                 </div>
               </motion.div>
 
@@ -730,17 +722,14 @@ const Nutrition = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-6 sm:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
-                  <AnimatedCounter value={115} />M
+                <div className="text-5xl sm:text-7xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
+                  <AnimatedCounter value={3} />%
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
-                  children depend on Mid-Day Meals in India, yet quality, quantity, and safety remain major concerns
-                </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
-                  Source: Ministry of Education, Govt. of India, 2023
+                <div className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-4">
+                  of schools in India provide complete school education from Class 1 to 12
                 </div>
               </motion.div>
             </div>
@@ -751,4 +740,4 @@ const Nutrition = () => {
   )
 }
 
-export default Nutrition
+export default Education
