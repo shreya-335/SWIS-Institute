@@ -25,7 +25,7 @@ const CodeOfConduct = () => {
     {
       id: 1,
       title: "Purpose and Scope",
-      icon: <BookOpen className="w-6 h-6" />,
+      icon: <BookOpen color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Purpose",
@@ -40,7 +40,7 @@ const CodeOfConduct = () => {
     {
       id: 2,
       title: "Organizational Values and Expectations",
-      icon: <Users className="w-6 h-6" />,
+      icon: <Users color="#04307b"  className="w-6 h-6" />,
       content: [
         {
           subtitle: "Mission Alignment",
@@ -59,7 +59,7 @@ const CodeOfConduct = () => {
     {
       id: 3,
       title: "Attendance and Leave Policy",
-      icon: <Clock className="w-6 h-6" />,
+      icon: <Clock color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Regular Attendance",
@@ -78,7 +78,7 @@ const CodeOfConduct = () => {
     {
       id: 4,
       title: "Confidentiality and Intellectual Property",
-      icon: <Lock className="w-6 h-6" />,
+      icon: <Lock color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Confidential Information",
@@ -97,7 +97,7 @@ const CodeOfConduct = () => {
     {
       id: 5,
       title: "Public Representation, Social Media & Ethical Leadership",
-      icon: <Globe className="w-6 h-6" />,
+      icon: <Globe color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Authorization for Public Statements",
@@ -116,7 +116,7 @@ const CodeOfConduct = () => {
     {
       id: 6,
       title: "Conflict of Interest and Non-Compete",
-      icon: <Shield className="w-6 h-6" />,
+      icon: <Shield color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Conflict of Interest",
@@ -135,7 +135,7 @@ const CodeOfConduct = () => {
     {
       id: 7,
       title: "Zero Tolerance for Discrimination and Harassment",
-      icon: <UserCheck className="w-6 h-6" />,
+      icon: <UserCheck color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Equal Opportunity and Inclusion",
@@ -154,7 +154,7 @@ const CodeOfConduct = () => {
     {
       id: 8,
       title: "Behavioral Standards and Workplace Conduct",
-      icon: <Award className="w-6 h-6" />,
+      icon: <Award color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Integrity in Communications",
@@ -169,7 +169,7 @@ const CodeOfConduct = () => {
     {
       id: 9,
       title: "Promotion and Transfer to a New Role",
-      icon: <Users className="w-6 h-6" />,
+      icon: <Users color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "New Role Responsibilities",
@@ -180,7 +180,7 @@ const CodeOfConduct = () => {
     {
       id: 10,
       title: "Disciplinary Action",
-      icon: <Gavel className="w-6 h-6" />,
+      icon: <Gavel color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Grounds for Disciplinary Measures",
@@ -195,7 +195,7 @@ const CodeOfConduct = () => {
     {
       id: 11,
       title: "Termination and Resignation",
-      icon: <AlertTriangle className="w-6 h-6" />,
+      icon: <AlertTriangle color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Termination by Institute",
@@ -214,7 +214,7 @@ const CodeOfConduct = () => {
     {
       id: 12,
       title: "Record-Keeping and Documentation",
-      icon: <FileText className="w-6 h-6" />,
+      icon: <FileText color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Personal and Professional Records",
@@ -229,7 +229,7 @@ const CodeOfConduct = () => {
     {
       id: 13,
       title: "Communication of Policy Changes",
-      icon: <Globe className="w-6 h-6" />,
+      icon: <Globe color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Amendments and Updates",
@@ -244,7 +244,7 @@ const CodeOfConduct = () => {
     {
       id: 14,
       title: "Commitment to Learning and Development",
-      icon: <Award className="w-6 h-6" />,
+      icon: <Award color="#04307b" className="w-6 h-6" />,
       content: [
         {
           subtitle: "Professional Development",
@@ -288,7 +288,7 @@ const CodeOfConduct = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-light mb-6">Code of Conduct</h1>
+            <h1 className="text-center text-4xl md:text-5xl font-serif font- text-[#FCFDFF] mb-3">Code of Conduct</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
               Ethical, professional, and behavioral standards for all individuals associated with SWIS Institute
             </p>

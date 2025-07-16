@@ -368,7 +368,7 @@ const ScrollHeader = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-8">
               {/* Home Link */}
               <Link
                 to="/homepage"
@@ -443,7 +443,7 @@ const ScrollHeader = () => {
 
               {/* Mobile menu button */}
               <button
-                className={`lg:hidden transition-colors ${
+                className={`md:hidden transition-colors ${
                   scrolled ? "text-black hover:text-gray-600" : "text-white hover:text-orange-400"
                 }`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -457,7 +457,7 @@ const ScrollHeader = () => {
         {/* Desktop Dropdown Menu */}
         {activeDropdown && (
           <div
-            className="absolute top-full left-0 right-0 bg-white shadow-xl border-t z-40 -mt-px hidden lg:block"
+            className="absolute top-full left-0 right-0 bg-white shadow-xl border-t z-40 -mt-px hidden md:block"
             style={{ backgroundColor: "#FCFDFF" }}
             onMouseEnter={() => handleMouseEnter(activeDropdown)}
             onMouseLeave={handleMouseLeave}
@@ -478,7 +478,7 @@ const ScrollHeader = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-40 md:hidden">
           <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
           <div className="fixed top-0 right-0 h-full w-full max-w-xs shadow-xl" style={{ backgroundColor: "#FCFDFF" }}>
             <div className="p-6 overflow-y-auto h-full">

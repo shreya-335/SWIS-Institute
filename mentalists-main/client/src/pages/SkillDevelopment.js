@@ -1,8 +1,14 @@
+
 "use client"
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import { Users, Laptop, Lightbulb, Briefcase, ArrowRight, Home, Mountain, Shield } from "lucide-react"
+import skill1 from "../img/skill1.jpeg"
+import skill2 from "../img/skill2.jpeg"
+import skill3 from "../img/skill3.jpeg"
+import skill4 from "../img/skill4.jpeg"
+import skill32 from "../img/skill32.jpeg"
 
 // Counter animation component
 const AnimatedCounter = ({ value, duration = 2 }) => {
@@ -37,7 +43,7 @@ const AnimatedCounter = ({ value, duration = 2 }) => {
   return <span ref={ref}>{count}</span>
 }
 
-const Skill2 = () => {
+const SkillDevelopment = () => {
   const [selectedTimelineItem, setSelectedTimelineItem] = useState(0)
 
   // Timeline data for hero section
@@ -47,28 +53,28 @@ const Skill2 = () => {
       percentage: "4.7%",
       description: "of workforce formally skilled",
       subtitle: "The Beginning",
-      background: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
+      background: skill1,
     },
     {
       year: "2020",
       percentage: "53%",
       description: "youth need reskilling by 2025",
       subtitle: "Growing Challenge",
-      background: "https://images.unsplash.com/photo-1552581234-26160f608093?w=800&h=600&fit=crop",
+      background: skill2,
     },
     {
       year: "2024",
       percentage: "47%",
       description: "graduates not employable",
       subtitle: "Current Reality",
-      background: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+      background: skill3,
     },
     {
       year: "2030",
       percentage: "15K+",
       description: "youth to be skilled annually",
       subtitle: "Our Vision",
-      background: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
+      background: skill4,
     },
   ]
 
@@ -118,31 +124,26 @@ const Skill2 = () => {
   ]
 
   // Slideshow images (used for program content image)
-  const slideImages = [
-    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1552581234-26160f608093?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
-  ]
+  const slideImages = [skill1, skill2, skill3, skill4]
 
   // Impact areas data with individual images
   const impactAreas = [
     {
       icon: Home,
       title: "Urban Areas",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop",
+      image: skill2,
       description: "Urban slums and marginalized communities",
     },
     {
       icon: Mountain,
       title: "Rural Areas",
-      image: "https://images.unsplash.com/photo-1552581234-26160f608093?w=400&h=250&fit=crop",
+      image: skill1,
       description: "Rural villages and farming communities",
     },
     {
       icon: Shield,
       title: "Shelter Homes",
-      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop",
+      image: skill4,
       description: "Supporting vulnerable youth in care",
     },
   ]
@@ -174,8 +175,8 @@ const Skill2 = () => {
                 SWIS FOUNDATION
               </span>
             </motion.div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif mb-8">Skill Development</h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
+            <h1 style={{ fontFamily: '"Times New Roman", serif' }} className="text-4xl sm:text-5xl md:text-6xl font-serif mb-8 ">Skill Development</h1>
+            <p style={{ fontFamily: '"system-ui" ' }} className="text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
               Skills for Tomorrow, <span className="text-blue-300 italic">Empowering India's Youth</span>
             </p>
           </motion.div>
@@ -273,10 +274,10 @@ const Skill2 = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#023080] mb-8 sm:mb-12">
+            <h2 style={{ fontFamily: '"Times New Roman", serif' }} className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#023080] mb-8 sm:mb-12">
               The Skill Gap Challenge
             </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
+            <p style={{ fontFamily: '"system-ui"' }} className="text-lg sm:text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
               India faces a growing skill gap—over 65% of its population is under the age of 35, yet only a fraction are
               job-ready. According to the India Skills Report 2024, less than 50% of graduates are considered
               employable. This gap is even wider in rural, tribal, and marginalized communities where access to
@@ -297,7 +298,7 @@ const Skill2 = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          src={skill1}
           alt="Youth learning and skill development"
           className="w-full h-48 sm:h-64 object-cover"
         />
@@ -416,7 +417,7 @@ const Skill2 = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&h=400&fit=crop"
+          src={skill32}
           alt="Youth skill development"
           className="w-full h-48 sm:h-64 object-cover"
         />
@@ -554,7 +555,7 @@ const Skill2 = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=400&fit=crop"
+          src={skill4}
           alt="Youth achieving goals"
           className="w-full h-48 sm:h-64 object-cover"
         />
@@ -626,25 +627,25 @@ const Skill2 = () => {
         </div>
       </section>
 
-      {/* second Rough Edge Image Section */}
+      {/* Second Rough Edge Image Section */}
       <div className="relative">
         <div
           className="absolute top-0 left-0 right-0 h-4 sm:h-6"
           style={{
-            backgroundColor: "#023080",
+            backgroundColor: "#04307b",
             clipPath:
               "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 100%, 23% 95%, 21% 100%, 19% 95%, 17% 100%, 15% 85%, 13% 100%, 11% 90%, 9% 100%, 7% 95%, 5% 100%, 3% 90%, 1% 100%, 0 100%)",
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          src={skill2}
           alt="Youth learning and skill development"
           className="w-full h-48 sm:h-64 object-cover"
         />
         <div
           className="absolute bottom-0 left-0 right-0 h-4 sm:h-6"
           style={{
-            backgroundColor: "#023080",
+            backgroundColor: "#d2d5e0",
             clipPath:
               "polygon(0 100%, 100% 100%, 99% 0, 97% 10%, 95% 0, 93% 15%, 91% 0, 89% 5%, 87% 0, 85% 10%, 83% 0, 81% 5%, 79% 0, 77% 15%, 75% 0, 73% 10%, 71% 0, 69% 5%, 67% 0, 65% 10%, 63% 0, 61% 5%, 59% 0, 57% 15%, 55% 0, 53% 10%, 51% 0, 49% 5%, 47% 0, 45% 10%, 43% 0, 41% 5%, 39% 0, 37% 15%, 35% 0, 33% 10%, 31% 0, 29% 5%, 27% 0, 25% 10%, 23% 0, 21% 5%, 19% 0, 17% 15%, 15% 0, 13% 10%, 11% 0, 9% 5%, 7% 0, 5% 10%, 3% 0, 1% 5%, 0 0)",
           }}
@@ -742,4 +743,4 @@ const Skill2 = () => {
   )
 }
 
-export default Skill2
+export default SkillDevelopment

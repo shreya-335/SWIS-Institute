@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import { BookOpen, Building, Users, Monitor, ArrowRight, Home, Mountain, Shield } from "lucide-react"
+import edu1 from "../img/edu1.jpeg"
+import edu2 from "../img/edu2.jpeg"
+import edu3 from "../img/edu3.jpeg"
 
 // Counter animation component
 const AnimatedCounter = ({ value, duration = 2 }) => {
@@ -39,6 +42,7 @@ const AnimatedCounter = ({ value, duration = 2 }) => {
 
 const Education = () => {
   const [selectedTimelineItem, setSelectedTimelineItem] = useState(0)
+  const [activeCard, setActiveCard] = useState(0)
 
   // Timeline data
   const timelineData = [
@@ -47,28 +51,28 @@ const Education = () => {
       percentage: "88%",
       description: "of India was uneducated",
       subtitle: "Independence Era",
-      background: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
+      background: edu3,
     },
     {
       year: "2005",
       percentage: "40%",
       description: "of India was uneducated",
       subtitle: "Progress Made",
-      background: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+      background: edu2,
     },
     {
       year: "2015",
       percentage: "27%",
       description: "of India was uneducated",
       subtitle: "Continued Growth",
-      background: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
+      background: edu1,
     },
     {
       year: "2024",
       percentage: "20%",
       description: "of India was uneducated",
       subtitle: "Current Reality",
-      background: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
+      background: edu3,
     },
   ]
 
@@ -122,37 +126,27 @@ const Education = () => {
     },
   ]
 
-  // Slideshow images (used for program content image)
-  const slideImages = [
-    "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
-  ]
-
   // Impact areas data with individual images
   const impactAreas = [
     {
       icon: Home,
       title: "Urban slums",
-      image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&h=250&fit=crop",
+      image: edu1,
       description: "Supporting children in urban slums and marginalized city communities",
     },
     {
       icon: Mountain,
       title: "Rural villages",
-      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop",
+      image: edu2,
       description: "Bringing quality education to remote rural areas and farming communities",
     },
     {
       icon: Shield,
       title: "Shelter homes",
-      image: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=400&h=250&fit=crop",
+      image: edu3,
       description: "Providing educational support to vulnerable children in care facilities",
     },
   ]
-
-  const [activeCard, setActiveCard] = useState(0)
 
   return (
     <div className="min-h-screen bg-white">
@@ -179,8 +173,16 @@ const Education = () => {
                 SWIS FOUNDATION
               </span>
             </motion.div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif mb-8">Education</h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
+            <h1
+              style={{ fontFamily: '"Times New Roman", serif' }}
+              className="text-4xl sm:text-5xl md:text-6xl font-serif mb-8"
+            >
+              Education
+            </h1>
+            <p
+              style={{ fontFamily: '"system-ui" ' }}
+              className="text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto"
+            >
               An educated India, <span className="text-blue-300 italic">within our lifetime</span>
             </p>
           </motion.div>
@@ -192,7 +194,6 @@ const Education = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="relative flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-16 mt-16"
           >
-            {/* Continuous connecting line */}
             <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2 hidden sm:block"></div>
 
             {timelineData.map((item, index) => (
@@ -298,7 +299,7 @@ const Education = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
+          src={edu1 || "/placeholder.svg"}
           alt="Children in education"
           className="w-full h-48 sm:h-64 object-cover"
         />
@@ -325,17 +326,16 @@ const Education = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
           </motion.div>
 
-          {/* Program Navigation Buttons */}
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
             {programData.map((program, index) => (
               <motion.button
                 key={index}
                 onClick={() => setActiveCard(index)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`p-3 sm:p-4 rounded-2xl transition-all duration-300 text-center ${
+                className={`flex-1 p-4 sm:p-5 rounded-2xl transition-all duration-300 text-center ${
                   activeCard === index
-                    ? "bg-white border-2 sm:border-4 border-orange-400 shadow-xl"
+                    ? "bg-white border-4 sm:border-6 border-orange-400 shadow-xl"
                     : "bg-white/80 border border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
@@ -343,9 +343,9 @@ const Education = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-center justify-start gap-2 sm:gap-3 px-1 sm:px-2">
+                <div className="flex items-center justify-start gap-3 sm:gap-4 px-2 sm:px-3">
                   <div className="text-gray-600 flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8">{program.icon}</div>
-                  <h3 className="text-xs sm:text-sm font-semibold text-gray-800 text-left leading-tight">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-800 text-left leading-tight">
                     {program.title}
                   </h3>
                 </div>
@@ -353,60 +353,30 @@ const Education = () => {
             ))}
           </div>
 
-          {/* Equal Sized Content Grid - Text Card Left, Image Right */}
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
-            {/* Left Side - Active Program Content Card */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCard}
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 40 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl h-auto sm:h-64 lg:h-80 flex flex-col"
-              >
-                <div className="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
-                      {programData[activeCard].icon}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#023080] mb-2 sm:mb-4">
-                      {programData[activeCard].fullTitle}
-                    </h3>
-                  </div>
-                </div>
-                <div className="flex-1 flex flex-col justify-center">
-                  <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
-                    {programData[activeCard].description}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Right Side - Single Image */}
-            <div className="relative">
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="relative h-64 lg:h-80 rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <img
-                  src={slideImages[0] || "/placeholder.svg"}
-                  alt="Education program"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              </motion.div>
-            </div>
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCard}
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 40 }}
+              transition={{ duration: 0.6 }}
+              className="bg-[#FCFDFF] rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl h-auto flex flex-col border border-gray-200 items-center text-center sm:items-start sm:text-left"
+            >
+              <div className="w-14 h-14 sm:w-20 sm:h-20 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080] mb-4 sm:mb-6">
+                {programData[activeCard].icon}
+              </div>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#023080] mb-3 sm:mb-4">
+                {programData[activeCard].fullTitle}
+              </h3>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-full">
+                {programData[activeCard].description}
+              </p>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
-      {/* second Rough Edge Image Section */}
+      {/* Second Rough Edge Image Section */}
       <div className="relative">
         <div
           className="absolute top-0 left-0 right-0 h-4 sm:h-6"
@@ -417,7 +387,7 @@ const Education = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          src={edu2 || "/placeholder.svg"}
           alt="Youth learning and skill development"
           className="w-full h-48 sm:h-64 object-cover"
         />
@@ -431,7 +401,7 @@ const Education = () => {
         ></div>
       </div>
 
-      {/* Our Impact Areas - Updated to match the provided image */}
+      {/* Our Impact Areas */}
       <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
@@ -455,12 +425,9 @@ const Education = () => {
                 whileHover={{ scale: 1.02 }}
                 className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
-                {/* Image Section */}
                 <div className="relative h-40 sm:h-48 overflow-hidden">
                   <img src={area.image || "/placeholder.svg"} alt={area.title} className="w-full h-full object-cover" />
                 </div>
-
-                {/* Content Section */}
                 <div className="p-4 sm:p-6">
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className="text-[#023080]">
@@ -555,7 +522,7 @@ const Education = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
+          src={edu3 || "/placeholder.svg"}
           alt="Children achieving goals"
           className="w-full h-48 sm:h-64 object-cover"
         />
@@ -594,7 +561,6 @@ const Education = () => {
               especially in underserved regions.
             </p>
 
-            {/* Join Mission Button */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -613,7 +579,6 @@ const Education = () => {
               </motion.a>
             </motion.div>
 
-            {/* Short tagline */}
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -626,6 +591,7 @@ const Education = () => {
           </motion.div>
         </div>
       </section>
+
       {/* Fifth Rough Edge Image Section */}
       <div className="relative">
         <div
@@ -637,7 +603,7 @@ const Education = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
+          src={edu2 || "/placeholder.svg"}
           alt="Children achieving goals"
           className="w-full h-48 sm:h-64 object-cover"
         />

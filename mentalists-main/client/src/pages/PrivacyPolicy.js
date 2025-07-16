@@ -1,5 +1,5 @@
 import { CheckCircle } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom" // Ensure this is from react-router-dom
 
 const PrivacyPolicy = () => {
   const sections = [
@@ -51,31 +51,17 @@ const PrivacyPolicy = () => {
   ]
 
   return (
-    <div className="min-h-screen text-white font-sans" style={{ backgroundColor: '#04307b' }}>
+    <div className="min-h-screen bg-[#023080] text-[#FCFDFF] font-sans">
       {/* Top Spacer Section - Keeps space for navbar/header */}
       <div className="h-20 md:h-24 lg:h-32"></div>
 
-      {/* Optional: Add your custom section here */}
-      {/* 
-      <section className="py-6 bg-white border-b border-[#d2d5e0]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold text-[#023080] mb-2">
-              Your Custom Section Title
-            </h2>
-            <p className="text-[#04307b]">
-              Add your custom content here
-            </p>
-          </div>
-        </div>
-      </section>
-      */}
-
       {/* Header */}
-      <header className="py-8 md:py-10 border-b border-[#d2d5e0]">
+      <header className="py-8 md:py-10 border-b border-[#8e9fc5]">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-2xl md:text-3xl font-semibold text-[#ffffff] mb-3">Privacy Policy</h1>
-          <p className="text-[#ffffff] text-base md:text-lg max-w-4xl">
+          <h1 className="text-center text-4xl md:text-5xl font-serif font text-[#FCFDFF] mb-3">
+            Privacy Policy
+          </h1>
+          <p className="text-center mx-auto text-[#d2d5e0] text-base md:text-lg max-w-4xl">
             At SWIS, we are committed to protecting your privacy and ensuring the security of your personal information.
             This policy outlines how we collect, use, and safeguard your data.
           </p>
@@ -84,7 +70,7 @@ const PrivacyPolicy = () => {
 
       {/* Policy Sections */}
       <main className="max-w-7xl mx-auto px-4 py-10">
-        <div className="bg-[#d2d5e0] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
+        <div className="bg-[#FCFDFF] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
           {sections.map((section, i) => (
             <section key={i} className="flex items-start space-x-4">
               <div className="flex-shrink-0 mt-1">

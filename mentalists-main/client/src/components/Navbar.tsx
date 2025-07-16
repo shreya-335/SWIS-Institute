@@ -171,7 +171,7 @@ const Navbar = () => {
       )}
 
       {/* Desktop Navigation Items */}
-      <div className="hidden md:flex items-center space-x-8">
+      <div className="hidden sm:flex items-center space-x-8">
         {/* Home Link */}
         <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
           Home
@@ -192,7 +192,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Button */}
       <button
-        className="md:hidden text-white hover:text-orange-400 transition-colors"
+        className="sm:hidden text-white hover:text-orange-400 transition-colors"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
       >
         {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -200,7 +200,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay and Sidebar */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div className="fixed inset-0 z-50 sm:hidden">
           {/* Overlay */}
           <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
 

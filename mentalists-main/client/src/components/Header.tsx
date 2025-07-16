@@ -171,7 +171,7 @@ const Header = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden sm:flex items-center space-x-8">
               <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
                 Home
               </a>
@@ -225,7 +225,7 @@ const Header = () => {
 
               {/* Mobile menu button */}
               <button
-                className="md:hidden text-white hover:text-orange-400 transition-colors"
+                className="sm:hidden text-white hover:text-orange-400 transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -237,7 +237,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
+        <div className="fixed inset-0 z-40 sm:hidden">
           <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
           <div className="fixed top-0 right-0 h-full w-full max-w-xs bg-white shadow-xl overflow-y-auto">
             <div className="p-6">
