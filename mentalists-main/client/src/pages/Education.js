@@ -6,6 +6,12 @@ import { BookOpen, Building, Users, Monitor, ArrowRight, Home, Mountain, Shield 
 import edu1 from "../img/edu1.jpeg"
 import edu2 from "../img/edu2.jpeg"
 import edu3 from "../img/edu3.jpeg"
+import edu4 from "../img/edu4.jpg"
+import edu5 from "../img/edu5.jpeg"
+import edu52 from "../img/edu52.jpeg"
+
+
+
 
 // Counter animation component
 const AnimatedCounter = ({ value, duration = 2 }) => {
@@ -65,14 +71,14 @@ const Education = () => {
       percentage: "27%",
       description: "of India was uneducated",
       subtitle: "Continued Growth",
-      background: edu1,
+      background: edu4,
     },
     {
       year: "2024",
       percentage: "20%",
       description: "of India was uneducated",
       subtitle: "Current Reality",
-      background: edu3,
+      background: edu5,
     },
   ]
 
@@ -131,7 +137,7 @@ const Education = () => {
     {
       icon: Home,
       title: "Urban slums",
-      image: edu1,
+      image: edu3,
       description: "Supporting children in urban slums and marginalized city communities",
     },
     {
@@ -143,7 +149,7 @@ const Education = () => {
     {
       icon: Shield,
       title: "Shelter homes",
-      image: edu3,
+      image: edu1,
       description: "Providing educational support to vulnerable children in care facilities",
     },
   ]
@@ -299,7 +305,7 @@ const Education = () => {
           }}
         ></div>
         <img
-          src={edu1 || "/placeholder.svg"}
+          src={edu52 || "/placeholder.svg"}
           alt="Children in education"
           className="w-full h-48 sm:h-64 object-cover"
         />
@@ -326,55 +332,53 @@ const Education = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
           </motion.div>
 
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
-            {programData.map((program, index) => (
-              <motion.button
-                key={index}
-                onClick={() => setActiveCard(index)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`flex-1 p-4 sm:p-5 rounded-2xl transition-all duration-300 text-center ${
-                  activeCard === index
-                    ? "bg-white border-4 sm:border-6 border-orange-400 shadow-xl"
-                    : "bg-white/80 border border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center justify-start gap-3 sm:gap-4 px-2 sm:px-3">
-                  <div className="text-gray-600 flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8">{program.icon}</div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-800 text-left leading-tight">
-                    {program.title}
-                  </h3>
-                </div>
-              </motion.button>
-            ))}
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCard}
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 40 }}
-              transition={{ duration: 0.6 }}
-              className="bg-[#FCFDFF] rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl h-auto flex flex-col border border-gray-200 items-center text-center sm:items-start sm:text-left"
-            >
-              <div className="w-14 h-14 sm:w-20 sm:h-20 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080] mb-4 sm:mb-6">
-                {programData[activeCard].icon}
-              </div>
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#023080] mb-3 sm:mb-4">
-                {programData[activeCard].fullTitle}
-              </h3>
-              <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-full">
-                {programData[activeCard].description}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
+          {/* Program Navigation Buttons */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                      {programData.map((program, index) => (
+                        <motion.button
+                          key={index}
+                          onClick={() => setActiveCard(index)}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`p-4 rounded-2xl transition-all duration-300 text-center bg-white   shadow-xl`
+                            }
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="flex items-center justify-start gap-3 px-2">
+                            <div className="text-gray-600 flex-shrink-0">{program.icon}</div>
+                            <h3 className="text-sm font-semibold text-gray-800 text-left leading-tight">{program.title}</h3>
+                          </div>
+                        </motion.button>
+                      ))}
+                    </div>
+          
+                    {/* Updated Program Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {programData.map((program, index) => (
+                        <motion.div
+                          key={index}
+                          className="bg-white rounded-3xl p-8 shadow-2xl flex flex-col items-center text-center hover:scale-105 transition-transform duration-300"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="flex-shrink-0 mb-4">
+                            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
+                              {program.icon}
+                            </div>
+                          </div>
+                          <h3 className="text-xl font-bold text-[#023080] mb-2"></h3>
+                          <p className="text-gray-700 text-sm leading-relaxed">{program.description}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+       
 
       {/* Second Rough Edge Image Section */}
       <div className="relative">

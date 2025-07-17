@@ -313,98 +313,64 @@ const SkillDevelopment = () => {
       </div>
 
       {/* Our Efforts Include Section */}
-      <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
-          </motion.div>
-
-          {/* Program Navigation Buttons */}
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
-            {programData.map((program, index) => (
-              <motion.button
-                key={index}
-                onClick={() => setActiveCard(index)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`p-3 sm:p-4 rounded-2xl transition-all duration-300 text-center ${
-                  activeCard === index
-                    ? "bg-white border-2 sm:border-4 border-orange-400 shadow-xl"
-                    : "bg-white/80 border border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center justify-start gap-2 sm:gap-3 px-1 sm:px-2">
-                  <div className="text-gray-600 flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8">{program.icon}</div>
-                  <h3 className="text-xs sm:text-sm font-semibold text-gray-800 text-left leading-tight">
-                    {program.title}
-                  </h3>
-                </div>
-              </motion.button>
-            ))}
-          </div>
-
-          {/* Equal Sized Content Grid - Text Card Left, Image Right */}
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
-            {/* Left Side - Active Program Content Card */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCard}
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 40 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl h-auto sm:h-64 lg:h-80 flex flex-col"
-              >
-                <div className="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
-                      {programData[activeCard].icon}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#023080] mb-2 sm:mb-4">
-                      {programData[activeCard].fullTitle}
-                    </h3>
-                  </div>
-                </div>
-                <div className="flex-1 flex flex-col justify-center">
-                  <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
-                    {programData[activeCard].description}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Right Side - Single Image */}
-            <div className="relative">
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="relative h-64 lg:h-80 rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <img
-                  src={slideImages[0] || "/placeholder.svg"}
-                  alt="Skill development program"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
+            <section className="py-16 sm:py-24" style={{ backgroundColor: "#023080" }}>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="text-center mb-12 sm:mb-16"
+                >
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">Our Efforts Include</h2>
+                </motion.div>
+      
+                {/* Program Navigation Buttons */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                            {programData.map((program, index) => (
+                              <motion.button
+                                key={index}
+                                onClick={() => setActiveCard(index)}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className={`p-4 rounded-2xl transition-all duration-300 text-center bg-white   shadow-xl`
+                                  }
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                              >
+                                <div className="flex items-center justify-start gap-3 px-2">
+                                  <div className="text-gray-600 flex-shrink-0">{program.icon}</div>
+                                  <h3 className="text-sm font-semibold text-gray-800 text-left leading-tight">{program.title}</h3>
+                                </div>
+                              </motion.button>
+                            ))}
+                          </div>
+                
+                          {/* Updated Program Cards */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {programData.map((program, index) => (
+                              <motion.div
+                                key={index}
+                                className="bg-white rounded-3xl p-8 shadow-2xl flex flex-col items-center text-center hover:scale-105 transition-transform duration-300"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                              >
+                                <div className="flex-shrink-0 mb-4">
+                                  <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
+                                    {program.icon}
+                                  </div>
+                                </div>
+                                <h3 className="text-xl font-bold text-[#023080] mb-2"></h3>
+                                <p className="text-gray-700 text-sm leading-relaxed">{program.description}</p>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      </section>
 
       {/* Third Rough Edge Image Section */}
       <div className="relative">
