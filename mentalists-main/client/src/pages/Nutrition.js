@@ -324,6 +324,7 @@ const Nutrition = () => {
       </div>
 
       {/* Our Nutrition Outreach Includes Section */}
+      {/* Our Nutrition Outreach Includes Section */}
       <section className="py-24" style={{ backgroundColor: "#023080" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
@@ -340,7 +341,6 @@ const Nutrition = () => {
               and every student under our care receives meals that nourish both body and mind.
             </p>
           </motion.div>
-
           {/* Program Navigation Buttons */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {programData.map((program, index) => (
@@ -349,11 +349,8 @@ const Nutrition = () => {
                 onClick={() => setActiveCard(index)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`p-4 rounded-2xl transition-all duration-300 text-center ${
-                  activeCard === index
-                    ? "bg-white border-4 border-orange-400 shadow-xl"
-                    : "bg-white/80 border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl"
-                }`}
+                className={`p-4 rounded-2xl transition-all duration-300 text-center bg-white   shadow-xl`
+                  }
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -367,56 +364,33 @@ const Nutrition = () => {
             ))}
           </div>
 
-          {/* Equal Sized Content Grid - Text Card Left, Image Right */}
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Left Side - Active Program Content Card */}
-            <AnimatePresence mode="wait">
+          {/* Updated Program Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {programData.map((program, index) => (
               <motion.div
-                key={activeCard}
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 40 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl h-64 lg:h-80 flex flex-col"
-              >
-                <div className="flex items-start gap-6 mb-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
-                      {programData[activeCard].icon}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl  font-bold text-[#023080] mb-4">
-                      {programData[activeCard].fullTitle}
-                    </h3>
-                  </div>
-                </div>
-                <div className="flex-1 flex flex-col justify-center">
-                  <p className="text-gray-700 text-md leading-relaxed">{programData[activeCard].description}</p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Right Side - Single Image */}
-            <div className="relative">
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+                key={index}
+                className="bg-white rounded-3xl p-8 shadow-2xl flex flex-col items-center text-center hover:scale-105 transition-transform duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="relative h-64 lg:h-80 rounded-3xl overflow-hidden shadow-2xl"
               >
-                <img
-                  src={slideImages[0] || "/placeholder.svg"}
-                  alt="Nutrition program"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div className="flex-shrink-0 mb-4">
+                  <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
+                    {program.icon}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-[#023080] mb-2"></h3>
+                <p className="text-gray-700 text-sm leading-relaxed">{program.description}</p>
               </motion.div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
+          
+
+
 
       {/* second Rough Edge Image Section */}
       <div className="relative">
