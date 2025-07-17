@@ -43,13 +43,14 @@ import markets7 from "../img/markets (7).png"
 import markets8 from "../img/markets (8).png"
 import markets9 from "../img/markets (9).png"
 import markets10 from "../img/markets (10).png"
+import indiaMap from "../img/india-map.png"
 
 const Homepage = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeIntervention, setActiveIntervention] = useState("Education")
   const [activeCenter, setActiveCenter] = useState("Social Action")
-
+  const [hoveredState, setHoveredState] = useState("")
   // Sample images for slideshow
   const slides = [h1, h2, h3, h4, h5]
 
@@ -86,6 +87,16 @@ const Homepage = () => {
     markets10,
   ]
   const civilSocietyLogos = [civil11, civil1, civil2, civil3, civil4, civil5, civil6, civil7, civil8, civil9, civil10]
+
+  const stateCoordinates = {
+    "Uttar Pradesh": { x: 47, y: 38 },
+    Haryana: { x: 28, y: 27 },
+    Delhi: { x: 31, y: 30 },
+    Maharashtra: { x: 20, y: 60 },
+    Odisha: { x: 55, y: 58 },
+    "West Bengal": { x: 67, y: 47 },
+    Telangana: { x: 35, y: 65 },
+  }
 
   const interventions = {
     Education: {
@@ -255,6 +266,55 @@ const Homepage = () => {
     )
   }
 
+  // Interactive Map Component
+  const InteractiveMap = () => {
+    return (
+      <div className="relative max-w-4xl mx-auto">
+        <div className="relative inline-block">
+          <img
+            src={indiaMap || "/placeholder.svg"}
+            alt="Map of India showing SWIS presence"
+            className="w-full h-auto max-w-2xl mx-auto"
+          />
+
+          {/* State Dots */}
+          {Object.entries(stateCoordinates).map(([stateName, coordinates]) => (
+            <div
+              key={stateName}
+              className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
+              style={{
+                left: `${coordinates.x}%`,
+                top: `${coordinates.y}%`,
+              }}
+              onMouseEnter={() => setHoveredState(stateName)}
+              onMouseLeave={() => setHoveredState("")}
+            >
+              {/* Dot */}
+              <div className="w-4 h-4 bg-blue-400 rounded-full border-2 border-white shadow-lg group-hover:scale-150 transition-all duration-300 relative z-10">
+                <div className="absolute inset-0 bg-blue-800 rounded-full animate-ping"></div>
+              </div>
+
+              {/* State Name Tooltip */}
+              {hoveredState === stateName && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-20"
+                >
+                  <div className="bg-black text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap shadow-lg">
+                    {stateName}
+                    <div className="absolute top-full left-1/4 transform -translate-x-1/4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FCFDFF" }}>
       {/* Hero Section */}
@@ -308,7 +368,7 @@ const Homepage = () => {
             alt="WE CARE - SWIS is an Indian non-profit committed to radically impact the life of 2M+ people in the next 2 decades"
             className="w-full h-auto object-cover"
           />
-          <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-xl">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-2xl">
             <p className="text-gray-700 leading-relaxed">
               {
                 "SWIS is an Indian non-profit committed to radically impact the lives of 2M+ people in the next two decades."
@@ -387,7 +447,7 @@ const Homepage = () => {
                       <h3 className="text-2xl text-white mb-2">{intervention.toUpperCase()}</h3>
                       <div
                         className={`h-0.5 transition-all duration-300 ${
-                          activeIntervention === intervention ? "w-full bg-orange-400" : "w-0 bg-white"
+                          activeIntervention === intervention ? "w-full bg-blue-400" : "w-0 bg-white"
                         }`}
                       ></div>
                     </div>
@@ -421,7 +481,7 @@ const Homepage = () => {
                     onClick={() => setActiveCenter(center)}
                     className={`flex-1 flex items-center justify-center gap-3 px-6 py-3 rounded-full transition-all duration-300 ${
                       activeCenter === center
-                        ? "bg-orange-400 text-white"
+                        ? "bg-blue-400 text-white"
                         : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
                     }`}
                   >
@@ -502,79 +562,39 @@ const Homepage = () => {
           </motion.div>
         </div>
       </section>
-      {/* Enhanced Reach and Presence Section */}
-      <section className="py-32 min-h-screen flex items-center" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          {/* New Title Position */}
+      
+
+      {/* Interactive India Map Section - MOVED HERE */}
+      <section className="py-20" style={{ backgroundColor: "#04307b " }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-white text-center mb-16"
+            className="text-center mb-16"
           >
-            <h2 className="text-7xl mb-3 leading-tight" style={{ fontFamily: '"Times New Roman", serif' }}>
+            <h2 className="text-7xl mb-3" style={{ color: "#FCFDFF", fontFamily: '"Times New Roman", serif' }}>
               Reach & Presence
             </h2>
-            <p className="text-xl mb-8 leading-relaxed opacity-90 text-center lg:text-center">
-                SWIS operates across multiple states in India, bringing sustainable change to communities nationwide.
-              </p>
-            <div className="w-24 h-1 mx-auto" style={{ backgroundColor: "#d2d5e0" }}></div>
+            <p className="text-2xl max-w-3xl mx-auto leading-relaxed mb-8" style={{ color: "#FCFDFF" }}>
+              SWIS operates across multiple states in India, bringing sustainable change to communities nationwide.</p>
+              
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left side: New info blocks and existing paragraph */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-white flex flex-col items-center lg:items-start"
-            >
-              <div className="grid grid-cols-2 gap-16 ml-10 mb-12 w-full max-w-md max-h-md">
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="text-8xl font-bold mb-2" style={{ fontFamily: '"Times New Roman", serif' }}>
-                    12+
-                  </h3>
-                  <p className="text-3xl opacity-90">Locations</p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="text-8xl font-bold mb-2" style={{ fontFamily: '"Times New Roman", serif' }}>
-                    3K+
-                  </h3>
-                  <p className="text-3xl opacity-90">Benefited</p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="text-8xl font-bold mb-2" style={{ fontFamily: '"Times New Roman", serif' }}>
-                    10K+
-                  </h3>
-                  <p className="text-3xl opacity-90">Impacted</p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="text-8xl font-bold mb-2" style={{ fontFamily: '"Times New Roman", serif' }}>
-                    25+
-                  </h3>
-                  <p className="text-3xl opacity-90">Partners</p>
-                </div>
-              </div>
-              
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex justify-center"
+          >
+            <InteractiveMap />
+          </motion.div>
 
-            {/* Right side: Map */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1.1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="flex justify-center lg:justify-end"
-            >
-              <img
-                src={rnp2 || "/placeholder.svg"}
-                alt="India Map showing SWIS presence across multiple states"
-                className="max-w-full h-auto max-h-[800px] object-contain mr-14"
-              />
-            </motion.div>
-          </div>
+          <p className="text-xl mt-10 text-center max-w-3xl mx-auto leading-relaxed" style={{ color: "#d2d5e0" }}>
+              Hover over the dots to see the states where SWIS is making a difference
+            </p>
         </div>
       </section>
 
