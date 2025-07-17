@@ -157,7 +157,7 @@ const memberData = {
   ],
   "SWIS Core Team": [
     {
-      name: "Jiya Gudhaka",
+      name: "Ms. Jiya Gudhaka",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -166,7 +166,7 @@ const memberData = {
       
     },
     {
-      name: "Vishal Maheto",
+      name: "Mr. Vishal Maheto",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -175,7 +175,7 @@ const memberData = {
       
     },
     {
-      name: "Manya Panjwani",
+      name: "Ms. Manya Panjwani",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -184,7 +184,7 @@ const memberData = {
       
     },
     {
-      name: "Pooja Lakshmi",
+      name: "Ms. Pooja Lakshmi",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -193,7 +193,7 @@ const memberData = {
       
     },
     {
-      name: "Tanushka MS",
+      name: "Ms. Tanushka MS",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -202,7 +202,7 @@ const memberData = {
       
     },
     {
-      name: "Zoha Aza Khan",
+      name: "Ms. Zoha Aza Khan",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -211,7 +211,7 @@ const memberData = {
       
     },
     {
-      name: "Sulagna Ghosh",
+      name: "Ms. Sulagna Ghosh",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -220,7 +220,7 @@ const memberData = {
      
     },
     {
-      name: "Shristy Das",
+      name: "Ms. Shristy Das",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -229,7 +229,7 @@ const memberData = {
       
     },
     {
-      name: "Mukund Agarwal",
+      name: "Mr. Mukund Agarwal",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:mukund,
@@ -237,7 +237,7 @@ const memberData = {
       
     },
     {
-      name: "K. Anitha Reddy",
+      name:"Ms. K. Anitha Reddy",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -246,7 +246,7 @@ const memberData = {
     },
       
     {
-      name: "Advika S.",
+      name: "Ms. Advika Sanganeria",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -255,7 +255,7 @@ const memberData = {
     
     },
     {
-      name: "Thayanithi",
+      name: "Mr. Thayanithi",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -264,7 +264,7 @@ const memberData = {
      
     },
     {
-      name: "Advika Yadav",
+      name: "Ms. Advika Yadav",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -274,7 +274,7 @@ const memberData = {
     },
 
     {
-      name: "Debanjana Biswas",
+      name: "Ms. Debanjana Biswas",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -285,7 +285,7 @@ const memberData = {
   ],
   "SWIS Founding Supporters": [
     {
-      name: "Anshul Mitra",
+      name: "Mr. Anshul Mitra",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -294,7 +294,7 @@ const memberData = {
      
     },
     {
-      name: "Khusboo Singhal",
+      name: "Ms. Khusboo Singhal",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -303,7 +303,7 @@ const memberData = {
      
     },
     {
-      name: "Aryamaan Biswas",
+      name: "Mr. Aryamaan Biswas",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -312,7 +312,7 @@ const memberData = {
       
     },
     {
-      name: "Vidhi Bhageria",
+      name: "Ms. Vidhi Bhageria",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -320,17 +320,9 @@ const memberData = {
       bio: "Vidhi Bhageria is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
       
     },
+
     {
-      name: "Veda Rodewald",
-      designation: "Founding Supporter",
-      shortDesignation: "Founding Supporter", // Added for card display
-      imageUrl:
-       navya,
-      bio: "Veda Rodewald is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
-      
-    },
-    {
-      name: "Pritika Gupta",
+      name: "Ms. Pritika Gupta",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -339,7 +331,7 @@ const memberData = {
       
     },
     {
-      name: "Alisha Dash",
+      name: "Ms. Alisha Dash",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -348,7 +340,7 @@ const memberData = {
       
     },
     {
-      name: "Navya KS",
+      name: "Ms. Navya KS",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -357,7 +349,7 @@ const memberData = {
       
     },
     {
-      name: "Praniti Mishra",
+      name: "Ms. Praniti Mishra",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -366,7 +358,7 @@ const memberData = {
       
     },
     {
-      name: "Abantika Chakraborty",
+      name: "Ms. Abantika Chakraborty",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -596,10 +588,7 @@ const heroImages = [hero1, hero2, hero3];
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="mb-8"
               >
-                <div className="text-right mb-4">
-                  <span className="text-[#d2d5e0] text-lg font-light tracking-wide">SWIS Foundation</span>
-                  <div className="text-[#8e9fc5] text-sm mt-1">Social Welfare & Impact Solutions</div>
-                </div>
+               
               </motion.div>
 
               <motion.h1
@@ -608,10 +597,8 @@ const heroImages = [hero1, hero2, hero3];
                 transition={{ duration: 1, delay: 0.5 }}
                 className="text-4xl md:text-5xl lg:text-7xl font-serif text-white mb-6 leading-tight"
               >
-                Board & Committee
-                <div className="bg-[#023080] inline-block px-4 md:px-6 py-2 mt-4">
-                  <span className="text-[#d2d5e0] text-2xl md:text-3xl lg:text-4xl">Members</span>
-                </div>
+                Board & Committee Members
+                
               </motion.h1>
 
               <motion.p

@@ -1,44 +1,63 @@
-import React, { useState, useEffect } from 'react';
+
+"use client"
+
+import React, { useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, Globe, Target, Award, Users, TrendingUp, Lightbulb, BookOpen } from "lucide-react";
+import { motion } from "framer-motion";
+
+// Image imports for HeroSection
+import h1 from "../img/h1.jpeg";
+import ccaeS2 from "../img/ccaeS2.jpg";
+import ccaeS3 from "../img/ccaeS3.jpg";
+
+// Image imports for MetricsSection
+import csaa1 from "../img/csaa1.JPG";
+import csaa3 from "../img/csaa3.JPG";
+import csaa5 from "../img/csaa5.JPG";
+import csaa7 from "../img/csaa7.jpeg";
+import csaa9 from "../img/csaa9.jpeg";
+
+// Image imports for HighlightsSection
+import h2 from "../img/h2.jpeg";
+import h5 from "../img/h5.jpeg";
+import rd from "../img/rd.jpeg";
 
 // AnimatedCounter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = "", countAnimated }) => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!countAnimated) return
+    if (!countAnimated) return;
 
-    let startTime = null
-    const startCount = 0
+    let startTime = null;
+    const startCount = 0;
 
     const animate = (currentTime) => {
-      if (startTime === null) startTime = currentTime
-      const progress = Math.min((currentTime - startTime) / duration, 1)
-
-      const easeOutCubic = 1 - Math.pow(1 - progress, 3)
-      const currentCount = Math.floor(startCount + (end - startCount) * easeOutCubic)
-
-      setCount(currentCount)
+      if (startTime === null) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      const currentCount = Math.floor(startCount + (end - startCount) * easeOutCubic);
+      setCount(currentCount);
 
       if (progress < 1) {
-        requestAnimationFrame(animate)
+        requestAnimationFrame(animate);
       }
-    }
+    };
 
-    requestAnimationFrame(animate)
-  }, [countAnimated, end, duration])
+    requestAnimationFrame(animate);
+  }, [countAnimated, end, duration]);
 
   return (
     <span>
       {count.toLocaleString()}
       {suffix}
     </span>
-  )
-}
+  );
+};
 
 // HeroSection Component
 const HeroSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const heroSlides = [
     {
@@ -46,40 +65,37 @@ const HeroSection = () => {
       subtitle: "Building Civic Leaders",
       description:
         "Fostering civic consciousness through fellowships, structured volunteering, and real-world exposure to public systems.",
-      background:
-        "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      background: ccaeS2,
     },
     {
       title: "Civil Administrative Fellowship",
       subtitle: "Democracy in Action",
       description:
         "Exclusive, honorary program designed for individuals committed to developing leadership skills and driving meaningful social change.",
-      background:
-        "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      background: h1,
     },
     {
       title: "Public Engagement",
       subtitle: "Ethical Leadership",
       description:
         "Transforming idealism into public leadership through mentorship, training, and field experiences with governance bodies.",
-      background:
-        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      background: ccaeS3,
     },
-  ]
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-    }, 6000)
-    return () => clearInterval(timer)
-  }, [heroSlides.length])
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
 
   const scrollToNextSection = () => {
-    const nextSection = document.getElementById("mission")
+    const nextSection = document.getElementById("mission");
     if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" })
+      nextSection.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <section className="relative h-screen overflow-hidden">
@@ -90,37 +106,47 @@ const HeroSection = () => {
             className={`absolute inset-0 slide-transition ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
           >
             <img
-              src={slide.background || "/placeholder.svg"}
+              src={slide.background}
               alt="Hero background"
               className="w-full h-full object-cover transform transition-transform duration-[6000ms] ease-in-out scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#023080]/90 via-[#04307b]/70 to-[#8e9fc5]/50"></div>
           </div>
         ))}
+        <div className="absolute inset-0 bg-black/40 z-[1]"></div>
       </div>
 
-      <div className="relative z-10 h-full flex items-center">
+      <div className="relative z-20 h-full flex items-center justify-end pt-20 pb-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
           <div className="text-white max-w-4xl">
-            <div className="mb-6 animate-fadeInUp">
-              <span className="text-[#d2d5e0] text-lg font-light tracking-wide">SWIS FOUNDATION</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light mb-6 leading-tight animate-fadeInUp stagger-1">
+            <h1
+              className="text-3xl sm:text-4xl lg:text-6xl font-light mb-6 leading-tight animate-fadeInUp stagger-1"
+              style={{
+                fontFamily: '"Times New Roman", serif',
+                textShadow: 'none',
+                fontSize: heroSlides[currentSlide].title === "Centre for Civil Administration & Engagement" ? '3.5rem' : '4rem',
+                lineHeight: '1.2',
+              }}
+            >
               {heroSlides[currentSlide].title}
-              <div className="text-[#8e9fc5] text-2xl sm:text-3xl lg:text-4xl mt-2">
-                {heroSlides[currentSlide].subtitle}
-              </div>
             </h1>
-
-            <p className="text-lg sm:text-xl text-[#d2d5e0] leading-relaxed mb-8 max-w-3xl animate-fadeInUp stagger-2">
+            <div className="w-32 h-1 mb-8" style={{ backgroundColor: "#ffffff" }}></div>
+            <div
+              className="text-2xl sm:text-3xl lg:text-4xl mt-2 animate-fadeInUp stagger-1"
+              style={{ fontFamily: '"system-ui"', color: '#ffffff', textShadow: 'none' }}
+            >
+              {heroSlides[currentSlide].subtitle}
+            </div>
+            <p
+              className="text-lg sm:text-xl text-[#d2d5e0] leading-relaxed mb-8 max-w-3xl animate-fadeInUp stagger-2"
+              style={{ fontFamily: '"system-ui"', textShadow: 'none' }}
+            >
               {heroSlides[currentSlide].description}
             </p>
-
             <div className="flex gap-4 flex-wrap animate-fadeInUp stagger-3">
               <a
                 href="/JoinUs"
-                className="bg-white text-[#023080] px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-[#FCFDFF] transition-all duration-300 transform hover:scale-105 flex items-center gap-2 text-sm sm:text-base"
+                className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2"
               >
                 Apply Now <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
@@ -149,8 +175,8 @@ const HeroSection = () => {
         <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
       </button>
     </section>
-  )
-}
+  );
+};
 
 // MissionSection Component
 const MissionSection = ({ isVisible }) => {
@@ -176,7 +202,7 @@ const MissionSection = ({ isVisible }) => {
       icon: <Award className="w-8 h-8" />,
       delay: "stagger-3",
     },
-  ]
+  ];
 
   return (
     <section
@@ -226,7 +252,7 @@ const MissionSection = ({ isVisible }) => {
             </p>
             <a
               href="/JoinUs"
-              className="bg-white text-[#023080] px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-[#FCFDFF] transition-all duration-300 transform hover:scale-105"
+              className="bg-white text-[#023080] px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#FCFDFF] transition-all duration-300 transform hover:scale-105"
             >
               Start Your Journey
             </a>
@@ -234,14 +260,13 @@ const MissionSection = ({ isVisible }) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 // ObjectivesSection Component
 const ObjectivesSection = ({ isVisible }) => {
   const objectives = [
     {
-      to: "/JoinUs",
       icon: <Target className="w-8 h-8" />,
       title: "Awareness",
       description:
@@ -278,7 +303,7 @@ const ObjectivesSection = ({ isVisible }) => {
       description: "To create a community pool of social-empathetic leaders committed to public service.",
       color: "from-[#8e9fc5] to-[#04307b]",
     },
-  ]
+  ];
 
   return (
     <section id="objectives" className="py-16 sm:py-20 bg-white">
@@ -293,7 +318,7 @@ const ObjectivesSection = ({ isVisible }) => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm: Platforms: x.com, Web, iOS, Android gap-8">
           {objectives.map((objective, index) => (
             <div
               key={index}
@@ -313,191 +338,174 @@ const ObjectivesSection = ({ isVisible }) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 // MetricsSection Component
 const MetricsSection = ({ isVisible, countAnimated }) => {
   const impactMetrics = [
-    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { number: 3, suffix: "", label: "Centres Established", icon: <Target className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { number: 50, suffix: "+", label: "Programs", icon: <BookOpen className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { number: 500, suffix: "+", label: "Youth Employed", icon: <TrendingUp className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1531497865148-8f7f4ff64f1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { number: 8, suffix: "", label: "Annual Convenings", icon: <Award className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1603415526960-f7e0328d8da8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-6 h-6" />, image: "https://images.unsplash.com/photo-1531497865148-8f7f4ff64f1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" }
+    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-6 h-6" />, image: csaa1, hasImage: true },
+    { number: 3, suffix: "", label: "Centres Established", icon: <Target className="w-6 h-6" />, hasImage: false },
+    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-6 h-6" />, image: csaa3, hasImage: true },
+    { number: 50, suffix: "+", label: "Programs", icon: <BookOpen className="w-6 h-6" />, hasImage: false },
+    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-6 h-6" />, image: csaa5, hasImage: true },
+    { number: 500, suffix: "+", label: "Youth Employed", icon: <TrendingUp className="w-6 h-6" />, hasImage: false },
+    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-6 h-6" />, image: csaa7, hasImage: true },
+    { number: 8, suffix: "", label: "Annual Convenings", icon: <Award className="w-6 h-6" />, hasImage: false },
+    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-6 h-6" />, image: csaa9, hasImage: true },
   ];
-  
+
   return (
     <section
       id="metrics"
-      className="py-20 bg-gradient-to-br from-[#FCFDFF] via-[#d2d5e0] to-[#8e9fc5] relative overflow-hidden"
+      className="py-12 bg-gradient-to-br from-[#FCFDFF] via-[#d2d5e0] to-[#8e9fc5] relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        <div className={`text-center mb-16 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 text-[#023080] italic">
-            Our work in numbers
+        <div className={`text-center mb-8 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-4 text-[#023080] italic">
+            Our Work in Numbers
           </h2>
           <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
             Building civic engagement through measurable impact across communities
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
+        <div className="grid grid-cols-3 gap-4 sm:gap-6">
           {impactMetrics.map((metric, index) => (
             <div
               key={index}
               className={`
-              ${isVisible ? `animate-fadeInUp` : "opacity-0"}
-              ${metric.size === "large" ? "col-span-2 row-span-2" : ""}
-              ${metric.size === "medium" ? "col-span-1 row-span-2 sm:col-span-2 sm:row-span-1" : ""}
-              ${metric.size === "small" ? "col-span-1 row-span-1" : ""}
-              relative rounded-2xl overflow-hidden group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
-              ${index < 3 ? "h-32 sm:h-40" : ""}
-              ${index >= 3 && index < 5 ? "h-40 sm:h-48" : ""}
-              ${index >= 5 ? "h-32 sm:h-40" : ""}
-            `}
+                relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl
+                h-28 sm:h-32
+              `}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <img
-                src={metric.image || "/placeholder.svg"}
-                alt={metric.label}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-[#023080]/80 via-[#04307b]/70 to-[#8e9fc5]/60 group-hover:from-[#023080]/90 group-hover:via-[#04307b]/80 group-hover:to-[#8e9fc5]/70 transition-all duration-300"></div>
-
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-3 sm:p-4 text-center">
-                <div className="text-white/80 mb-2 hidden sm:block">{metric.icon}</div>
-                <div
-                  className={`font-bold mb-1 sm:mb-2 ${metric.size === "large" ? "text-4xl sm:text-5xl lg:text-6xl" : metric.size === "medium" ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl lg:text-3xl"}`}
-                >
-                  <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
+              {metric.hasImage ? (
+                <img
+                  src={metric.image}
+                  alt={metric.label}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-[#023080] flex items-center justify-center p-3 sm:p-4">
+                  <div className="text-white text-center flex items-center gap-2">
+                    <div className="text-white/80">{metric.icon}</div>
+                    <div
+                      className="font-bold text-xl sm:text-2xl lg:text-3xl"
+                    >
+                      <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
+                    </div>
+                    <div
+                      className="text-white/90 font-medium leading-tight text-xs sm:text-sm"
+                    >
+                      {metric.label}
+                    </div>
+                  </div>
                 </div>
-                <div
-                  className={`text-white/90 font-medium leading-tight ${metric.size === "large" ? "text-sm sm:text-base lg:text-lg" : metric.size === "medium" ? "text-xs sm:text-sm lg:text-base" : "text-xs sm:text-sm"}`}
-                >
-                  {metric.label}
-                </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 // HighlightsSection Component
 const HighlightsSection = ({ isVisible }) => {
-  const [activeHighlight, setActiveHighlight] = useState(0)
+  const highlights = [
+    "Capacity-Building",
+    "Speaker",
+    "Resource",
+    "Volunteer",
+    "Organizational",
+    "Profile"
+  ];
 
-  const keyHighlights = [
-    {
-      title: "Capacity-Building Programs",
-      description:
-        "Focus on equipping fellows with essential leadership and skills development for effective social impact initiatives, covering areas like project management, policy analysis, and civic engagement strategies.",
-      features: ["Project management", "Policy analysis", "Civic engagement", "Leadership development"],
-    },
-    {
-      title: "Speaker Sessions and Workshops",
-      description:
-        "Provide fellows with opportunities to engage with experts on critical topics like inclusive policies, social stratification, public policy, ethics, and compassion in governance and public service.",
-      features: ["Expert sessions", "Policy workshops", "Ethics training", "Governance seminars"],
-    },
-    {
-      title: "Resource Generation and Mobilisation",
-      description:
-        "Focuses on equipping fellows with the skills to develop fundraising strategies for civic initiatives, create sustainable models for public service, and leverage partnerships for community impact.",
-      features: ["Civic fundraising", "Public service models", "Community partnerships", "Impact sustainability"],
-    },
-    {
-      title: "Volunteer Management and Engagement",
-      description:
-        "Empowers fellows to lead in volunteer recruitment for civic causes, training in public service, community engagement programs, and creating strategies for civic participation.",
-      features: ["Civic recruitment", "Public service training", "Community programs", "Civic participation"],
-    },
-    {
-      title: "Organizational Support and Practical Exposure",
-      description:
-        "Provides fellows with hands-on experience in government bodies, NGOs, policy research, public administration, and civic organizations to build practical governance skills.",
-      features: ["Government exposure", "Policy research", "Public administration", "Civic organizations"],
-    },
-    {
-      title: "Profile Building & Placement Assistance",
-      description:
-        "Focuses on enhancing fellows' professional profiles for public service careers, civil service preparation, and access to opportunities in governance, policy, and public administration sectors.",
-      features: ["Public service careers", "Civil service prep", "Policy opportunities", "Administration roles"],
-    },
-  ]
+  const images = [h2, h5, rd];
+  const [activeHighlight, setActiveHighlight] = useState("Capacity-Building");
+  const [imageIndex, setImageIndex] = useState(0);
+
+  useEffect(() => {
+    const rotateImages = setInterval(() => {
+      setImageIndex((prev) => (prev + 1) % images.length);
+    }, 6000);
+    return () => clearInterval(rotateImages);
+  }, [images.length]);
 
   return (
-    <section id="highlights" className="py-16 sm:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className={`text-center mb-12 sm:mb-16 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-6">
+    <section id="highlights" className="py-6 sm:py-8 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`text-center mb-4 sm:mb-6 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-4 font-bold">
             Key Highlights of the Fellowship
           </h2>
-          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
-            Comprehensive programs designed to develop civic leadership and create sustainable democratic engagement.
+          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+          Comprehensive programs designed to develop social leadership
           </p>
         </div>
 
-        <div
-          className={`flex flex-wrap justify-center gap-2 mb-8 sm:mb-12 ${isVisible ? "animate-fadeInUp stagger-1" : "opacity-0"}`}
-        >
-          {keyHighlights.map((highlight, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveHighlight(index)}
-              className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                activeHighlight === index
-                  ? "bg-[#023080] text-white shadow-lg transform scale-105"
-                  : "bg-[#d2d5e0]/50 text-[#04307b] hover:bg-[#8e9fc5]/30"
-              }`}
-            >
-              {highlight.title.split(" ")[0]}
-            </button>
-          ))}
-        </div>
-
-        <div
-          key={activeHighlight}
-          className={`bg-gradient-to-br from-[#FCFDFF] to-[#d2d5e0]/30 rounded-3xl p-6 sm:p-8 lg:p-12 ${
-            isVisible ? "animate-scaleIn" : "opacity-0"
-          }`}
-        >
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-[#023080] mb-6">
-                {keyHighlights[activeHighlight].title}
-              </h3>
-              <p className="text-base sm:text-lg text-[#04307b] leading-relaxed mb-8">
-                {keyHighlights[activeHighlight].description}
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {keyHighlights[activeHighlight].features.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#023080] rounded-full"></div>
-                    <span className="text-[#04307b] text-sm sm:text-base">{feature}</span>
-                  </div>
+        <div className="grid lg:grid-cols-12 gap-4" style={{ minHeight: "400px" }}>
+          <div className="lg:col-span-6">
+            <div className="relative h-full overflow-hidden">
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 slide-transition ${
+                    index === imageIndex ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={`Highlight ${index + 1}`}
+                    className="w-full h-full object-cover transform transition-transform duration-[6000ms] ease-in-out scale-105"
+                  />
+                </div>
+              ))}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === imageIndex ? 'bg-[#023080]' : 'bg-[#023080]/30'
+                    }`}
+                  />
                 ))}
               </div>
             </div>
-            <div className="relative">
-              <img
-                src={`https://images.unsplash.com/photo-${1560000000000 + activeHighlight * 100000000}?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`}
-                alt={keyHighlights[activeHighlight].title}
-                className="rounded-2xl shadow-xl w-full h-64 sm:h-80 object-cover"
-              />
+          </div>
+          <div className="lg:col-span-6 bg-[#023080] p-4 sm:p-6 rounded-lg flex flex-col justify-between">
+            <div className="space-y-4 mb-8">
+              {highlights.map((highlight) => (
+                <motion.div
+                  key={highlight}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className={`cursor-pointer transition-all duration-300 ${
+                    activeHighlight === highlight ? "opacity-100" : "opacity-60 hover:opacity-80"
+                  }`}
+                  onMouseEnter={() => setActiveHighlight(highlight)}
+                >
+                  <div className="relative">
+                    <h3 className="text-2xl text-white mb-2">{highlight}</h3>
+                    <div
+                      className={`h-0.5 transition-all duration-300 ${
+                        activeHighlight === highlight ? "w-full bg-blue-400" : "w-0 bg-white"
+                      }`}
+                    ></div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 // CTASection Component
 const CTASection = ({ isVisible }) => {
@@ -513,7 +521,7 @@ const CTASection = ({ isVisible }) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/JoinUs"
-              className="bg-white text-[#023080] px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-[#FCFDFF] transition-all duration-300 transform hover:scale-105 flex items-center gap-2 justify-center animate-pulse-slow"
+              className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 justify-center"
             >
               Apply Now <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
@@ -521,8 +529,8 @@ const CTASection = ({ isVisible }) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 // Main CCAE Component
 const CCAE = () => {
@@ -532,8 +540,8 @@ const CCAE = () => {
     metrics: false,
     highlights: false,
     cta: false,
-  })
-  const [countAnimated, setCountAnimated] = useState(false)
+  });
+  const [countAnimated, setCountAnimated] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -543,51 +551,53 @@ const CCAE = () => {
             setIsVisible((prev) => ({
               ...prev,
               [entry.target.id]: true,
-            }))
+            }));
             if (entry.target.id === "metrics") {
-              setTimeout(() => setCountAnimated(true), 500)
+              setCountAnimated(true);
             }
+          } else if (entry.target.id === "metrics" && !entry.isIntersecting) {
+            setCountAnimated(false);
           }
-        })
+        });
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.5 },
+    );
 
-    const elements = document.querySelectorAll("[id]")
-    elements.forEach((el) => observer.observe(el))
+    const elements = document.querySelectorAll("[id]");
+    elements.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="bg-white overflow-hidden">
       <style>{`
-      @keyframes fadeInUp {
-        from { transform: translateY(30px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-      }
-      @keyframes scaleIn {
-        from { transform: scale(0.8); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-      }
-      @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-      }
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-      }
-      .slide-transition { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-      .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
-      .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
-      .animate-float { animation: float 3s ease-in-out infinite; }
-      .animate-pulse-slow { animation: pulse 2s ease-in-out infinite; }
-      .stagger-1 { animation-delay: 0.1s; }
-      .stagger-2 { animation-delay: 0.2s; }
-      .stagger-3 { animation-delay: 0.3s; }
-      .stagger-4 { animation-delay: 0.4s; }
-    `}</style>
+        @keyframes fadeInUp {
+          from { transform: translateY(30px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes scaleIn {
+          from { transform: scale(0.8); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+        .slide-transition { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse 2s ease-in-out infinite; }
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+      `}</style>
 
       <HeroSection />
       <MissionSection isVisible={isVisible.mission} />
@@ -596,7 +606,7 @@ const CCAE = () => {
       <HighlightsSection isVisible={isVisible.highlights} />
       <CTASection isVisible={isVisible.cta} />
     </div>
-  )
-}
+  );
+};
 
-export default CCAE
+export default CCAE;
