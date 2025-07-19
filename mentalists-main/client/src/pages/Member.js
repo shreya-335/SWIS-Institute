@@ -622,7 +622,7 @@ const heroImages = [hero1, hero2, hero3];
               >
                 Board & Committee Members
                 
-                Board & Committee Members
+           
                 
               </motion.h1>
 
