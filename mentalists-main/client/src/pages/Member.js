@@ -246,7 +246,7 @@ const memberData = {
     },
       
     {
-      name: "Ms. Advika Sanganeria.",
+      name: "Ms. Advika Sanganeria",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -320,15 +320,7 @@ const memberData = {
       bio: "Vidhi Bhageria is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
       
     },
-    {
-      name: "Ms. Veda Rodewald",
-      designation: "Founding Supporter",
-      shortDesignation: "Founding Supporter", // Added for card display
-      imageUrl:
-       navya,
-      bio: "Veda Rodewald is a valued Founding Supporter, providing essential backing for the SWIS Institute's mission.",
-      
-    },
+   
     {
       name: "Ms. Pritika Gupta",
       designation: "Founding Supporter",
