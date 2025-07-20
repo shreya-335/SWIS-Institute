@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, Globe, Target, Award, Users, TrendingUp, Lightbulb, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
+import { BookOpen as GraduationCap, Leaf } from "lucide-react"; // Added missing icons
 
 // Image imports for HeroSection
 import csaaS1 from "../img/csaaS1.jpeg";
@@ -184,11 +185,6 @@ const MissionSection = ({ isVisible }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className={`text-center mb-12 sm:mb-16 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
-          <div className="inline-block mb-6">
-            <span className="bg-[#8e9fc5]/20 text-[#023080] px-4 py-2 rounded-full text-sm font-medium">
-              Our Purpose
-            </span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-6xl font-light text-[#023080] mb-8 bg-gradient-to-r from-[#023080] to-[#04307b] bg-clip-text text-transparent">
             Our Mission
           </h2>
@@ -331,15 +327,15 @@ const ObjectivesSection = ({ isVisible }) => {
 // MetricsSection Component
 const MetricsSection = ({ isVisible, countAnimated }) => {
   const impactMetrics = [
-    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-6 h-6" />, image: csaa1, hasImage: true },
-    { number: 3, suffix: "", label: "Centres Established", icon: <Target className="w-6 h-6" />, hasImage: false },
-    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-6 h-6" />, image: csaa3, hasImage: true },
-    { number: 50, suffix: "+", label: "Programs", icon: <BookOpen className="w-6 h-6" />, hasImage: false },
-    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-6 h-6" />, image: csaa5, hasImage: true },
-    { number: 500, suffix: "+", label: "Youth Employed", icon: <TrendingUp className="w-6 h-6" />, hasImage: false },
-    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-6 h-6" />, image: csaa7, hasImage: true },
-    { number: 8, suffix: "", label: "Annual Convenings", icon: <Award className="w-6 h-6" />, hasImage: false },
-    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-6 h-6" />, image: csaa9, hasImage: true }
+    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-8 h-8" />, image: csaa1, hasImage: true },
+    { number: 25, suffix: "+", label: "Schools", icon: <Target className="w-7 h-7" />, hasImage: false },
+    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-8 h-8" />, image: csaa3, hasImage: true },
+    { number: 10, suffix: "+", label: "Universities", icon: <BookOpen className="w-7 h-7" />, hasImage: false },
+    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-8 h-8" />, image: csaa5, hasImage: true },
+    { number: 3000, suffix: "+", label: "Students", icon: <TrendingUp className="w-7 h-7" />, hasImage: false },
+    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-8 h-8" />, image: csaa7, hasImage: true },
+    { number: 10, suffix: "", label: "Sustainable Projects", icon: <Award className="w-7 h-7" />, hasImage: false },
+    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-8 h-8" />, image: csaa9, hasImage: true }
   ];
 
   return (
@@ -350,14 +346,14 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
           <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">Driving impactful social change through measurable outcomes</p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {impactMetrics.map((metric, index) => (
             <motion.div
               key={index}
-              className={`
-                relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl
+              className="
+                relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg
                 h-28 sm:h-32
-              `}
+              "
               initial={{ scale: 0.8, opacity: 0 }}
               animate={isVisible ? { scale: 1, opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -369,20 +365,23 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-[#023080] flex items-center justify-center p-3 sm:p-4">
-                  <div className="text-white text-center flex items-center gap-2">
-                    <div className="text-white/80">{metric.icon}</div>
-                    <motion.div
-                      initial={{ value: 0 }}
-                      animate={isVisible && countAnimated ? { value: metric.number } : { value: 0 }}
-                      transition={{ duration: 2, delay: index * 0.2 }}
-                      className="font-bold text-xl sm:text-2xl lg:text-3xl"
-                    >
-                      <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
-                    </motion.div>
-                    <div className="text-white/90 font-medium leading-tight text-xs sm:text-sm">
-                      {metric.label}
-                    </div>
+                <div className="w-full h-full bg-[#023080] flex flex-col items-center justify-center text-white text-center px-2 sm:px-3">
+                  {/* ✅ Icon centered and slightly smaller */}
+                  <div className="text-white mb-1 flex justify-center">{metric.icon}</div>
+                  
+                  {/* ✅ Smaller number text for balance */}
+                  <motion.div
+                    initial={{ value: 0 }}
+                    animate={isVisible && countAnimated ? { value: metric.number } : { value: 0 }}
+                    transition={{ duration: 2, delay: index * 0.2 }}
+                    className="font-extrabold text-2xl sm:text-3xl tracking-wide"
+                  >
+                    <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
+                  </motion.div>
+                  
+                  {/* ✅ Label with reduced size */}
+                  <div className="text-white/90 font-medium text-sm sm:text-base mt-1 tracking-wide">
+                    {metric.label}
                   </div>
                 </div>
               )}
@@ -420,17 +419,17 @@ const HighlightsSection = ({ isVisible }) => {
     <section id="highlights" className="py-6 sm:py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-4 sm:mb-6 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-4 font-bold">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-4 font-bold hover:text-[#04307b] hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer">
             Key Highlights of the Initiative
           </h2>
-          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
-            Comprehensive programs designed to develop social leadership
+          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
+            Comprehensive programs designed to<br />develop social leadership and create sustainable community impact.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-4" style={{ minHeight: "400px" }}>
+        <div className="grid lg:grid-cols-12 gap-4">
           <div className="lg:col-span-6">
-            <div className="relative h-full overflow-hidden">
+            <div className="relative h-[300px] sm:h-[400px] overflow-hidden">
               {images.map((image, index) => (
                 <div
                   key={index}
@@ -458,7 +457,7 @@ const HighlightsSection = ({ isVisible }) => {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 bg-[#023080] p-4 sm:p-6 rounded-lg flex flex-col justify-between">
+          <div className="lg:col-span-6 bg-[#023080] p-4 sm:p-6 rounded-lg">
             <div className="space-y-4 mb-8">
               {highlights.map((highlight) => (
                 <motion.div
@@ -483,6 +482,14 @@ const HighlightsSection = ({ isVisible }) => {
                 </motion.div>
               ))}
             </div>
+            <p className="text-white text-md leading-relaxed">
+              {activeHighlight === "Introduction" && "Introducing our initiative to foster social leadership."}
+              {activeHighlight === "Talk" && "Engaging discussions to inspire action."}
+              {activeHighlight === "Action-Based" && "Hands-on projects driving real change."}
+              {activeHighlight === "Field" && "Practical field experiences for impactful learning."}
+              {activeHighlight === "Expert" && "Guidance from industry experts and leaders."}
+              {activeHighlight === "Crowdfunding" && "Community-supported funding for initiatives."}
+            </p>
           </div>
         </div>
       </div>
