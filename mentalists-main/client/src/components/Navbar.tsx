@@ -141,14 +141,14 @@ const Navbar = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {/* Desktop Dropdown Menus */}
       {activeDropdown && (
         <div
           className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-40 hidden md:block"
           onMouseLeave={() => setActiveDropdown(null)}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-4 md:py-8">
             {activeDropdown === "Interventions" ? (
               renderInterventionsDropdown(navigationItems.find((item) => item.title === activeDropdown)?.items || [])
             ) : (
@@ -171,7 +171,7 @@ const Navbar = () => {
       )}
 
       {/* Desktop Navigation Items */}
-      <div className="hidden sm:flex items-center space-x-8">
+      <div className="hidden sm:flex flex-row items-center space-x-2 sm:space-x-4 md:space-x-8 text-base md:text-lg lg:text-xl">
         {/* Home Link */}
         <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
           Home
@@ -192,7 +192,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Button */}
       <button
-        className="sm:hidden text-white hover:text-orange-400 transition-colors"
+        className="sm:hidden text-white hover:text-orange-400 transition-colors p-2"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
       >
         {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -205,9 +205,9 @@ const Navbar = () => {
           <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
 
           {/* Sidebar */}
-          <div className="fixed top-0 right-0 h-full w-full max-w-xs bg-white shadow-xl overflow-y-auto">
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-8">
+          <div className="fixed top-0 right-0 h-full w-full max-w-xs bg-white shadow-xl overflow-y-auto flex flex-col">
+            <div className="p-4 sm:p-6 flex flex-col gap-4">
+              <div className="flex items-center justify-between mb-4 sm:mb-8">
                 {/* Placeholder for logo if needed in mobile menu */}
                 <span className="text-lg font-bold text-black">SWIS Foundation</span>
                 <button onClick={() => setMobileMenuOpen(false)} className="text-gray-500 hover:text-gray-700">
@@ -215,9 +215,9 @@ const Navbar = () => {
                 </button>
               </div>
 
-              <nav className="space-y-4">
+              <nav className="space-y-2 sm:space-y-4">
                 {/* Home Link for Mobile */}
-                <div className="border-b border-gray-200 pb-4">
+                <div className="border-b border-gray-200 pb-2 sm:pb-4">
                   <a
                     href="#"
                     className="block font-semibold text-black transition-colors py-2"

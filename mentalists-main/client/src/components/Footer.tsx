@@ -226,7 +226,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/anushka" className="transition-colors hover:text-[#000000]" style={{ color: "#000000" }}>
+                    <Link to="/ContactPage" className="transition-colors hover:text-[#000000]" style={{ color: "#000000" }}>
                       Join Us
                     </Link>
                   </li>

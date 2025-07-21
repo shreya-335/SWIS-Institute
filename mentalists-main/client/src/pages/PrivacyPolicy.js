@@ -51,42 +51,13 @@ const PrivacyPolicy = () => {
   ]
 
   return (
-    <div className="min-h-screen text-white font-sans" style={{ backgroundColor: '#04307b' }}>
-      {/* Top Spacer Section - Keeps space for navbar/header */}
-      <div className="h-20 md:h-24 lg:h-32"></div>
-
-      {/* Optional: Add your custom section here */}
-      {/* 
-      <section className="py-6 bg-white border-b border-[#d2d5e0]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold text-[#023080] mb-2">
-              Your Custom Section Title
-            </h2>
-            <p className="text-[#04307b]">
-              Add your custom content here
-            </p>
-          </div>
-        </div>
-      </section>
-      */}
-
-      {/* Header */}
-      <header className="py-8 md:py-10 border-b border-[#8e9fc5]">
-        <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#ffffff] mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>Privacy Policy</h1>
-          <p className="text-lg md:text-xl max-w-4xl" style={{ fontFamily: '"system-ui"' }}>
-            At SWIS, we are committed to protecting your privacy and ensuring the security of your personal information.
-            This policy outlines how we collect, use, and safeguard your data.
-          </p>
-        </div>
-      </header>
-
-      {/* Policy Sections */}
-      <main className="max-w-7xl mx-auto px-4 py-10">
-        <div className="bg-[#FCFDFF] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
+    <div className="min-h-screen bg-gray-50 pt-20 sm:pt-28 px-2 sm:px-4 lg:px-8">
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-4 sm:p-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-4 sm:mb-6 text-center">Privacy Policy</h1>
+        <p className="text-gray-700 text-base sm:text-lg mb-4 sm:mb-6 text-center">Your privacy is important to us. This policy explains how we handle your data.</p>
+        <ul className="list-disc pl-5 space-y-2 text-gray-800 text-sm sm:text-base">
           {sections.map((section, i) => (
-            <section key={i} className="flex items-start space-x-4">
+            <li key={i} className="flex items-start space-x-4">
               <div className="flex-shrink-0 mt-1">
                 <CheckCircle className="h-5 w-5 text-[#023080]" />
               </div>
@@ -94,23 +65,10 @@ const PrivacyPolicy = () => {
                 <h3 className="text-lg md:text-xl font-semibold text-[#023080] mb-1" style={{ fontFamily: '"Times New Roman", serif' }}>{section.title}</h3>
                 <p className="text-[#04307b]" style={{ fontFamily: '"Times New Roman", serif' }}>{section.content}</p>
               </div>
-            </section>
+            </li>
           ))}
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-[#023080] text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-sm md:text-base">
-            If you have questions or concerns about this Policy, please{" "}
-            <Link to="/ContactPage" className="underline hover:text-[#d2d5e0] transition">
-              contact us
-            </Link>
-            .
-          </p>
-        </div>
-      </footer>
+        </ul>
+      </div>
     </div>
   )
 }

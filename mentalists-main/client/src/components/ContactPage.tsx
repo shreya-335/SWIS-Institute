@@ -150,11 +150,11 @@ const ContactPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-28 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 pt-16 sm:pt-28 px-2 sm:px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Column - Contact Info */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h2 className="text-xl font-bold text-gray-900 mb-4">
                 Registered Office
@@ -184,17 +184,13 @@ const ContactPage: React.FC = () => {
           </div>
 
           {/* Right Column - Form */}
-          <div className="bg-white p-8 rounded-lg shadow-sm">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Get in Touch
-              </h2>
-              <p className="text-gray-600">
-                For any grievance, suggestions and queries kindly write to us.
-              </p>
+          <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Get in Touch</h2>
+              <p className="text-gray-600 text-sm sm:text-base">For any grievance, suggestions and queries kindly write to us.</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
                 <label
                   htmlFor="name"

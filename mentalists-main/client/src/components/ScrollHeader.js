@@ -399,7 +399,7 @@ const ScrollHeader = () => {
 
               {/* Direct Links */}
               <Link
-                to="/anushka"
+                to="/JoinUs"
                 className={`transition-colors py-2 font-medium ${
                   scrolled ? "text-black hover:text-gray-600" : "text-white hover:text-orange-400"
                 }`}
@@ -544,7 +544,7 @@ const ScrollHeader = () => {
                 {/* Direct Links for Mobile */}
                 <div className="space-y-3 pt-4">
                   <Link
-                    to="/anushka"
+                    to="/JoinUs"
                     onClick={handleLinkClick}
                     className="block font-semibold transition-colors py-2"
                     style={{ color: "#023080" }}

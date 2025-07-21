@@ -785,7 +785,7 @@ router.post("/volunteer-simple", multerDebug, upload.single("resume"), async (re
     res.status(200).json({
       success: true,
       message:
-        "Thank you for your application! We have received your submission and will contact you within 3-5 business days.",
+        "Thank you for your application! We have received your submission and will contact you within 2-5 business days.",
       applicationId: applicationId,
       databaseId: savedVolunteer ? savedVolunteer._id : null,
       resumeUrl: resumeFileUrl || null,

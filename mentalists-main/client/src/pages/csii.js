@@ -569,49 +569,53 @@ const CSII = () => {
   }, []);
 
   return (
-    <div className="bg-white overflow-hidden">
-      <style>{`
-        @keyframes fadeInUp {
-          from { transform: translateY(30px); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes scaleIn {
-          from { transform: scale(0.8); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-        @keyframes pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-        }
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .slide-transition { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
-        .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
-        .animate-float { animation: float 3s ease-in-out infinite; }
-        .animate-pulse-slow { animation: pulse 2s ease-in-out infinite; }
-        .animate-marquee {
-          display: flex;
-          animation: marquee 15s linear infinite;
-        }
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
-      `}</style>
+    <div className="min-h-screen bg-gray-50 pt-20 sm:pt-28 px-2 sm:px-4 lg:px-8">
+      <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-sm p-4 sm:p-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-4 sm:mb-6 text-center">Centre for Social Impact & Innovation</h1>
+        <p className="text-gray-700 text-base sm:text-lg mb-4 sm:mb-6 text-center">Innovating for a better tomorrow through impactful initiatives.</p>
+        <style>{`
+          @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+          }
+          @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+          }
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+          }
+          @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+          }
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .slide-transition { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+          .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+          .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
+          .animate-float { animation: float 3s ease-in-out infinite; }
+          .animate-pulse-slow { animation: pulse 2s ease-in-out infinite; }
+          .animate-marquee {
+            display: flex;
+            animation: marquee 15s linear infinite;
+          }
+          .stagger-1 { animation-delay: 0.1s; }
+          .stagger-2 { animation-delay: 0.2s; }
+          .stagger-3 { animation-delay: 0.3s; }
+          .stagger-4 { animation-delay: 0.4s; }
+        `}</style>
 
-      <HeroSection />
-      <MissionSection isVisible={isVisible.mission} />
-      <ObjectivesSection isVisible={isVisible.objectives} />
-      <MetricsSection isVisible={isVisible.metrics} countAnimated={countAnimated} />
-      <HighlightsSection isVisible={isVisible.highlights} />
-      <CTASection isVisible={isVisible.cta} />
+        <HeroSection />
+        <MissionSection isVisible={isVisible.mission} />
+        <ObjectivesSection isVisible={isVisible.objectives} />
+        <MetricsSection isVisible={isVisible.metrics} countAnimated={countAnimated} />
+        <HighlightsSection isVisible={isVisible.highlights} />
+        <CTASection isVisible={isVisible.cta} />
+      </div>
     </div>
   );
 };

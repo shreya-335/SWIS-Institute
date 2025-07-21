@@ -372,12 +372,10 @@ const ScrollHeader = () => {
         </div>
 
         {/* Main Navigation */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className={`flex items-center justify-between transition-all duration-500 ${scrolled ? "h-16" : "h-20"}`}
-          >
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
+          <div className={`flex flex-col lg:flex-row items-center justify-between transition-all duration-500 ${scrolled ? "h-16" : "h-20"}`}>
             {/* Logo - Increased size */}
-            <div className="flex items-center">
+            <div className="flex items-center mb-2 lg:mb-0">
               <Link to="/homepage">
                 <img
                   src={scrolled ? bluelogo : whitelogo}
@@ -386,9 +384,8 @@ const ScrollHeader = () => {
                 />
               </Link>
             </div>
-
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex flex-row items-center space-x-2 lg:space-x-8 text-base md:text-lg lg:text-xl">
               {/* Home Link */}
               <Link
                 to="/homepage"
@@ -419,7 +416,7 @@ const ScrollHeader = () => {
 
               {/* Direct Links */}
               <Link
-                to="/anushka"
+                to="/JoinUs"
                 className={`transition-colors py-2 font-medium ${
                   scrolled ? "text-black hover:text-gray-600" : "text-white hover:text-orange-400"
                 }`}
@@ -436,9 +433,8 @@ const ScrollHeader = () => {
                 Contact Us
               </Link>
             </nav>
-
             {/* Right side icons */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 lg:space-x-4 mt-2 lg:mt-0">
               <button
                 className={`transition-colors ${
                   scrolled ? "text-black hover:text-gray-600" : "text-white hover:text-orange-400"
@@ -460,17 +456,14 @@ const ScrollHeader = () => {
               >
                 <Globe className="w-5 h-5" />
               </button>
-
-              {/* Mobile menu button */}
-              <button
-                className={`lg:hidden transition-colors ${
-                  scrolled ? "text-black hover:text-gray-600" : "text-white hover:text-orange-400"
-                }`}
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
             </div>
+            {/* Mobile menu button */}
+            <button
+              className="lg:hidden transition-colors p-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
 
@@ -564,7 +557,7 @@ const ScrollHeader = () => {
                 {/* Direct Links for Mobile */}
                 <div className="space-y-3 pt-4">
                   <Link
-                    to="/anushka"
+                    to="/JoinUs"
                     onClick={handleLinkClick}
                     className="block font-semibold transition-colors py-2"
                     style={{ color: "#023080" }}
