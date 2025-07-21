@@ -63,10 +63,10 @@ const ContactPage: React.FC = () => {
         `${apiUrl}/contact`,
         formData,
         {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        timeout: 10000,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          timeout: 10000,
         }
       );
 
