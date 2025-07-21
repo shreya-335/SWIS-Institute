@@ -163,15 +163,15 @@ const Header = () => {
         </div>
 
         {/* Main Navigation */}
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between h-auto sm:h-16 gap-2 sm:gap-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex items-center mb-2 sm:mb-0">
-              <img src="/swis-logo.png" alt="SWIS Foundation" className="h-8 sm:h-10 w-auto" />
+            <div className="flex items-center">
+              <img src="/swis-logo.png" alt="SWIS Foundation" className="h-10 w-auto" />
             </div>
+
             {/* Desktop Navigation */}
-            <nav className="hidden sm:flex flex-row items-center space-x-2 sm:space-x-4 md:space-x-8 text-base md:text-lg lg:text-xl">
-              {/* Home Link */}
+            <nav className="hidden sm:flex items-center space-x-8">
               <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
                 Home
               </a>
@@ -210,8 +210,9 @@ const Header = () => {
                 Contact Us
               </a>
             </nav>
+
             {/* Right side icons */}
-            <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-4">
               <button className="text-white hover:text-orange-400 transition-colors">
                 <Headphones className="w-5 h-5" />
               </button>
@@ -224,7 +225,7 @@ const Header = () => {
 
               {/* Mobile menu button */}
               <button
-                className="sm:hidden text-white hover:text-orange-400 transition-colors p-2"
+                className="sm:hidden text-white hover:text-orange-400 transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

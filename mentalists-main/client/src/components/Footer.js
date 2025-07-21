@@ -6,9 +6,9 @@ const Footer = () => {
 
   return (
     <footer style={{ backgroundColor: "#FCFDFF" }} className="border-t border-gray-200 w-full overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Social Media Icons - Centered */}
-        <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 mb-8">
+        <div className="flex justify-center items-center space-x-4 mb-8">
           {[
             { icon: <Facebook size={20} />, url: "https://facebook.com/swis" },
             { icon: <Instagram size={20} />, url: "https://instagram.com/swis" },
@@ -29,8 +29,8 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Main Footer Content - Responsive columns */}
-        <div className="flex flex-col md:flex-row justify-center mb-8">
+        {/* Main Footer Content - Centered columns with left-aligned text */}
+        <div className="flex justify-center mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl text-left">
             {/* About Us Section */}
             <div>
@@ -168,15 +168,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="relative border-t pt-4 sm:pt-8" style={{ borderColor: "#d2d5e0" }}>
+        <div className="relative border-t pt-8" style={{ borderColor: "#d2d5e0" }}>
           {/* Logo centered on top of border */}
           <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 bg-white px-4 max-w-[90%]">
-            <img src={bluelogo || "/placeholder.svg"} alt="SWIS Foundation" className="h-10 sm:h-12 w-auto max-w-full" />
+            <img src={bluelogo || "/placeholder.svg"} alt="SWIS Foundation" className="h-12 w-auto max-w-full" />
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center pt-2 sm:pt-4">
+          <div className="flex flex-col md:flex-row justify-between items-center pt-4">
             {/* Copyright */}
-            <div className="text-sm mb-2 md:mb-0" style={{ color: "#000000" }}>
+            <div className="text-sm mb-4 md:mb-0" style={{ color: "#000000" }}>
               © 2025 SWIS Foundation. All rights reserved.
             </div>
 

@@ -167,28 +167,29 @@ const JoinUs: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 sm:py-12 px-2 sm:px-4 lg:px-8 pt-24 sm:pt-36">
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 pt-36">
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-2 sm:mb-4">Join Our Mission</h1>
-          <p className="text-base sm:text-xl text-blue-700 mb-4 sm:mb-6 max-w-3xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">Join Our Mission</h1>
+          <p className="text-xl text-blue-700 mb-6 max-w-3xl mx-auto">
             Be part of a community dedicated to creating positive social change.
           </p>
-          <div className="flex items-center justify-center space-x-1 sm:space-x-2 text-blue-600">
-            <Users className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span className="text-base sm:text-lg font-medium">Together We Make a Difference</span>
+          <div className="flex items-center justify-center space-x-2 text-blue-600">
+            <Users className="w-6 h-6" />
+            <span className="text-lg font-medium">Together We Make a Difference</span>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Application Form */}
-          <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
-            <div className="mb-4 sm:mb-6">
-              <h2 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2">JOIN US</h2>
-              <p className="text-gray-600 text-sm sm:text-base">Fill out the form below to join our mission.</p>
+          <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">JOIN US</h2>
+              <p className="text-gray-600">Fill out the form below to join our mission.</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Domain Selection */}
               <div>
                 <label htmlFor="domain" className="block text-sm font-medium text-gray-700 mb-2">
@@ -356,7 +357,7 @@ const JoinUs: React.FC = () => {
           </div>
 
           {/* Organizational Partnership */}
-          <div className="bg-white p-4 sm:p-8 rounded-lg shadow-sm">
+          <div className="bg-white p-8 rounded-lg shadow-sm">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
