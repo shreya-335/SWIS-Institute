@@ -259,64 +259,97 @@ const CodeOfConduct = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20 sm:pt-28 px-2 sm:px-4 lg:px-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-4 sm:p-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-4 sm:mb-6 text-center">Code of Conduct</h1>
-        <p className="text-gray-700 text-base sm:text-lg mb-4 sm:mb-6 text-center">Our commitment to a safe, inclusive, and respectful environment.</p>
-        <ul className="list-disc pl-5 space-y-2 text-gray-800 text-sm sm:text-base">
-          {sections.map((section, index) => (
-            <motion.div
-              key={section.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <button
-                onClick={() => toggleSection(section.id)}
-                className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 rounded-lg"
-              >
-                <div className="flex items-center space-x-4">
-                  <div className="text-[#04307b]">{section.icon}</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {section.id}. {section.title}
-                    </h3>
-                  </div>
-                </div>
-                <div className="text-gray-400">
-                  {expandedSection === section.id ? (
-                    <ChevronDown className="w-5 h-5" />
-                  ) : (
-                    <ChevronRight className="w-5 h-5" />
-                  )}
-                </div>
-              </button>
+    <div className="min-h-screen" style={{ backgroundColor: '#04307b' }}>
+      {/* Top Spacer Section - Increased padding */}
+      <div className="h-20 md:h-24 lg:h-28"></div>
 
-              {expandedSection === section.id && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="px-6 pb-6"
+      {/* Header Section */}
+      <section className="text-white py-6" style={{ backgroundColor: '#04307b' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            {/* Add more padding above title */}
+            <h1 className="text-4xl md:text-6xl font-normal mb-4 pt-8" style={{ fontFamily: '"Times New Roman", serif' }}>
+              Code of Conduct
+            </h1>
+            
+            {/* Bring in one line with reduced size */}
+            <p className="text-lg md:text-xl text-blue-100 max-w-4xl mx-auto leading-tight mb-3" style={{ fontFamily: '"system-ui"' }}>
+              Ethical, professional, and behavioral standards for all individuals associated with SWIS Institute
+            </p>
+
+            {/* 2 lines with increased size */}
+            <div className="mt-2 p-3 bg-blue-800/50 rounded-lg inline-block mb-4">
+              <p className="text-base md:text-lg text-blue-200" style={{ fontFamily: '"system-ui"' }}>
+                The term "members" refers to all individuals associated with the organization,<br />including full-time, part-time, and contractual staff, volunteers, fellows, interns, board members, and alumni.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-4">
+            {sections.map((section, index) => (
+              <motion.div
+                key={section.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <button
+                  onClick={() => toggleSection(section.id)}
+                  className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 rounded-lg"
                 >
-                  <div className="space-y-6 pt-4 border-t border-gray-100">
-                    {section.content.map((item, itemIndex) => (
-                      <div key={itemIndex} className="space-y-3">
-                        <h4 className="font-semibold text-blue-800 text-base">
-                          ({String.fromCharCode(105 + itemIndex)}) {item.subtitle}
-                        </h4>
-                        <p className="text-gray-700 leading-relaxed pl-4 border-l-2 border-blue-100">{item.text}</p>
-                      </div>
-                    ))}
+                  <div className="flex items-center space-x-4">
+                    <div className="text-[#04307b]">{section.icon}</div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {section.id}. {section.title}
+                      </h3>
+                    </div>
                   </div>
-                </motion.div>
-              )}
-            </motion.div>
-          ))}
-        </ul>
-      </div>
+                  <div className="text-gray-400">
+                    {expandedSection === section.id ? (
+                      <ChevronDown className="w-5 h-5" />
+                    ) : (
+                      <ChevronRight className="w-5 h-5" />
+                    )}
+                  </div>
+                </button>
+
+                {expandedSection === section.id && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="px-6 pb-6"
+                  >
+                    <div className="space-y-6 pt-4 border-t border-gray-100">
+                      {section.content.map((item, itemIndex) => (
+                        <div key={itemIndex} className="space-y-3">
+                          <h4 className="font-semibold text-blue-800 text-base">
+                            ({String.fromCharCode(105 + itemIndex)}) {item.subtitle}
+                          </h4>
+                          <p className="text-gray-700 leading-relaxed pl-4 border-l-2 border-blue-100">{item.text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -166,7 +166,7 @@ const HeroSection = () => {
         ))}
       </div>
 
-      <button
+      <button 
         onClick={scrollToNextSection}
         className="absolute bottom-8 right-4 sm:right-8 text-white flex flex-col items-center gap-2 animate-float hover:text-[#d2d5e0] transition-colors duration-300 cursor-pointer group"
       >
@@ -210,7 +210,7 @@ const MissionSection = ({ isVisible }) => {
     >
       <div className="absolute top-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-[#8e9fc5]/10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-[#023080]/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
-
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className={`text-center mb-12 sm:mb-16 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
           <h2 className="text-3xl sm:text-4xl lg:text-6xl font-light text-[#023080] mb-8 bg-gradient-to-r from-[#023080] to-[#04307b] bg-clip-text text-transparent">
@@ -348,7 +348,7 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
     { number: 20, suffix: "+", label: "Webinars held", icon: <Award className="w-7 h-7" />, hasImage: false },
     { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-8 h-8" />, image: csaa9, hasImage: true },
   ];
-
+  
   return (
     <section
       id="metrics"
@@ -377,9 +377,9 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {metric.hasImage ? (
-                <img
-                  src={metric.image}
-                  alt={metric.label}
+              <img
+                src={metric.image}
+                alt={metric.label}
                   className="w-full h-full object-cover"
                 />
               ) : (
@@ -391,12 +391,12 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
                     transition={{ duration: 2, delay: index * 0.2 }}
                     className="font-extrabold text-2xl sm:text-3xl tracking-wide"
                   >
-                    <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
+                  <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
                   </motion.div>
                   <div className="text-white/90 font-medium text-sm sm:text-base mt-1 tracking-wide">
-                    {metric.label}
-                  </div>
+                  {metric.label}
                 </div>
+              </div>
               )}
             </motion.div>
           ))}
@@ -445,7 +445,7 @@ const HighlightsSection = ({ isVisible }) => {
             <div className="relative h-[300px] sm:h-[400px] overflow-hidden">
               {images.map((image, index) => (
                 <div
-                  key={index}
+              key={index}
                   className={`absolute inset-0 slide-transition ${
                     index === imageIndex ? 'opacity-100' : 'opacity-0'
                   }`}
@@ -484,7 +484,7 @@ const HighlightsSection = ({ isVisible }) => {
                   }`}
                   onMouseEnter={() => setActiveHighlight(highlight)}
                 >
-                  <div className="relative">
+            <div className="relative">
                     <h3 className="text-2xl text-white mb-2">{highlight}</h3>
                     <div
                       className={`h-0.5 transition-all duration-300 ${
@@ -573,53 +573,49 @@ const CCAE = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20 sm:pt-28 px-2 sm:px-4 lg:px-8">
-      <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-sm p-4 sm:p-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-4 sm:mb-6 text-center">Centre for Civil Administration & Engagement</h1>
-        <p className="text-gray-700 text-base sm:text-lg mb-4 sm:mb-6 text-center">Empowering communities through civic engagement and leadership.</p>
-        <style>{`
-          @keyframes fadeInUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-          }
-          @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-          }
-          @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-          }
-          @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-          }
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .slide-transition { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-          .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
-          .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
-          .animate-float { animation: float 3s ease-in-out infinite; }
-          .animate-pulse-slow { animation: pulse 2s ease-in-out infinite; }
-          .animate-marquee {
-            display: flex;
-            animation: marquee 15s linear infinite;
-          }
-          .stagger-1 { animation-delay: 0.1s; }
-          .stagger-2 { animation-delay: 0.2s; }
-          .stagger-3 { animation-delay: 0.3s; }
-          .stagger-4 { animation-delay: 0.4s; }
-        `}</style>
+    <div className="bg-white overflow-hidden">
+      <style>{`
+        @keyframes fadeInUp {
+          from { transform: translateY(30px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes scaleIn {
+          from { transform: scale(0.8); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .slide-transition { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse 2s ease-in-out infinite; }
+        .animate-marquee {
+          display: flex;
+          animation: marquee 15s linear infinite;
+        }
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+      `}</style>
 
-        <HeroSection />
-        <MissionSection isVisible={isVisible.mission} />
-        <ObjectivesSection isVisible={isVisible.objectives} />
-        <MetricsSection isVisible={isVisible.metrics} countAnimated={countAnimated} />
-        <HighlightsSection isVisible={isVisible.highlights} />
-        <CTASection isVisible={isVisible.cta} />
-      </div>
+      <HeroSection />
+      <MissionSection isVisible={isVisible.mission} />
+      <ObjectivesSection isVisible={isVisible.objectives} />
+      <MetricsSection isVisible={isVisible.metrics} countAnimated={countAnimated} />
+      <HighlightsSection isVisible={isVisible.highlights} />
+      <CTASection isVisible={isVisible.cta} />
     </div>
   );
 };
