@@ -129,12 +129,7 @@ const New = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="mb-4 sm:mb-6 md:mb-8"
               >
-                <div className="text-right mb-2 sm:mb-4">
-                  <span className="text-[#d2d5e0] text-sm sm:text-base md:text-lg font-light tracking-wide">
-                    SWIS Foundation
-                  </span>
-                  <div className="text-[#8e9fc5] text-xs sm:text-sm mt-1">Social Welfare & Impact Solutions</div>
-                </div>
+              
               </motion.div>
 
               <motion.h1
@@ -143,12 +138,12 @@ const New = () => {
                 transition={{ duration: 1, delay: 0.5 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-white mb-4 sm:mb-6 leading-tight"
               >
-                An extraordinary vision
-                <div className="bg-[#023080] inline-block px-2 sm:px-4 md:px-6 py-1 sm:py-2 mt-2 sm:mt-4">
+                An extraordinary vision <br/>
+                
                   <span className="text-[#d2d5e0] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
                     for an extraordinary nation
                   </span>
-                </div>
+                
               </motion.h1>
             </div>
           </div>
@@ -302,7 +297,7 @@ const New = () => {
 </section>
 
 
-      {/* Timeline Section - Fully Responsive */}
+      {/* Timeline Section - Fully Responsive with Fixed Overlap Issues */}
       <section className="relative bg-[#F5F1E8] py-12 sm:py-16 lg:py-20">
         {/* Timeline Line - Responsive positioning */}
         <div className="absolute left-6 sm:left-8 md:left-12 lg:left-20 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-[#8e9fc5] to-[#023080]"></div>
@@ -320,13 +315,13 @@ const New = () => {
               {/* Timeline Dot - Responsive */}
               <div className="absolute left-4 sm:left-6 md:left-10 lg:left-16 top-6 sm:top-8 w-4 h-4 sm:w-6 sm:h-6 bg-[#023080] rounded-full border-2 sm:border-4 border-white shadow-lg z-10"></div>
 
-              {/* Year Badge - Responsive positioning */}
-              <div className="absolute left-12 sm:left-16 md:left-20 lg:left-28 top-4 sm:top-6 bg-[#023080] text-white px-2 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-lg font-medium shadow-lg">
+              {/* Year Badge - Responsive positioning with better spacing */}
+              <div className="absolute left-12 sm:left-16 md:left-20 lg:left-28 top-4 sm:top-6 bg-[#023080] text-white px-2 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-lg font-medium shadow-lg z-20">
                 {item.year}
               </div>
 
-              {/* Content Container - Responsive margins */}
-              <div className="ml-16 sm:ml-20 md:ml-24 lg:ml-32 xl:ml-40 mr-2 sm:mr-4 lg:mr-6">
+              {/* Content Container - Enhanced responsive margins to prevent overlap */}
+              <div className="ml-20 sm:ml-28 md:ml-32 lg:ml-40 xl:ml-44 mr-2 sm:mr-4 lg:mr-6">
                 <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8 border border-gray-100">
                   {/* Content */}
                   <div className="w-full">
