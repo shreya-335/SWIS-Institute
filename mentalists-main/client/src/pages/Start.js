@@ -45,7 +45,7 @@ import markets9 from "../img/markets (9).png"
 import markets10 from "../img/markets (10).png"
 import indiaMap from "../img/india-map.png"
 
-const Homepage = () => {
+const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeIntervention, setActiveIntervention] = useState("Education")
@@ -57,7 +57,7 @@ const Homepage = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 50000)
+    }, 5000)
     return () => clearInterval(timer)
   }, [slides.length])
 
@@ -167,7 +167,7 @@ const Homepage = () => {
       return () => clearInterval(timer)
     }, [images.length])
     return (
-      <div className={`relative h-96 rounded-lg overflow-hidden ${className}`}>
+      <div className={`relative h-64 md:h-96 rounded-lg overflow-hidden ${className}`}>
         <AnimatePresence mode="wait">
           <motion.img
             key={currentImageSlide}
@@ -187,16 +187,16 @@ const Homepage = () => {
   const EnhancedLogoStrip = ({ logos, direction = "left", title, bgColor = "#FCFDFF" }) => {
     const duplicatedLogos = [...logos, ...logos, ...logos, ...logos]
     return (
-      <div className="py-8">
-        <div className="text-center mb-6">
-          <h3 className="text-2xl mb-2" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
+      <div className="py-4 md:py-8">
+        <div className="text-center mb-4 md:mb-6">
+          <h3 className="text-lg md:text-2xl mb-2" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
             {title}
           </h3>
-          <div className="w-16 h-1 mx-auto" style={{ backgroundColor: "#04307b" }}></div>
+          <div className="w-12 md:w-16 h-1 mx-auto" style={{ backgroundColor: "#04307b" }}></div>
         </div>
         <div className="overflow-hidden relative">
           <motion.div
-            className="flex gap-6 items-center"
+            className="flex gap-3 md:gap-6 items-center"
             animate={{
               x: direction === "left" ? [0, -2000] : [-2000, 0],
             }}
@@ -213,7 +213,7 @@ const Homepage = () => {
             {duplicatedLogos.map((logo, index) => (
               <div
                 key={index}
-                className="w-36 h-24 bg-white rounded-xl p-4 flex items-center justify-center shadow-xl flex-shrink-0 hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                className="w-24 h-16 md:w-36 md:h-24 bg-white rounded-lg md:rounded-xl p-2 md:p-4 flex items-center justify-center shadow-lg md:shadow-xl flex-shrink-0 hover:shadow-2xl transition-all duration-300 hover:scale-105"
                 style={{ backgroundColor: bgColor }}
               >
                 <img
@@ -232,9 +232,9 @@ const Homepage = () => {
   const ContinuousLogoStrip = ({ logos, direction = "left" }) => {
     const duplicatedLogos = [...logos, ...logos, ...logos, ...logos]
     return (
-      <div className="overflow-hidden relative mt-12 py-4">
+      <div className="overflow-hidden relative mt-8 md:mt-12 py-4">
         <motion.div
-          className="flex gap-8 items-center"
+          className="flex gap-6 md:gap-8 items-center"
           animate={{
             x: direction === "left" ? [0, -1600] : [-1600, 0],
           }}
@@ -251,7 +251,7 @@ const Homepage = () => {
           {duplicatedLogos.map((logo, index) => (
             <div
               key={index}
-              className="w-32 h-20 bg-white rounded-lg p-3 flex items-center justify-center shadow-lg flex-shrink-0"
+              className="w-28 h-18 md:w-32 md:h-20 bg-white rounded-lg p-2 md:p-3 flex items-center justify-center shadow-lg flex-shrink-0"
               style={{ backgroundColor: "#FCFDFF" }}
             >
               <img
@@ -290,7 +290,7 @@ const Homepage = () => {
               onMouseLeave={() => setHoveredState("")}
             >
               {/* Dot */}
-              <div className="w-4 h-4 bg-blue-400 rounded-full border-2 border-white shadow-lg group-hover:scale-150 transition-all duration-300 relative z-10">
+              <div className="w-3 h-3 md:w-4 md:h-4 bg-blue-400 rounded-full border-2 border-white shadow-lg group-hover:scale-150 transition-all duration-300 relative z-10">
                 <div className="absolute inset-0 bg-blue-800 rounded-full animate-ping"></div>
               </div>
 
@@ -300,9 +300,9 @@ const Homepage = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-20"
+                  className="absolute -top-10 md:-top-12 left-1/2 transform -translate-x-1/2 z-20"
                 >
-                  <div className="bg-black text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap shadow-lg">
+                  <div className="bg-black text-white px-2 py-1 md:px-3 md:py-2 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap shadow-lg">
                     {stateName}
                     <div className="absolute top-full left-1/4 transform -translate-x-1/4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
                   </div>
@@ -322,31 +322,31 @@ const Homepage = () => {
         className="relative h-screen flex items-end bg-cover bg-center"
         style={{
           backgroundImage: `url(${h1})`,
-          backgroundAttachment: "fixed",
+          backgroundAttachment: window.innerWidth > 768 ? "fixed" : "scroll",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 pb-20 pl-8">
+        <div className="relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 pb-10 md:pb-20 pl-4 md:pl-8 w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             className="text-white"
           >
-            <h1 className="text-5xl md:text-7xl mb-8" style={{ fontFamily: '"Times New Roman", serif' }}>
+            <h1 className="text-3xl md:text-5xl lg:text-7xl mb-4 md:mb-8 leading-tight" style={{ fontFamily: '"Times New Roman", serif' }}>
               Turning Compassion
               <br />
               into Action
             </h1>
-            <div className="w-32 h-1 mb-8" style={{ backgroundColor: "#d2d5e0" }}></div>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="w-16 md:w-32 h-1 mb-4 md:mb-8" style={{ backgroundColor: "#d2d5e0" }}></div>
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-4 md:mb-8">
               <Link to="/New">
-                <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
+                <button className="border border-white text-white px-4 py-2 md:px-8 md:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 text-sm md:text-base">
                   Our History <ArrowRight size={16} />
                 </button>
               </Link>
               <Link to="/Member">
-                <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
+                <button className="border border-white text-white px-4 py-2 md:px-8 md:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 text-sm md:text-base">
                   Our Team <ArrowRight size={16} />
                 </button>
               </Link>
@@ -368,47 +368,45 @@ const Homepage = () => {
             alt="WE CARE - SWIS is an Indian non-profit committed to radically impact the life of 2M+ people in the next 2 decades"
             className="w-full h-auto object-cover"
           />
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-2xl">
-            <p className="text-gray-700 leading-relaxed">
-              {
-                "SWIS is an Indian non-profit committed to radically impact the lives of 2M+ people in the next two decades."
-              }
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8 text-center">
+            <p className="text-lg md:text-2xl text-gray-700 leading-relaxed">
+              SWIS is an Indian non-profit committed to radically impact the lives of 2M+ people in the next two decades.
             </p>
           </div>
         </motion.div>
       </section>
       {/* Our Interventions Section */}
       <section
-        className="relative py-20 flex items-center"
+        className="relative py-10 md:py-20 flex items-center"
         style={{
           backgroundImage: `url(${h2})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
+          backgroundAttachment: window.innerWidth > 768 ? "fixed" : "scroll",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-white min-h-[500px] overflow-hidden"
+              className="text-white min-h-[400px] md:min-h-[500px] overflow-hidden"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <Heart size={24} style={{ color: "#d2d5e0" }} />
-                <span className="text-lg tracking-wide" style={{ color: "#d2d5e0" }}>
+              <div className="flex items-center gap-3 mb-4 md:mb-6">
+                <Heart size={20} style={{ color: "#d2d5e0" }} />
+                <span className="text-sm md:text-lg tracking-wide" style={{ color: "#d2d5e0" }}>
                   OUR INTERVENTIONS
                 </span>
               </div>
-              <h2 className="text-6xl mb-8" style={{ fontFamily: '"Times New Roman", serif' }}>
+              <h2 className="text-3xl md:text-6xl mb-4 md:mb-8 leading-tight" style={{ fontFamily: '"Times New Roman", serif' }}>
                 {interventions[activeIntervention].title}
               </h2>
-              <div className="space-y-6 mb-8">
+              <div className="space-y-4 md:space-y-6 mb-6 md:mb-8">
                 {interventions[activeIntervention].content.map((paragraph, index) => (
-                  <p key={index} className="text-md leading-relaxed">
+                  <p key={index} className="text-sm md:text-md leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
@@ -417,7 +415,7 @@ const Homepage = () => {
                 activeIntervention === "SkillDevelopment" ||
                 activeIntervention === "Nutrition") && (
                 <Link to={`/${activeIntervention.toLowerCase()}`}>
-                  <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
+                  <button className="border border-white text-white px-4 py-2 md:px-8 md:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 text-sm md:text-base">
                     read more <ArrowRight size={16} />
                   </button>
                 </Link>
@@ -428,9 +426,9 @@ const Homepage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="lg:pl-12 min-h-[500px]"
+              className="lg:pl-12 min-h-[400px] md:min-h-[500px]"
             >
-              <div className="space-y-8">
+              <div className="space-y-4 md:space-y-8">
                 {Object.keys(interventions).map((intervention, index) => (
                   <motion.div
                     key={intervention}
@@ -442,9 +440,10 @@ const Homepage = () => {
                       activeIntervention === intervention ? "opacity-100" : "opacity-60 hover:opacity-80"
                     }`}
                     onMouseEnter={() => setActiveIntervention(intervention)}
+                    onClick={() => setActiveIntervention(intervention)}
                   >
                     <div className="relative">
-                      <h3 className="text-2xl text-white mb-2">{intervention.toUpperCase()}</h3>
+                      <h3 className="text-lg md:text-2xl text-white mb-2">{intervention.replace(/([A-Z])/g, ' $1').trim().toUpperCase()}</h3>
                       <div
                         className={`h-0.5 transition-all duration-300 ${
                           activeIntervention === intervention ? "w-full bg-blue-400" : "w-0 bg-white"
@@ -459,34 +458,34 @@ const Homepage = () => {
         </div>
       </section>
       {/* Combined Centers Section with Exact Reference Navigation */}
-      <section className="py-20" style={{ backgroundColor: "#04307b" }}>
+      <section className="py-10 md:py-20" style={{ backgroundColor: "#04307b" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mb-16"
+            className="mb-8 md:mb-16"
           >
-            <div className="flex justify-between gap-4 max-w-6xl mx-auto w-full">
+            <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-4 max-w-6xl mx-auto w-full">
               {Object.keys(centers).map((center) => {
                 const centerIcons = {
-                  "Social Action": <Users size={24} />,
-                  "Social Innovation": <Zap size={24} />,
-                  "Civil Administration": <Building size={24} />,
+                  "Social Action": <Users size={20} />,
+                  "Social Innovation": <Zap size={20} />,
+                  "Civil Administration": <Building size={20} />,
                 }
                 return (
                   <button
                     key={center}
                     onClick={() => setActiveCenter(center)}
-                    className={`flex-1 flex items-center justify-center gap-3 px-6 py-3 rounded-full transition-all duration-300 ${
+                    className={`flex-1 flex items-center justify-center gap-2 md:gap-3 px-3 py-2 md:px-6 md:py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
                       activeCenter === center
                         ? "bg-blue-400 text-white"
                         : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
                     }`}
                   >
                     {centerIcons[center]}
-                    <h3 className="text-2xl" style={{ fontFamily: '"Times New Roman", serif' }}>
+                    <h3 className="text-lg md:text-2xl" style={{ fontFamily: '"Times New Roman", serif' }}>
                       {center}
                     </h3>
                   </button>
@@ -502,15 +501,15 @@ const Homepage = () => {
               transition={{ duration: 0.6 }}
               className="w-full"
             >
-              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-12 shadow-2xl">
+              <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl md:rounded-2xl p-6 md:p-12 shadow-2xl">
                 <div className="text-white max-w-none">
-                  <h2 className="text-6xl mb-6 leading-tight" style={{ fontFamily: '"Times New Roman", serif' }}>
+                  <h2 className="text-3xl md:text-6xl mb-3 md:mb-6 leading-tight" style={{ fontFamily: '"Times New Roman", serif' }}>
                     {centers[activeCenter].subtitle}
                   </h2>
-                  <h3 className="text-2xl mb-8 opacity-90" style={{ fontFamily: '"Times New Roman", serif' }}>
+                  <h3 className="text-lg md:text-2xl mb-4 md:mb-8 opacity-90" style={{ fontFamily: '"Times New Roman", serif' }}>
                     {centers[activeCenter].title}
                   </h3>
-                  <p className="text-md leading-relaxed">{centers[activeCenter].content}</p>
+                  <p className="text-sm md:text-md leading-relaxed">{centers[activeCenter].content}</p>
                 </div>
               </div>
             </motion.div>
@@ -518,22 +517,20 @@ const Homepage = () => {
         </div>
       </section>
       {/* Partners & Collaborations Section */}
-      <section className="py-20" style={{ backgroundColor: "#d2d5e0" }}>
+      <section className="py-10 md:py-20" style={{ backgroundColor: "#d2d5e0" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-16"
           >
-            <h2 className="text-6xl mb-8" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
+            <h2 className="text-3xl md:text-6xl mb-4 md:mb-8" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
               Partners & Collaborations
             </h2>
-            <p className="text-xl md:text-2xl max-w-xl mx-auto leading-relaxed" style={{ color: "#04307b" }}>
-              {
-                "Building meaningful partnerships across institutions, markets, and civil society for lasting social impact."
-              }
+            <p className="text-lg md:text-xl lg:text-2xl max-w-xl mx-auto leading-relaxed" style={{ color: "#04307b" }}>
+              Building meaningful partnerships across institutions, markets, and civil society for lasting social impact.
             </p>
           </motion.div>
           <motion.div
@@ -565,21 +562,21 @@ const Homepage = () => {
       
 
       {/* Interactive India Map Section - MOVED HERE */}
-      <section className="py-20" style={{ backgroundColor: "#04307b " }}>
+      <section className="py-10 md:py-20" style={{ backgroundColor: "#04307b" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-16"
           >
-            <h2 className="text-7xl mb-3" style={{ color: "#FCFDFF", fontFamily: '"Times New Roman", serif' }}>
+            <h2 className="text-4xl md:text-7xl mb-3" style={{ color: "#FCFDFF", fontFamily: '"Times New Roman", serif' }}>
               Reach & Presence
             </h2>
-            <p className="text-2xl max-w-3xl mx-auto leading-relaxed mb-8" style={{ color: "#FCFDFF" }}>
-              SWIS operates across multiple states in India, bringing sustainable change to communities nationwide.</p>
-              
+            <p className="text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed mb-4 md:mb-8" style={{ color: "#FCFDFF" }}>
+              SWIS operates across multiple states in India, bringing sustainable change to communities nationwide.
+            </p>
           </motion.div>
 
           <motion.div
@@ -592,48 +589,48 @@ const Homepage = () => {
             <InteractiveMap />
           </motion.div>
 
-          <p className="text-xl mt-10 text-center max-w-3xl mx-auto leading-relaxed" style={{ color: "#d2d5e0" }}>
-              Hover over the dots to see the states where SWIS is making a difference
-            </p>
+          <p className="text-base md:text-xl mt-6 md:mt-10 text-center max-w-3xl mx-auto leading-relaxed" style={{ color: "#d2d5e0" }}>
+            Hover over the dots to see the states where SWIS is making a difference
+          </p>
         </div>
       </section>
 
-      <section className="py-20" style={{ backgroundColor: "#FCFDFF" }}>
+      <section className="py-10 md:py-20" style={{ backgroundColor: "#FCFDFF" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-16"
           >
-            <h2 className="text-6xl mb-8" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
+            <h2 className="text-3xl md:text-6xl mb-4 md:mb-8" style={{ color: "#04307b", fontFamily: '"Times New Roman", serif' }}>
               Our Impact
             </h2>
-            <p className="text-xl md:text-2xl max-w-xl mx-auto" style={{ color: "#04307b" }}>
-              {"Transforming lives across India through sustainable interventions and community engagement."}
+            <p className="text-lg md:text-xl lg:text-2xl max-w-xl mx-auto" style={{ color: "#04307b" }}>
+              Transforming lives across India through sustainable interventions and community engagement.
             </p>
           </motion.div>
-          <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-2 md:gap-4 max-w-3xl mx-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-2xl flex flex-col items-center justify-center text-white text-center p-6"
+              className="aspect-square rounded-lg md:rounded-2xl flex flex-col items-center justify-center text-white text-center p-3 md:p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-4xl sm:text-5xl mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
+              <h3 className="text-2xl md:text-4xl lg:text-5xl mb-1 md:mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
                 12+
               </h3>
-              <p className="text-xl sm:text-2xl">Locations</p>
+              <p className="text-sm md:text-xl lg:text-2xl">Locations</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-2xl overflow-hidden"
+              className="aspect-square rounded-lg md:rounded-2xl overflow-hidden"
             >
               <img
                 src={h3 || "/placeholder.svg"}
@@ -646,20 +643,20 @@ const Homepage = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-2xl flex flex-col items-center justify-center text-white text-center p-6"
+              className="aspect-square rounded-lg md:rounded-2xl flex flex-col items-center justify-center text-white text-center p-3 md:p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-4xl sm:text-5xl mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
+              <h3 className="text-2xl md:text-4xl lg:text-5xl mb-1 md:mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
                 3K+
               </h3>
-              <p className="text-xl sm:text-2xl">Benefited</p>
+              <p className="text-sm md:text-xl lg:text-2xl">Benefited</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-2xl overflow-hidden"
+              className="aspect-square rounded-lg md:rounded-2xl overflow-hidden"
             >
               <img
                 src={h4 || "/placeholder.svg"}
@@ -672,20 +669,20 @@ const Homepage = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-2xl flex flex-col items-center justify-center text-white text-center p-6"
+              className="aspect-square rounded-lg md:rounded-2xl flex flex-col items-center justify-center text-white text-center p-3 md:p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-5xl sm:text-6xl mb-4" style={{ fontFamily: '"Times New Roman", serif' }}>
+              <h3 className="text-3xl md:text-5xl lg:text-6xl mb-2 md:mb-4" style={{ fontFamily: '"Times New Roman", serif' }}>
                 10K+
               </h3>
-              <p className="text-2xl sm:text-3xl">Impacted</p>
+              <p className="text-base md:text-2xl lg:text-3xl">Impacted</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-2xl overflow-hidden"
+              className="aspect-square rounded-lg md:rounded-2xl overflow-hidden"
             >
               <img
                 src={h5 || "/placeholder.svg"}
@@ -698,20 +695,20 @@ const Homepage = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-2xl flex flex-col items-center justify-center text-white text-center p-6"
+              className="aspect-square rounded-lg md:rounded-2xl flex flex-col items-center justify-center text-white text-center p-3 md:p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-4xl sm:text-5xl mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
+              <h3 className="text-2xl md:text-4xl lg:text-5xl mb-1 md:mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
                 25+
               </h3>
-              <p className="text-xl sm:text-2xl">Partners</p>
+              <p className="text-sm md:text-xl lg:text-2xl">Partners</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.7 }}
               viewport={{ once: true }}
-              className="col-span-2 aspect-[2/1] rounded-2xl overflow-hidden"
+              className="col-span-2 aspect-[2/1] rounded-lg md:rounded-2xl overflow-hidden"
             >
               <img
                 src={h1 || "/placeholder.svg"}
@@ -723,9 +720,9 @@ const Homepage = () => {
         </div>
       </section>
       {/* Life at SWIS Section */}
-      <section className="py-20 relative" style={{ backgroundColor: "#04307b" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pl-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="py-10 md:py-20 relative" style={{ backgroundColor: "#04307b" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full md:pl-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -733,30 +730,29 @@ const Homepage = () => {
               viewport={{ once: true }}
               className="text-white"
             >
-              <h2 className="text-5xl mb-8" style={{ fontFamily: '"Times New Roman", serif' }}>
+              <h2 className="text-3xl md:text-5xl mb-4 md:mb-8" style={{ fontFamily: '"Times New Roman", serif' }}>
                 Life at SWIS
               </h2>
-              <h3 className="text-2xl mb-6" style={{ fontFamily: '"Times New Roman", serif' }}>
+              <h3 className="text-xl md:text-2xl mb-4 md:mb-6" style={{ fontFamily: '"Times New Roman", serif' }}>
                 Why work at SWIS?
               </h3>
-              <p className="text-lg leading-relaxed mb-8">
+              <p className="text-sm md:text-lg leading-relaxed mb-6 md:mb-8">
                 SWIS is one of the most impactful non-profit organizations in India. With the help of a robust,
                 consistent, and merit-driven framework for people management, SWIS continues to maintain an inclusive,
                 progressive, and high-performance environment, where purpose-driven talent is enabled with unprecedented
                 access to opportunities for growth.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                 <Link to="/Member">
-                  <button className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
+                  <button className="border border-white text-white px-4 py-2 md:px-8 md:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 text-sm md:text-base">
                     Meet Our Team <ArrowRight size={16} />
                   </button>
                 </Link>
-                <a
-                  href="/JoinUs"
-                  className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2"
-                >
-                  Join Us <ArrowRight size={16} />
-                </a>
+                <Link to="/JoinUs">
+                  <button className="border border-white text-white px-4 py-2 md:px-8 md:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 text-sm md:text-base">
+                    Join Us <ArrowRight size={16} />
+                  </button>
+                </Link>
               </div>
             </motion.div>
             <motion.div
@@ -766,7 +762,7 @@ const Homepage = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative h-96 rounded-lg overflow-hidden">
+              <div className="relative h-64 md:h-96 rounded-lg overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentSlide}
@@ -781,33 +777,33 @@ const Homepage = () => {
                 </AnimatePresence>
                 <button
                   onClick={prevSlide}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all duration-300"
+                  className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 md:p-2 rounded-full hover:bg-opacity-75 transition-all duration-300"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={16} />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all duration-300"
+                  className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 md:p-2 rounded-full hover:bg-opacity-75 transition-all duration-300"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={16} />
                 </button>
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <div className="absolute bottom-2 md:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                   {slides.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                         index === currentSlide ? "bg-white" : "bg-white bg-opacity-50"
                       }`}
                     />
                   ))}
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className="relative h-32 rounded-lg overflow-hidden">
+              <div className="grid grid-cols-2 gap-2 md:gap-4 mt-3 md:mt-6">
+                <div className="relative h-16 md:h-32 rounded-lg overflow-hidden">
                   <img src={h1 || "/placeholder.svg"} alt="Team collaboration" className="w-full h-full object-cover" />
                 </div>
-                <div className="relative h-32 rounded-lg overflow-hidden">
+                <div className="relative h-16 md:h-32 rounded-lg overflow-hidden">
                   <img src={h4 || "/placeholder.svg"} alt="Impact work" className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -819,4 +815,4 @@ const Homepage = () => {
   )
 }
 
-export default Homepage
+export default Index
