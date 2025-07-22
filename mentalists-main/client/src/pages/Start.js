@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, ArrowRight, Heart, Users, Zap, Building } from "lucide-react"
+import { ChevronLeft, ChevronRight, ArrowRight, Heart, Users, Zap, Building, Home } from "lucide-react"
 import rnp2 from "../img/rnp2.png"
 
 import wecare from "../img/wecare.png"
@@ -45,7 +45,7 @@ import markets9 from "../img/markets (9).png"
 import markets10 from "../img/markets (10).png"
 import indiaMap from "../img/india-map.png"
 
-const Index = () => {
+const Homepage = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeIntervention, setActiveIntervention] = useState("Education")
@@ -815,4 +815,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Homepage
