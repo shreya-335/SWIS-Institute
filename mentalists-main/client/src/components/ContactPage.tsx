@@ -58,8 +58,9 @@ const ContactPage: React.FC = () => {
     });
 
     try {
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await axios.post(
-        "http://localhost:5000/api/contact",
+        `${apiUrl}/contact`,
         formData,
         {
           headers: {

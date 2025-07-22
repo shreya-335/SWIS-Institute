@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from "react";
@@ -47,12 +46,7 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "", countAnimated }) =
     requestAnimationFrame(animate);
   }, [countAnimated, end, duration]);
 
-  return (
-    <span>
-      {count.toLocaleString()}
-      {suffix}
-    </span>
-  );
+  return <span>{count.toLocaleString()}{suffix}</span>;
 };
 
 // HeroSection Component
@@ -103,7 +97,9 @@ const HeroSection = () => {
         {heroSlides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 slide-transition ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 slide-transition ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
           >
             <img
               src={slide.background}
@@ -120,30 +116,33 @@ const HeroSection = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
           <div className="text-white max-w-4xl">
             <h1
-              className="text-3xl sm:text-4xl lg:text-6xl font-light mb-6 leading-tight animate-fadeInUp stagger-1"
+              className="text-5xl md:text-7xl mb-8"
               style={{
                 fontFamily: '"Times New Roman", serif',
+                color: '#ffffff',
                 textShadow: 'none',
                 fontSize: heroSlides[currentSlide].title === "Centre for Civil Administration & Engagement" ? '3.5rem' : '4rem',
-                lineHeight: '1.2',
+                lineHeight: '1.2'
               }}
             >
               {heroSlides[currentSlide].title}
             </h1>
             <div className="w-32 h-1 mb-8" style={{ backgroundColor: "#ffffff" }}></div>
             <div
-              className="text-2xl sm:text-3xl lg:text-4xl mt-2 animate-fadeInUp stagger-1"
+              className="text-2xl sm:text-3xl lg:text-4xl mt-2"
               style={{ fontFamily: '"system-ui"', color: '#ffffff', textShadow: 'none' }}
             >
               {heroSlides[currentSlide].subtitle}
             </div>
+
             <p
-              className="text-lg sm:text-xl text-[#d2d5e0] leading-relaxed mb-8 max-w-3xl animate-fadeInUp stagger-2"
+              className="text-lg sm:text-xl text-[#ffffff] leading-relaxed mb-8 max-w-3xl"
               style={{ fontFamily: '"system-ui"', textShadow: 'none' }}
             >
               {heroSlides[currentSlide].description}
             </p>
-            <div className="flex gap-4 flex-wrap animate-fadeInUp stagger-3">
+
+            <div className="flex gap-4 flex-wrap">
               <a
                 href="/JoinUs"
                 className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2"
@@ -161,13 +160,13 @@ const HeroSection = () => {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide ? "bg-white" : "bg-white/50"
+              index === currentSlide ? 'bg-white' : 'bg-white/50'
             }`}
           />
         ))}
       </div>
 
-      <button
+      <button 
         onClick={scrollToNextSection}
         className="absolute bottom-8 right-4 sm:right-8 text-white flex flex-col items-center gap-2 animate-float hover:text-[#d2d5e0] transition-colors duration-300 cursor-pointer group"
       >
@@ -211,14 +210,9 @@ const MissionSection = ({ isVisible }) => {
     >
       <div className="absolute top-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-[#8e9fc5]/10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-[#023080]/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
-
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        <div className={`text-center mb-12 sm:mb-16 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
-          <div className="inline-block mb-6">
-            <span className="bg-[#8e9fc5]/20 text-[#023080] px-4 py-2 rounded-full text-sm font-medium">
-              Our Purpose
-            </span>
-          </div>
+        <div className={`text-center mb-12 sm:mb-16 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
           <h2 className="text-3xl sm:text-4xl lg:text-6xl font-light text-[#023080] mb-8 bg-gradient-to-r from-[#023080] to-[#04307b] bg-clip-text text-transparent">
             Our Mission
           </h2>
@@ -318,7 +312,7 @@ const ObjectivesSection = ({ isVisible }) => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm: Platforms: x.com, Web, iOS, Android gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
           {objectives.map((objective, index) => (
             <div
               key={index}
@@ -344,17 +338,17 @@ const ObjectivesSection = ({ isVisible }) => {
 // MetricsSection Component
 const MetricsSection = ({ isVisible, countAnimated }) => {
   const impactMetrics = [
-    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-6 h-6" />, image: csaa1, hasImage: true },
-    { number: 3, suffix: "", label: "Centres Established", icon: <Target className="w-6 h-6" />, hasImage: false },
-    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-6 h-6" />, image: csaa3, hasImage: true },
-    { number: 50, suffix: "+", label: "Programs", icon: <BookOpen className="w-6 h-6" />, hasImage: false },
-    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-6 h-6" />, image: csaa5, hasImage: true },
-    { number: 500, suffix: "+", label: "Youth Employed", icon: <TrendingUp className="w-6 h-6" />, hasImage: false },
-    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-6 h-6" />, image: csaa7, hasImage: true },
-    { number: 8, suffix: "", label: "Annual Convenings", icon: <Award className="w-6 h-6" />, hasImage: false },
-    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-6 h-6" />, image: csaa9, hasImage: true },
+    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-8 h-8" />, image: csaa1, hasImage: true },
+    { number: 10, suffix: "+", label: "Mentors", icon: <Target className="w-7 h-7" />, hasImage: false },
+    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-8 h-8" />, image: csaa3, hasImage: true },
+    { number: 5, suffix: "+", label: "Collaborators", icon: <BookOpen className="w-7 h-7" />, hasImage: false },
+    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-8 h-8" />, image: csaa5, hasImage: true },
+    { number: 500, suffix: "+", label: "Youth Empowered", icon: <TrendingUp className="w-7 h-7" />, hasImage: false },
+    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-8 h-8" />, image: csaa7, hasImage: true },
+    { number: 20, suffix: "+", label: "Webinars held", icon: <Award className="w-7 h-7" />, hasImage: false },
+    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-8 h-8" />, image: csaa9, hasImage: true },
   ];
-
+  
   return (
     <section
       id="metrics"
@@ -370,40 +364,41 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {impactMetrics.map((metric, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`
-                relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl
+              className="
+                relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg
                 h-28 sm:h-32
-              `}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              "
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={isVisible ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {metric.hasImage ? (
-                <img
-                  src={metric.image}
-                  alt={metric.label}
+              <img
+                src={metric.image}
+                alt={metric.label}
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-[#023080] flex items-center justify-center p-3 sm:p-4">
-                  <div className="text-white text-center flex items-center gap-2">
-                    <div className="text-white/80">{metric.icon}</div>
-                    <div
-                      className="font-bold text-xl sm:text-2xl lg:text-3xl"
-                    >
-                      <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
-                    </div>
-                    <div
-                      className="text-white/90 font-medium leading-tight text-xs sm:text-sm"
-                    >
-                      {metric.label}
-                    </div>
-                  </div>
+                <div className="w-full h-full bg-[#023080] flex flex-col items-center justify-center text-white text-center px-2 sm:px-3">
+                  <div className="text-white mb-1 flex justify-center">{metric.icon}</div>
+                  <motion.div
+                    initial={{ value: 0 }}
+                    animate={isVisible && countAnimated ? { value: metric.number } : { value: 0 }}
+                    transition={{ duration: 2, delay: index * 0.2 }}
+                    className="font-extrabold text-2xl sm:text-3xl tracking-wide"
+                  >
+                  <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
+                  </motion.div>
+                  <div className="text-white/90 font-medium text-sm sm:text-base mt-1 tracking-wide">
+                  {metric.label}
                 </div>
+              </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -437,20 +432,20 @@ const HighlightsSection = ({ isVisible }) => {
     <section id="highlights" className="py-6 sm:py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-4 sm:mb-6 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-4 font-bold">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-4 font-bold hover:text-[#04307b] hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer">
             Key Highlights of the Fellowship
           </h2>
-          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
-          Comprehensive programs designed to develop social leadership
+          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
+            Comprehensive programs designed to<br />develop social leadership and create sustainable community impact.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-4" style={{ minHeight: "400px" }}>
+        <div className="grid lg:grid-cols-12 gap-4">
           <div className="lg:col-span-6">
-            <div className="relative h-full overflow-hidden">
+            <div className="relative h-[300px] sm:h-[400px] overflow-hidden">
               {images.map((image, index) => (
                 <div
-                  key={index}
+              key={index}
                   className={`absolute inset-0 slide-transition ${
                     index === imageIndex ? 'opacity-100' : 'opacity-0'
                   }`}
@@ -475,7 +470,7 @@ const HighlightsSection = ({ isVisible }) => {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 bg-[#023080] p-4 sm:p-6 rounded-lg flex flex-col justify-between">
+          <div className="lg:col-span-6 bg-[#023080] p-4 sm:p-6 rounded-lg">
             <div className="space-y-4 mb-8">
               {highlights.map((highlight) => (
                 <motion.div
@@ -489,7 +484,7 @@ const HighlightsSection = ({ isVisible }) => {
                   }`}
                   onMouseEnter={() => setActiveHighlight(highlight)}
                 >
-                  <div className="relative">
+            <div className="relative">
                     <h3 className="text-2xl text-white mb-2">{highlight}</h3>
                     <div
                       className={`h-0.5 transition-all duration-300 ${
@@ -500,6 +495,14 @@ const HighlightsSection = ({ isVisible }) => {
                 </motion.div>
               ))}
             </div>
+            <p className="text-white text-md leading-relaxed">
+              {activeHighlight === "Capacity-Building" && "Develop essential leadership and skills for effective social impact initiatives."}
+              {activeHighlight === "Speaker" && "Engage with experts on policies, ethics, and modern societal issues."}
+              {activeHighlight === "Resource" && " Learn fundraising strategies and build sustainable financial models."}
+              {activeHighlight === "Volunteer" && "Lead volunteer recruitment and create sustainable engagement strategies."}
+              {activeHighlight === "Organizational" && "Gain hands-on experience in key operational and functional areas."}
+              {activeHighlight === "Profile" && "Enhance profiles with training and access to placement opportunities."}
+            </p>
           </div>
         </div>
       </div>
@@ -588,11 +591,19 @@ const CCAE = () => {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.05); }
         }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
         .slide-transition { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
         .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
         .animate-float { animation: float 3s ease-in-out infinite; }
         .animate-pulse-slow { animation: pulse 2s ease-in-out infinite; }
+        .animate-marquee {
+          display: flex;
+          animation: marquee 15s linear infinite;
+        }
         .stagger-1 { animation-delay: 0.1s; }
         .stagger-2 { animation-delay: 0.2s; }
         .stagger-3 { animation-delay: 0.3s; }

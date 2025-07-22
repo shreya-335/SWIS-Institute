@@ -544,7 +544,7 @@ const ScrollHeader = () => {
                 {/* Direct Links for Mobile */}
                 <div className="space-y-3 pt-4">
                   <Link
-                    to="/anushka"
+                    to="/JoinUs"
                     onClick={handleLinkClick}
                     className="block font-semibold transition-colors py-2"
                     style={{ color: "#023080" }}

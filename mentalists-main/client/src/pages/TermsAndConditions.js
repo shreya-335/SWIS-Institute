@@ -74,14 +74,14 @@ const TermsAndConditions = () => {
             <section key={i} className="flex items-start space-x-4">
               <div className="flex-shrink-0 mt-1">
                 <CheckCircle className="h-5 w-5 text-[#023080]" />
-              </div>
-              <div>
+        </div>
+            <div>
                 <h3 className="text-lg md:text-xl font-semibold text-[#023080] mb-1" style={{ fontFamily: '"Times New Roman", serif' }}>
                   {section.title}
-                </h3>
+              </h3>
                 <p className="text-[#04307b]" style={{ fontFamily: '"Times New Roman", serif' }}>
                   {section.content}
-                </p>
+              </p>
               </div>
             </section>
           ))}

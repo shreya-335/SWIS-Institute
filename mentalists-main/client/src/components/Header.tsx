@@ -203,7 +203,7 @@ const Header = () => {
                 </div>
               ))}
               {/* Add other direct links for desktop if any */}
-              <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
+              <a href="/JoinUs" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
                 Join Us
               </a>
               <a href="#" className="text-white hover:text-orange-400 transition-colors py-2 font-medium">
@@ -300,7 +300,7 @@ const Header = () => {
                 {/* Direct Links for Mobile */}
                 <div className="space-y-3 pt-4">
                   <a
-                    href="#"
+                    href="/JoinUs"
                     onClick={handleLinkClick}
                     className="block font-semibold text-black transition-colors py-2"
                   >
