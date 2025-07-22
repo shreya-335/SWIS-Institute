@@ -399,7 +399,7 @@ const ScrollHeader = () => {
 
               {/* Direct Links */}
               <Link
-                to="/anushka"
+                to="/JoinUs"
                 className={`transition-colors py-2 font-medium ${
                   scrolled ? "text-black hover:text-gray-600" : "text-white hover:text-orange-400"
                 }`}
