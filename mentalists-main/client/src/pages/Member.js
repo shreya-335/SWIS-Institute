@@ -57,7 +57,7 @@ const memberData = {
       name: "Mr. Samik Ghosh",
       designation: "Ex-CIFF | Ex-Oxfam | Ex-IFPRI | Ex-Azim Premji Foundation",
       shortDesignation: "Mentor", // Added for card display
-      imageUrl:samik,
+      imageUrl: samik,
       bio: "A Program Management, Monitoring, and Evaluation expert, with over 20 years of experience, specializing in international nutrition, public health, and sustainable development. He made significant contributions to the Integrated Food Policy Research Program at the International Food Policy Research Institute (IFPRI). His prior roles include serving at organizations like the Children's Investment Fund Foundation (CIFF), Oxfam India, and Azim Premji Foundation, where he worked on projects targeting sustainable development and public health issues. He also coordinated the Agriculture for Nutrition and Health Program under CGIAR.",
       socialMedia: {
         linkedin: "#",
@@ -69,7 +69,7 @@ const memberData = {
       name: "Ms. Khushboo Singh",
       designation: "Development Professional | CSR Expert | Ex-CEEW | Ex-PSI",
       shortDesignation: "Mentor", // Added for card display
-      imageUrl:khushboo,
+      imageUrl: khushboo,
       bio: "A seasoned CSR and development professional with over 10 years of experience in driving sustainability and social impact initiatives. At Medanta Foundation, she has led transformative, health-centric programs that have enhanced access to quality care and improved community well-being. As a Fellow with the SBI Youth for India program, she addressed critical rural challenges, including public health issues and systemic development gaps in underserved communities. She was also part of the Jagriti Yatra, a nationwide journey. Her work with leading organizations like CEEW and PSI further strengthened her expertise across public health and development sectors.",
       socialMedia: {
         linkedin: "#",
@@ -122,7 +122,7 @@ const memberData = {
       designation: "Board Member - SWIS Institute | Head - CCAE | Ex-D. E. Shaw Group | SXC",
       shortDesignation: "Board Member", // Added for card display
       imageUrl: nakshatra,
-      bio: "Nakshatra is a Board Member at the Institute for Social Welfare and Impact Solutions (SWIS Institute), oversees the Centre for Civil Administration & Engagement (CCAE). A graduate of St. Xavier’s College (Autonomous), Kolkata, he has held roles at The D. E. Shaw Group, the Council for Strategic Affairs (USA), and Raisina House. Recognised among India’s Rising Leaders under 30 in Policy & Politics, he has led international policy conferences and is experienced in research, debating, and advocacy. In 2024, he represented India at the World Youth Festival in Sochi under the category “Young Leaders of Associations, Organisations, and Political Parties.",
+      bio: "Nakshatra is a Board Member at the Institute for Social Welfare and Impact Solutions (SWIS Institute), oversees the Centre for Civil Administration & Engagement (CCAE). A graduate of St. Xavier's College (Autonomous), Kolkata, he has held roles at The D. E. Shaw Group, the Council for Strategic Affairs (USA), and Raisina House. Recognised among India's Rising Leaders under 30 in Policy & Politics, he has led international policy conferences and is experienced in research, debating, and advocacy. In 2024, he represented India at the World Youth Festival in Sochi under the category 'Young Leaders of Associations, Organisations, and Political Parties'.",
       socialMedia: {
         linkedin: "#",
         twitter: "#",
@@ -158,7 +158,6 @@ const memberData = {
   "SWIS Core Team": [
     {
       name: "Ms. Jiya Gudhaka",
-      name: "Ms. Jiya Gudhaka",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -167,7 +166,6 @@ const memberData = {
       
     },
     {
-      name: "Mr. Vishal Maheto",
       name: "Mr. Vishal Maheto",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
@@ -178,7 +176,6 @@ const memberData = {
     },
     {
       name: "Ms. Manya Panjwani",
-      name: "Ms. Manya Panjwani",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -187,7 +184,6 @@ const memberData = {
       
     },
     {
-      name: "Ms. Pooja Lakshmi",
       name: "Ms. Pooja Lakshmi",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
@@ -198,7 +194,6 @@ const memberData = {
     },
     {
       name: "Ms. Tanushka MS",
-      name: "Ms. Tanushka MS",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -207,7 +202,6 @@ const memberData = {
       
     },
     {
-      name: "Ms. Zoha Aza Khan",
       name: "Ms. Zoha Aza Khan",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
@@ -218,7 +212,6 @@ const memberData = {
     },
     {
       name: "Ms. Sulagna Ghosh",
-      name: "Ms. Sulagna Ghosh",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -227,7 +220,6 @@ const memberData = {
      
     },
     {
-      name: "Ms. Shristy Das",
       name: "Ms. Shristy Das",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
@@ -238,15 +230,13 @@ const memberData = {
     },
     {
       name: "Mr. Mukund Agarwal",
-      name: "Mr. Mukund Agarwal",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
-      imageUrl:mukund,
+      imageUrl: mukund,
       bio: "Mukund Agarwal is a dedicated Core Team Member, contributing to various initiatives within the SWIS Institute.",
       
     },
     {
-      name:"Ms. K. Anitha Reddy",
       name:"Ms. K. Anitha Reddy",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
@@ -266,7 +256,6 @@ const memberData = {
     },
     {
       name: "Mr. Thayanithi",
-      name: "Mr. Thayanithi",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
       imageUrl:
@@ -275,7 +264,6 @@ const memberData = {
      
     },
     {
-      name: "Ms. Advika Yadav",
       name: "Ms. Advika Yadav",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
@@ -286,7 +274,6 @@ const memberData = {
     },
 
     {
-      name: "Ms. Debanjana Biswas",
       name: "Ms. Debanjana Biswas",
       designation: "Core Team Member",
       shortDesignation: "Core Team Member", // Added for card display
@@ -299,7 +286,6 @@ const memberData = {
   "SWIS Founding Supporters": [
     {
       name: "Mr. Anshul Mitra",
-      name: "Mr. Anshul Mitra",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -308,7 +294,6 @@ const memberData = {
      
     },
     {
-      name: "Ms. Khusboo Singhal",
       name: "Ms. Khusboo Singhal",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
@@ -319,7 +304,6 @@ const memberData = {
     },
     {
       name: "Mr. Aryamaan Biswas",
-      name: "Mr. Aryamaan Biswas",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -328,7 +312,6 @@ const memberData = {
       
     },
     {
-      name: "Ms. Vidhi Bhageria",
       name: "Ms. Vidhi Bhageria",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
@@ -340,7 +323,6 @@ const memberData = {
 
     {
       name: "Ms. Pritika Gupta",
-      name: "Ms. Pritika Gupta",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -349,7 +331,6 @@ const memberData = {
       
     },
     {
-      name: "Ms. Alisha Dash",
       name: "Ms. Alisha Dash",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
@@ -360,7 +341,6 @@ const memberData = {
     },
     {
       name: "Ms. Navya KS",
-      name: "Ms. Navya KS",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -370,7 +350,6 @@ const memberData = {
     },
     {
       name: "Ms. Praniti Mishra",
-      name: "Ms. Praniti Mishra",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
       imageUrl:
@@ -379,7 +358,6 @@ const memberData = {
       
     },
     {
-      name: "Ms. Abantika Chakraborty",
       name: "Ms. Abantika Chakraborty",
       designation: "Founding Supporter",
       shortDesignation: "Founding Supporter", // Added for card display
@@ -400,7 +378,7 @@ const MemberModal = ({ member, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-2 sm:p-4"
       onClick={onClose} // Close when clicking outside
     >
       <motion.div
@@ -408,7 +386,7 @@ const MemberModal = ({ member, onClose }) => {
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 50 }}
         transition={{ duration: 0.3 }}
-        className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row relative"
+        className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full h-[90vh] sm:h-auto sm:max-h-[85vh] overflow-hidden flex flex-col md:flex-row relative"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal content
       >
         <button
@@ -418,58 +396,60 @@ const MemberModal = ({ member, onClose }) => {
         >
           <X className="w-6 h-6" />
         </button>
-        <div className="w-full md:w-1/2 flex-shrink-0 relative overflow-hidden">
+        <div className="w-full md:w-1/2 flex-shrink-0 relative overflow-hidden min-h-[50vh] md:h-auto">
           <img
             src={member.imageUrl || "/placeholder.svg"}
             alt={member.name}
             className="w-full h-full object-cover grayscale-0" // Always color in modal
           />
           {/* Name overlay on image in modal */}
-          <div className="absolute inset-x-0 bottom-0 bg-[#023080] bg-opacity-90 p-6 text-white">
-            <h3 className="text-2xl font-semibold mb-1 leading-tight">{member.name}</h3>
+          <div className="absolute inset-x-0 bottom-0 bg-[#023080] bg-opacity-90 p-4 sm:p-6 text-white">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-1 leading-tight">{member.name}</h3>
             <div className="w-12 h-0.5 bg-[#8e9fc5] rounded-full mb-2"></div>
-            <p className="text-base text-[#d2d5e0] leading-relaxed">{member.shortDesignation || member.designation}</p>
+            <p className="text-sm sm:text-base text-[#d2d5e0] leading-relaxed">{member.shortDesignation || member.designation}</p>
           </div>
         </div>
-        <div className="w-full md:w-1/2 p-8 overflow-y-auto flex flex-col justify-center">
-          <p className="text-gray-700 leading-relaxed mb-6">{member.bio}</p>
-          {member.socialMedia && (
-            <div className="flex space-x-4 mt-4">
-              {member.socialMedia.linkedin && (
-                <a
-                  href={member.socialMedia.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#023080] hover:text-[#04307b] transition-colors"
-                  aria-label={`LinkedIn profile of ${member.name}`}
-                >
-                  <Linkedin className="w-6 h-6" />
-                </a>
-              )}
-              {member.socialMedia.twitter && (
-                <a
-                  href={member.socialMedia.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#023080] hover:text-[#04307b] transition-colors"
-                  aria-label={`Twitter profile of ${member.name}`}
-                >
-                  <Twitter className="w-6 h-6" />
-                </a>
-              )}
-              {member.socialMedia.website && (
-                <a
-                  href={member.socialMedia.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#023080] hover:text-[#04307b] transition-colors"
-                  aria-label={`Website of ${member.name}`}
-                >
-                  <Globe className="w-6 h-6" />
-                </a>
-              )}
-            </div>
-          )}
+        <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 overflow-y-auto flex-1">
+          <div className="h-full flex flex-col justify-start md:justify-center">
+            <p className="text-gray-700 leading-relaxed mb-6 text-sm sm:text-base">{member.bio}</p>
+            {member.socialMedia && (
+              <div className="flex space-x-4 mt-4">
+                {member.socialMedia.linkedin && (
+                  <a
+                    href={member.socialMedia.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#023080] hover:text-[#04307b] transition-colors"
+                    aria-label={`LinkedIn profile of ${member.name}`}
+                  >
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                )}
+                {member.socialMedia.twitter && (
+                  <a
+                    href={member.socialMedia.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#023080] hover:text-[#04307b] transition-colors"
+                    aria-label={`Twitter profile of ${member.name}`}
+                  >
+                    <Twitter className="w-6 h-6" />
+                  </a>
+                )}
+                {member.socialMedia.website && (
+                  <a
+                    href={member.socialMedia.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#023080] hover:text-[#04307b] transition-colors"
+                    aria-label={`Website of ${member.name}`}
+                  >
+                    <Globe className="w-6 h-6" />
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -621,9 +601,6 @@ const heroImages = [hero1, hero2, hero3];
                 className="text-4xl md:text-5xl lg:text-7xl font-serif text-white mb-6 leading-tight"
               >
                 Board & Committee Members
-                
-           
-                
               </motion.h1>
 
               <motion.p
@@ -704,3 +681,5 @@ const heroImages = [hero1, hero2, hero3];
 }
 
 export default Member
+//hvienfjef m vljvejf  
+//nvklnve, 
