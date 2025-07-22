@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, Globe, Target, Award, Users, TrendingUp, Lightbulb, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
@@ -8,12 +10,9 @@ import csaaS2 from "../img/csaaS2.jpeg";
 import csaaS3 from "../img/csaaS3.jpeg";
 
 // Image imports for HighlightsSection
-import intro from "../img/intro.jpeg";
-import talk from "../img/talk.JPG";
-import action from "../img/action.JPG";
-import feild from "../img/feild.jpg";
-import expert from "../img/expert.jpeg";
-import crowdfunding from "../img/crowdfunding.jpeg";
+import R1 from "../img/action.JPG";
+import R2 from "../img/talk.JPG";
+import R3 from "../img/crowdfunding.jpeg";
 
 // Image imports for MetricsSection
 import csaa1 from "../img/csaa1.JPG";
@@ -105,6 +104,7 @@ const HeroSection = () => {
               alt="Hero background"
               className="w-full h-full object-cover transform transition-transform duration-[6000ms] ease-in-out scale-105"
             />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#023080]/90 via-[#04307b]/70 to-[#8e9fc5]/50"></div>
           </div>
         ))}
         <div className="absolute inset-0 bg-black/40 z-[1]"></div>
@@ -300,7 +300,7 @@ const ObjectivesSection = ({ isVisible }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className={`text-center mb-12 sm:mb-16 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-6">
-            ObjectivesofthisInitiative
+            Objectives of this Initiative
           </h2>
           <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
             A comprehensive approach to fostering social leadership through education, empathy, and innovation.
@@ -322,38 +322,6 @@ const ObjectivesSection = ({ isVisible }) => {
               <p className="text-[#04307b] leading-relaxed text-sm sm:text-base">{objective.description}</p>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// PartnersSection Component
-const PartnersSection = ({ isVisible }) => {
-  const partners = [
-    { name: "Civic Alliance", image: "https://via.placeholder.com/150x50.png?text=Civic+Alliance" },
-    { name: "Youth Empowerment Network", image: "https://via.placeholder.com/150x50.png?text=Youth+Network" },
-    { name: "Governance Partners", image: "https://via.placeholder.com/150x50.png?text=Governance+Partners" },
-    { name: "Community Action League", image: "https://via.placeholder.com/150x50.png?text=Community+Action" },
-    { name: "Public Policy Forum", image: "https://via.placeholder.com/150x50.png?text=Policy+Forum" }
-  ];
-
-  return (
-    <section className="py-10 bg-gray-100">
-      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
-        <h2 className="text-2xl sm:text-3xl font-light text-[#023080] text-center mb-6">Our Partners</h2>
-        <div className="relative overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap">
-            {[...partners, ...partners].map((partner, index) => (
-              <div key={index} className="inline-flex items-center justify-center mx-4">
-                <img
-                  src={partner.image}
-                  alt={partner.name}
-                  className="h-12 sm:h-16 object-contain"
-                />
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -428,99 +396,92 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
 
 // HighlightsSection Component
 const HighlightsSection = ({ isVisible }) => {
-  const [activeHighlight, setActiveHighlight] = useState(0);
-
-  const keyHighlights = [
-    {
-      title: "Introduction to the Social Sector",
-      description: "Provides a foundational understanding of the social sector, covering key issues, public policies, and interventions, helping students understand stakeholder roles in driving social change.",
-      features: "- Key issues education\n- Policy insights\n- Stakeholder roles",
-      image: intro
-    },
-    {
-      title: "Talk Shows and Workshops",
-      description: "Focuses on social issues, policies, and interventions through interactive sessions on public policy, social entrepreneurship, and impact measurement.",
-      features: "- Interactive sessions\n- Expert-led workshops\n- Critical thinking",
-      image: talk
-    },
-    {
-      title: "Action-Based Projects",
-      description: "Engages students in hands-on projects addressing real-world social challenges, developing skills in research, planning, and impact assessment.",
-      features: "- Hands-on projects\n- Problem-solving\n- Impact assessment",
-      image: action
-    },
-    {
-      title: "Field Visits",
-      description: "Fosters empathy and civic responsibility through volunteering and community visits, providing firsthand exposure to social issues.",
-      features: "- Community engagement\n- Empathy building\n- Civic responsibility",
-      image: feild
-    },
-    {
-      title: "Expert Engagement",
-      description: "Connects students with industry leaders through guest lectures and Q&A sessions for mentorship and networking opportunities.",
-      features: "- Mentorship\n- Networking\n- Industry insights",
-      image: expert
-    },
-    {
-      title: "Crowdfunding as a Lifeskill",
-      description: "Teaches resource mobilization, financial literacy, and persuasive communication to drive social impact.",
-      features: "- Fundraising skills\n- Financial literacy\n- Social impact",
-      image: crowdfunding
-    }
+  const highlights = [
+    "Introduction",
+    "Talk",
+    "Action-Based",
+    "Field",
+    "Expert",
+    "Crowdfunding"
   ];
 
+  const images = [R1, R2, R3];
+  const [activeHighlight, setActiveHighlight] = useState("Introduction");
+  const [imageIndex, setImageIndex] = useState(0);
+
+  useEffect(() => {
+    const rotateImages = setInterval(() => {
+      setImageIndex((prev) => (prev + 1) % images.length);
+    }, 6000);
+    return () => clearInterval(rotateImages);
+  }, [images.length]);
+
   return (
-    <section id="highlights" className="py-8 sm:py-10 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className={`text-center mb-6 sm:mb-8 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-4">
+    <section id="highlights" className="py-6 sm:py-8 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`text-center mb-4 sm:mb-6 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-4 font-bold">
             Key Highlights of the Initiative
           </h2>
-          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
-            Comprehensive programs designed to develop social leadership and create sustainable community impact.
+          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+            Comprehensive programs designed to develop social leadership
           </p>
         </div>
 
-        <div className={`flex flex-wrap justify-center gap-2 mb-4 sm:mb-6 ${isVisible ? 'animate-fadeInUp stagger-1' : 'opacity-0'}`}>
-          {keyHighlights.map((highlight, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveHighlight(index)}
-              className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                activeHighlight === index
-                  ? 'bg-[#023080] text-white shadow-lg transform scale-105'
-                  : 'bg-[#d2d5e0]/50 text-[#04307b] hover:bg-[#8e9fc5]/30'
-              }`}
-            >
-              {highlight.title.split(' ')[0]}
-            </button>
-          ))}
-        </div>
-
-        <div
-          key={activeHighlight}
-          className={`bg-gradient-to-br from-[#FCFDFF] to-[#d2d5e0]/30 rounded-3xl p-4 sm:p-6 lg:p-8 ${
-            isVisible ? 'animate-scaleIn' : 'opacity-0'
-          }`}
-        >
-          <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 items-center">
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-[#023080] mb-4">
-                {keyHighlights[activeHighlight].title}
-              </h3>
-              <p className="text-base sm:text-lg text-[#04307b] leading-relaxed mb-4">
-                {keyHighlights[activeHighlight].description}
-              </p>
-              <div className="text-sm sm:text-base text-[#04307b] whitespace-pre-line">
-                {keyHighlights[activeHighlight].features}
+        <div className="grid lg:grid-cols-12 gap-4" style={{ minHeight: "400px" }}>
+          <div className="lg:col-span-6">
+            <div className="relative h-full overflow-hidden">
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 slide-transition ${
+                    index === imageIndex ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={`Highlight ${index + 1}`}
+                    className="w-full h-full object-cover transform transition-transform duration-[6000ms] ease-in-out scale-105"
+                  />
+                </div>
+              ))}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === imageIndex ? 'bg-[#023080]' : 'bg-[#023080]/30'
+                    }`}
+                  />
+                ))}
               </div>
             </div>
-            <div className="relative">
-              <img
-                src={keyHighlights[activeHighlight].image}
-                alt={keyHighlights[activeHighlight].title}
-                className="rounded-2xl shadow-xl w-full h-48 sm:h-60 object-cover"
-              />
+          </div>
+          <div className="lg:col-span-6 bg-[#023080] p-4 sm:p-6 rounded-lg flex flex-col justify-between">
+            <div className="space-y-4 mb-8">
+              {highlights.map((highlight) => (
+                <motion.div
+                  key={highlight}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className={`cursor-pointer transition-all duration-300 ${
+                    activeHighlight === highlight ? "opacity-100" : "opacity-60 hover:opacity-80"
+                  }`}
+                  onMouseEnter={() => setActiveHighlight(highlight)}
+                >
+                  <div className="relative">
+                    <h3 className="text-2xl text-white mb-2">{highlight}</h3>
+                    <div
+                      className={`h-0.5 transition-all duration-300 ${
+                        activeHighlight === highlight ? "w-full bg-blue-400" : "w-0 bg-white"
+                      }`}
+                    ></div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
