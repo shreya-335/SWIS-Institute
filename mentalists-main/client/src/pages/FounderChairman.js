@@ -1,37 +1,42 @@
-import React, { useEffect, useState } from "react";
+"use client"
+
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Placeholder images for the rotating banner
+import founderHero1 from "../img/founderHero1.jpg";
+import founderHero2 from "../img/founderHero2.jpg";
+import founderHero3 from "../img/founderHero3.jpg";
+
+// Gallery images
+import gal1 from "../img/gal1.jpg";
+import gal2 from "../img/gal2.jpg";
+import gal3 from "../img/gal3.jpg";
+import gal4 from "../img/gal4.jpg";
+import gal5 from "../img/gal5.jpg";
+import gal6 from "../img/gal6.jpg";
+
+// Founder image
+import founder from "../img/founder.jpg";
+
 const rotatingImages = [
-  "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  founderHero1,
+  founderHero2,
+  founderHero3,
 ];
 
 // Gallery images
 const allGalleryImages = [
-  "https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-];
-
-// Award images
-const awardImages = [
-  "https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-  "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-  "https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-  "https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+  gal1,
+  gal2,
+  gal3,
+  gal4,
+  gal5,
+  gal6,
 ];
 
 // Founder image
-const founderImage = "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
+const founderImage = founder;
 
 const FounderChairman = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -219,7 +224,6 @@ const FounderChairman = () => {
                   <span className="text-[#8e9fc5] font-medium">Board Member – Institute for Social Welfare and Impact Solutions (SWIS Institute)</span>
                 </p>
                 
-                {/* ... keep existing bio content paragraphs */}
                 <p className="text-sm sm:text-base leading-relaxed">
                   Soubhik Kundu is a passionate changemaker, institution builder, and social impact strategist who
                   serves as the Chairman & Managing Trustee of the SWIS Foundation – Social Welfare and Impact
@@ -298,8 +302,9 @@ const FounderChairman = () => {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#8e9fc5] to-[#04307b] rounded-xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
                       <img
-                        src={img}
+                        src={img || "https://via.placeholder.com/300x200?text=Image+Not+Found"}
                         alt={`Gallery ${i + 1}`}
+                        onError={(e) => { e.target.src = "https://via.placeholder.com/300x200?text=Image+Not+Found"; }}
                         className="relative w-48 sm:w-64 lg:w-80 h-32 sm:h-44 lg:h-56 object-cover rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1"
                       />
                     </motion.div>
@@ -318,95 +323,6 @@ const FounderChairman = () => {
               </div>
             </div>
           </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Memorable Speeches */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="py-16 sm:py-20 lg:py-24"
-        style={{ backgroundColor: '#FCFDFF' }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="mb-12 lg:mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-4 sm:mb-6" style={{ color: '#04307b' }}>
-              Memorable Speeches
-            </h2>
-            <div className="w-24 h-1 mx-auto rounded-full mb-6 sm:mb-8" style={{ backgroundColor: '#023080' }}></div>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              A collection of memorable speeches by the Founder–Chairman that shed light on his persona and inspired scores of people to believe in their dreams
-            </p>
-          </motion.div>
-
-          <div className="flex flex-col items-center gap-8 lg:gap-12">
-            {/* Top awards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-3xl w-full">
-              <motion.div
-                initial={{ x: -40, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="backdrop-blur-sm bg-gradient-to-r from-[#d2d5e0] to-white/90 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#8e9fc5]/20"
-              >
-                <p className="text-base sm:text-lg font-semibold mb-2" style={{ color: '#04307b' }}>Lifetime Achievement Award</p>
-                <p className="text-sm sm:text-base" style={{ color: '#8e9fc5' }}>The Economic Times Awards</p>
-              </motion.div>
-              <motion.div
-                initial={{ x: 40, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="backdrop-blur-sm bg-gradient-to-r from-[#d2d5e0] to-white/90 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#8e9fc5]/20"
-              >
-                <p className="text-base sm:text-lg font-semibold mb-2" style={{ color: '#04307b' }}>Wharton Dean's Medal</p>
-                <p className="text-sm sm:text-base" style={{ color: '#8e9fc5' }}>Wharton School, UPenn</p>
-              </motion.div>
-            </div>
-            
-            {/* Center image */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#8e9fc5] to-[#04307b] rounded-3xl blur-lg opacity-20 transform scale-110"></div>
-              <motion.img
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ duration: 0.4 }}
-                src={founderImage}
-                alt="Chairman"
-                className="relative w-48 sm:w-64 lg:w-80 h-60 sm:h-80 lg:h-96 object-cover rounded-3xl shadow-2xl border-4 border-white"
-              />
-            </motion.div>
-            
-            {/* Bottom awards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-3xl w-full">
-              <motion.div
-                initial={{ x: -40, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="backdrop-blur-sm bg-gradient-to-r from-[#d2d5e0] to-white/90 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#8e9fc5]/20"
-              >
-                <p className="text-base sm:text-lg font-semibold mb-2" style={{ color: '#04307b' }}>Man of the Century Award</p>
-                <p className="text-sm sm:text-base" style={{ color: '#8e9fc5' }}>Chemtech Foundation</p>
-              </motion.div>
-              <motion.div
-                initial={{ x: 40, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="backdrop-blur-sm bg-gradient-to-r from-[#d2d5e0] to-white/90 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#8e9fc5]/20"
-              >
-                <p className="text-base sm:text-lg font-semibold mb-2" style={{ color: '#04307b' }}>Civic Address & Reception</p>
-                <p className="text-sm sm:text-base" style={{ color: '#8e9fc5' }}>Bombay Municipal Corp</p>
-              </motion.div>
-            </div>
-          </div>
         </div>
       </motion.section>
     </div>
