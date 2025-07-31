@@ -4,15 +4,15 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Placeholder images for the rotating banner
-import founderHero1 from "../img/founderHero1.jpg";
-import founderHero2 from "../img/founderHero2.jpg";
-import founderHero3 from "../img/founderHero3.jpg";
+import founderHero1 from "../img/gal1.jpg";
+import founderHero2 from "../img/gal4.jpg";
+import founderHero3 from "../img/gal3.jpg";
 
 // Gallery images
-import gal1 from "../img/gal1.jpg";
+import gal1 from "../img/founderHero1.jpg";
 import gal2 from "../img/gal2.jpg";
-import gal3 from "../img/gal3.jpg";
-import gal4 from "../img/gal4.jpg";
+import gal3 from "../img/founderHero3.jpg";
+import gal4 from "../img/founderHero2.jpg";
 import gal5 from "../img/gal5.jpg";
 import gal6 from "../img/gal6.jpg";
 

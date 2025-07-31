@@ -51,37 +51,51 @@ const TermsAndConditions = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white font-sans" style={{ backgroundColor: '#04307b' }}>
-      {/* Top Spacer Section - Keeps space for navbar/header */}
-      <div className="h-20 md:h-24 lg:h-32"></div>
-
+    <div
+      className="min-h-screen text-white font-sans pt-28 md:pt-32 lg:pt-40"
+      style={{ backgroundColor: "#04307b" }}
+    >
       {/* Header */}
-      <header className="py-8 md:py-10 border-b border-[#d2d5e0]">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#ffffff] mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
+      <header className="py-4 md:py-6 border-b border-[#d2d5e0]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#ffffff] mb-2 sm:mb-3"
+            style={{ fontFamily: '"Times New Roman", serif' }}
+          >
             Terms &amp; Conditions
           </h1>
-          <p className="text-lg md:text-xl max-w-4xl" style={{ fontFamily: '"system-ui"' }}>
-            At SWIS, we are committed to providing a clear framework for using our website. These terms govern your use of our services &amp; outline your rights &amp; responsibilities.
+          <p
+            className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl"
+            style={{ fontFamily: '"system-ui"' }}
+          >
+            At SWIS, we are committed to providing a clear framework for using our
+            website. These terms govern your use of our services &amp; outline
+            your rights &amp; responsibilities.
           </p>
         </div>
       </header>
 
       {/* Policy Sections */}
-      <main className="max-w-7xl mx-auto px-4 py-10">
-        <div className="bg-[#d2d5e0] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-10">
+        <div className="bg-[#d2d5e0] border border-[#8e9fc5] rounded-lg p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
           {sections.map((section, i) => (
-            <section key={i} className="flex items-start space-x-4">
+            <section key={i} className="flex items-start space-x-2 sm:space-x-4">
               <div className="flex-shrink-0 mt-1">
-                <CheckCircle className="h-5 w-5 text-[#023080]" />
-        </div>
-            <div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#023080] mb-1" style={{ fontFamily: '"Times New Roman", serif' }}>
+                <CheckCircle className="h-4 sm:h-5 w-4 sm:w-5 text-[#023080]" />
+              </div>
+              <div>
+                <h3
+                  className="text-base sm:text-lg md:text-xl font-semibold text-[#023080] mb-1"
+                  style={{ fontFamily: '"Times New Roman", serif' }}
+                >
                   {section.title}
-              </h3>
-                <p className="text-[#04307b]" style={{ fontFamily: '"Times New Roman", serif' }}>
+                </h3>
+                <p
+                  className="text-[#04307b] text-sm sm:text-base"
+                  style={{ fontFamily: '"Times New Roman", serif' }}
+                >
                   {section.content}
-              </p>
+                </p>
               </div>
             </section>
           ))}
@@ -89,11 +103,14 @@ const TermsAndConditions = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#023080] text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-sm md:text-base">
+      <footer className="bg-[#023080] text-white py-4 sm:py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs sm:text-sm md:text-base">
             If you have questions or concerns about these Terms, please{" "}
-            <Link to="/ContactPage" className="underline hover:text-[#d2d5e0] transition">
+            <Link
+              to="/ContactPage"
+              className="underline hover:text-[#d2d5e0] transition"
+            >
               contact us
             </Link>
             .

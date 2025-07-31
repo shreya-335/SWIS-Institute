@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, Globe, Target, Award, Users, TrendingUp, Lightbulb, BookOpen } from "lucide-react";
@@ -108,31 +108,31 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/40 z-[1]"></div>
       </div>
 
-      <div className="relative z-20 h-full flex items-center justify-end pt-20 pb-40">
+      <div className="relative z-20 h-full flex items-center justify-end pt-40 md:pt-48 lg:pt-56">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
           <div className="text-white max-w-4xl">
             <h1
-              className="text-5xl md:text-7xl mb-8"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-8"
               style={{
                 fontFamily: '"Times New Roman", serif',
                 color: "#ffffff",
                 textShadow: "none",
                 fontSize: heroSlides[currentSlide].title === "Centre for Social Innovation & Impact" ? "3.5rem" : "4rem",
-                lineHeight: "1.2"
+                lineHeight: "1.2",
               }}
             >
               {heroSlides[currentSlide].title}
             </h1>
-            <div className="w-32 h-1 mb-8" style={{ backgroundColor: "#ffffff" }}></div>
+            <div className="w-32 h-1 mb-6 sm:mb-8" style={{ backgroundColor: "#ffffff" }}></div>
             <div
-              className="text-2xl sm:text-3xl lg:text-4xl mt-2"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-2"
               style={{ fontFamily: '"system-ui"', color: "#ffffff", textShadow: "none" }}
             >
               {heroSlides[currentSlide].subtitle}
             </div>
 
             <p
-              className="text-lg sm:text-xl text-[#ffffff] leading-relaxed mb-8 max-w-3xl"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#ffffff] leading-relaxed mb-6 sm:mb-8 max-w-3xl"
               style={{ fontFamily: '"system-ui"', textShadow: "none" }}
             >
               {heroSlides[currentSlide].description}
@@ -141,7 +141,7 @@ const HeroSection = () => {
             <div className="flex gap-4 flex-wrap">
               <a
                 href="/JoinUs"
-                className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2"
+                className="border border-white text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 text-base sm:text-lg"
               >
                 Apply Now <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
@@ -150,12 +150,12 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3">
+      <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 sm:gap-3">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2 sm:w-3 h-2 sm:h-3 rounded-full transition-all duration-300 ${
               index === currentSlide ? "bg-white" : "bg-white/50"
             }`}
           />
@@ -164,10 +164,10 @@ const HeroSection = () => {
 
       <button
         onClick={scrollToNextSection}
-        className="absolute bottom-8 right-4 sm:right-8 text-white flex flex-col items-center gap-2 animate-float hover:text-[#d2d5e0] transition-colors duration-300 cursor-pointer group"
+        className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 text-white flex flex-col items-center gap-1 sm:gap-2 animate-float hover:text-[#d2d5e0] transition-colors duration-300 cursor-pointer group"
       >
-        <span className="text-sm">Scroll</span>
-        <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
+        <span className="text-xs sm:text-sm">Scroll</span>
+        <ChevronDown className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-y-1 transition-transform duration-300" />
       </button>
     </section>
   );
@@ -176,29 +176,29 @@ const HeroSection = () => {
 // MissionSection Component
 const MissionSection = ({ isVisible }) => {
   return (
-    <section id="mission" className="py-16 sm:py-20 bg-gradient-to-br from-[#FCFDFF] via-[#d2d5e0]/30 to-[#8e9fc5]/20 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-[#8e9fc5]/10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-[#023080]/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
+    <section id="mission" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#FCFDFF] via-[#d2d5e0]/30 to-[#8e9fc5]/20 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-32 sm:w-48 md:w-72 h-32 sm:h-48 md:h-72 bg-[#8e9fc5]/10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#023080]/5 rounded-full translate-x-1/2 translate-y-1/2"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        <div className={`text-center mb-12 sm:mb-16 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-light text-[#023080] mb-8 bg-gradient-to-r from-[#023080] to-[#04307b] bg-clip-text text-transparent">
+        <div className={`text-center mb-6 sm:mb-8 md:mb-12 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-light text-[#023080] mb-4 sm:mb-6 bg-gradient-to-r from-[#023080] to-[#04307b] bg-clip-text text-transparent">
             Our Mission
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8 md:mb-12">
           <div
-            className={`bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${
+            className={`bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${
               isVisible ? "animate-fadeInUp stagger-1" : "opacity-0"
             }`}
           >
-            <div className="text-[#023080] mb-6 flex justify-center">
-              <div className="bg-gradient-to-br from-[#8e9fc5]/20 to-[#d2d5e0]/30 p-4 rounded-2xl">
-                <Users className="w-8 h-8" />
+            <div className="text-[#023080] mb-4 sm:mb-6 flex justify-center">
+              <div className="bg-gradient-to-br from-[#8e9fc5]/20 to-[#d2d5e0]/30 p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+                <Users className="w-6 sm:w-8 h-6 sm:h-8" />
               </div>
             </div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-[#023080] mb-4 text-center">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#023080] mb-2 sm:mb-4 text-center">
               Empowering NGOs
             </h3>
             <p className="text-[#04307b] leading-relaxed text-center text-sm sm:text-base">
@@ -206,16 +206,16 @@ const MissionSection = ({ isVisible }) => {
             </p>
           </div>
           <div
-            className={`bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${
+            className={`bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${
               isVisible ? "animate-fadeInUp stagger-2" : "opacity-0"
             }`}
           >
-            <div className="text-[#023080] mb-6 flex justify-center">
-              <div className="bg-gradient-to-br from-[#8e9fc5]/20 to-[#d2d5e0]/30 p-4 rounded-2xl">
-                <Target className="w-8 h-8" />
+            <div className="text-[#023080] mb-4 sm:mb-6 flex justify-center">
+              <div className="bg-gradient-to-br from-[#8e9fc5]/20 to-[#d2d5e0]/30 p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+                <Target className="w-6 sm:w-8 h-6 sm:h-8" />
               </div>
             </div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-[#023080] mb-4 text-center">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#023080] mb-2 sm:mb-4 text-center">
               Capacity Building
             </h3>
             <p className="text-[#04307b] leading-relaxed text-center text-sm sm:text-base">
@@ -223,16 +223,16 @@ const MissionSection = ({ isVisible }) => {
             </p>
           </div>
           <div
-            className={`bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${
+            className={`bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${
               isVisible ? "animate-fadeInUp stagger-3" : "opacity-0"
             }`}
           >
-            <div className="text-[#023080] mb-6 flex justify-center">
-              <div className="bg-gradient-to-br from-[#8e9fc5]/20 to-[#d2d5e0]/30 p-4 rounded-2xl">
-                <Award className="w-8 h-8" />
+            <div className="text-[#023080] mb-4 sm:mb-6 flex justify-center">
+              <div className="bg-gradient-to-br from-[#8e9fc5]/20 to-[#d2d5e0]/30 p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+                <Award className="w-6 sm:w-8 h-6 sm:h-8" />
               </div>
             </div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-[#023080] mb-4 text-center">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#023080] mb-2 sm:mb-4 text-center">
               Sustainable Impact
             </h3>
             <p className="text-[#04307b] leading-relaxed text-center text-sm sm:text-base">
@@ -242,16 +242,16 @@ const MissionSection = ({ isVisible }) => {
         </div>
 
         <div className={`text-center ${isVisible ? "animate-fadeInUp stagger-4" : "opacity-0"}`}>
-          <div className="bg-gradient-to-r from-[#023080] to-[#04307b] text-white rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl">
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-6">
+          <div className="bg-gradient-to-r from-[#023080] to-[#04307b] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl">
+            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-4 sm:mb-6">
               Centre for Social Impact & Innovation
             </h3>
-            <p className="text-lg sm:text-xl text-[#d2d5e0] mb-8 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-[#d2d5e0] mb-4 sm:mb-6 max-w-3xl mx-auto">
               Growth is meaningful only when it uplifts those at the grassroots. The Centre for Social Impact & Innovation stands at the intersection of strategy, support, and sustainability—empowering small and mid-sized NGOs with the tools, training, and resources they need to scale impact. Through CSR facilitation, access to grants, and powerful partnerships, CSII enables ideas to become institutions of change. We are committed to building the next generation of high-impact organizations. Our capacity-building initiatives go beyond compliance, focusing on innovation, resilience, and operational excellence. CSII supports organizations to become agile, accountable, and aligned with the broader SDG framework—ensuring that every rupee invested creates enduring social value.
             </p>
             <a
               href="/JoinUs"
-              className="bg-white text-[#023080] px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#FCFDFF] transition-all duration-300 transform hover:scale-105"
+              className="bg-white text-[#023080] px-6 sm:px-8 py-2 sm:py-3 md:py-4 rounded-full hover:bg-[#FCFDFF] transition-all duration-300 transform hover:scale-105 text-base sm:text-lg"
             >
               Start Your Journey
             </a>
@@ -266,31 +266,31 @@ const MissionSection = ({ isVisible }) => {
 const ObjectivesSection = ({ isVisible }) => {
   const objectives = [
     {
-      icon: <BookOpen className="w-8 h-8" />,
+      icon: <BookOpen className="w-6 sm:w-8 h-6 sm:h-8" />,
       title: "Knowledge & Skills Development",
       description: "Equips students with knowledge and skills in social issues, policies, and interventions, while enhancing expertise in grant writing, CSR proposals, and impact measurement.",
       color: "from-[#023080] to-[#04307b]",
     },
     {
-      icon: <Users className="w-8 h-8" />,
+      icon: <Users className="w-6 sm:w-8 h-6 sm:h-8" />,
       title: "Civic Engagement & Empathy",
       description: "Through on-ground activities like volunteering and community visits, students develop responsibility and empathy, becoming compassionate changemakers.",
       color: "from-[#04307b] to-[#8e9fc5]",
     },
     {
-      icon: <Lightbulb className="w-8 h-8" />,
+      icon: <Lightbulb className="w-6 sm:w-8 h-6 sm:h-8" />,
       title: "Creative Thinking & Innovation",
       description: "Encouraging students to develop unique solutions for social challenges through brainstorming, design thinking, and innovative project ideas.",
       color: "from-[#8e9fc5] to-[#023080]",
     },
     {
-      icon: <Target className="w-8 h-8" />,
+      icon: <Target className="w-6 sm:w-8 h-6 sm:h-8" />,
       title: "Project Management",
       description: "Building skills to manage time effectively, meet deadlines, and execute projects with efficiency and organization.",
       color: "from-[#023080] to-[#8e9fc5]",
     },
     {
-      icon: <Award className="w-8 h-8" />,
+      icon: <Award className="w-6 sm:w-8 h-6 sm:h-8" />,
       title: "Institutions",
       description: "Collaborating with key institutions to enhance impact and outreach through strategic partnerships.",
       color: "from-[#04307b] to-[#023080]",
@@ -298,31 +298,31 @@ const ObjectivesSection = ({ isVisible }) => {
   ];
 
   return (
-    <section id="objectives" className="py-16 sm:py-20 bg-white">
+    <section id="objectives" className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className={`text-center mb-12 sm:mb-16 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-6">
+        <div className={`text-center mb-6 sm:mb-8 md:mb-12 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#023080] mb-4 sm:mb-6">
             Objectives of this Initiative
           </h2>
-          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[#04307b] max-w-3xl mx-auto">
             A comprehensive approach to fostering social leadership through education, empathy, and innovation.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {objectives.map((objective, index) => (
             <div
               key={index}
-              className={`bg-gradient-to-br from-[#FCFDFF] to-[#d2d5e0]/30 rounded-3xl p-6 sm:p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${
+              className={`bg-gradient-to-br from-[#FCFDFF] to-[#d2d5e0]/30 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${
                 isVisible ? `animate-scaleIn stagger-${index + 1}` : "opacity-0"
               }`}
             >
               <div
-                className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${objective.color} text-white mb-6`}
+                className={`inline-flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-r ${objective.color} text-white mb-4 sm:mb-6`}
               >
                 {objective.icon}
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[#023080] mb-4">{objective.title}</h3>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#023080] mb-2 sm:mb-4">{objective.title}</h3>
               <p className="text-[#04307b] leading-relaxed text-sm sm:text-base">{objective.description}</p>
             </div>
           ))}
@@ -335,32 +335,32 @@ const ObjectivesSection = ({ isVisible }) => {
 // MetricsSection Component
 const MetricsSection = ({ isVisible, countAnimated }) => {
   const impactMetrics = [
-    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-8 h-8" />, image: csaa1, hasImage: true },
-    { number: 20, suffix: "+", label: "NGO's", icon: <Target className="w-7 h-7" />, hasImage: false },
-    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-8 h-8" />, image: csaa3, hasImage: true },
-    { number: 10, suffix: "+", label: "Corporate Partners", icon: <BookOpen className="w-7 h-7" />, hasImage: false },
-    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-8 h-8" />, image: csaa5, hasImage: true },
-    { number: 5000, suffix: "+", label: "Impacted", icon: <TrendingUp className="w-7 h-7" />, hasImage: false },
-    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-8 h-8" />, image: csaa7, hasImage: true },
-    { number: 10, suffix: "", label: "Projects", icon: <Award className="w-7 h-7" />, hasImage: false },
-    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-8 h-8" />, image: csaa9, hasImage: true }
+    { number: 9, suffix: "", label: "States Covered", icon: <Globe className="w-6 sm:w-8 h-6 sm:h-8" />, image: csaa1, hasImage: true },
+    { number: 20, suffix: "+", label: "NGO's", icon: <Target className="w-5 sm:w-7 h-5 sm:h-7" />, hasImage: false },
+    { number: 100, suffix: "+", label: "Nonprofits Supported", icon: <Award className="w-6 sm:w-8 h-6 sm:h-8" />, image: csaa3, hasImage: true },
+    { number: 10, suffix: "+", label: "Corporate Partners", icon: <BookOpen className="w-5 sm:w-7 h-5 sm:h-7" />, hasImage: false },
+    { number: 2000, suffix: "+", label: "Households Served", icon: <Users className="w-6 sm:w-8 h-6 sm:h-8" />, image: csaa5, hasImage: true },
+    { number: 5000, suffix: "+", label: "Impacted", icon: <TrendingUp className="w-5 sm:w-7 h-5 sm:h-7" />, hasImage: false },
+    { number: 10, suffix: "", label: "Grand Challenges", icon: <Lightbulb className="w-6 sm:w-8 h-6 sm:h-8" />, image: csaa7, hasImage: true },
+    { number: 10, suffix: "", label: "Projects", icon: <Award className="w-5 sm:w-7 h-5 sm:h-7" />, hasImage: false },
+    { number: 500, suffix: "+", label: "Senior Leaders", icon: <Users className="w-6 sm:w-8 h-6 sm:h-8" />, image: csaa9, hasImage: true }
   ];
 
   return (
-    <section id="metrics" className="py-12 bg-gradient-to-br from-[#FCFDFF] via-[#d2d5e0] to-[#8e9fc5] relative overflow-hidden">
+    <section id="metrics" className="py-10 sm:py-12 md:py-16 bg-gradient-to-br from-[#FCFDFF] via-[#d2d5e0] to-[#8e9fc5] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        <div className={`text-center mb-8 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-4 text-[#023080] italic">Our Work in Numbers</h2>
-          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">Driving impactful social change through measurable outcomes</p>
+        <div className={`text-center mb-4 sm:mb-6 md:mb-8 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-2 sm:mb-4 text-[#023080] italic">Our Work in Numbers</h2>
+          <p className="text-base sm:text-lg md:text-xl text-[#04307b] max-w-3xl mx-auto">Driving impactful social change through measurable outcomes</p>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
           {impactMetrics.map((metric, index) => (
             <motion.div
               key={index}
               className="
                 relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg
-                h-28 sm:h-32
+                h-24 sm:h-28 md:h-32
               "
               initial={{ scale: 0.8, opacity: 0 }}
               animate={isVisible ? { scale: 1, opacity: 1 } : {}}
@@ -373,22 +373,17 @@ const MetricsSection = ({ isVisible, countAnimated }) => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-[#023080] flex flex-col items-center justify-center text-white text-center px-2 sm:px-3">
-                  {/* ✅ Icon centered and slightly smaller */}
+                <div className="w-full h-full bg-[#023080] flex flex-col items-center justify-center text-white text-center px-2 sm:px-3 md:px-4">
                   <div className="text-white mb-1 flex justify-center">{metric.icon}</div>
-                  
-                  {/* ✅ Smaller number text for balance */}
                   <motion.div
                     initial={{ value: 0 }}
                     animate={isVisible && countAnimated ? { value: metric.number } : { value: 0 }}
                     transition={{ duration: 2, delay: index * 0.2 }}
-                    className="font-extrabold text-2xl sm:text-3xl tracking-wide"
+                    className="font-extrabold text-xl sm:text-2xl md:text-3xl tracking-wide"
                   >
                     <AnimatedCounter end={metric.number} suffix={metric.suffix} countAnimated={countAnimated} />
                   </motion.div>
-                  
-                  {/* ✅ Label with reduced size */}
-                  <div className="text-white/90 font-medium text-sm sm:text-base mt-1 tracking-wide">
+                  <div className="text-white/90 font-medium text-xs sm:text-sm md:text-base mt-1 tracking-wide">
                     {metric.label}
                   </div>
                 </div>
@@ -424,20 +419,20 @@ const HighlightsSection = ({ isVisible }) => {
   }, [images.length]);
 
   return (
-    <section id="highlights" className="py-6 sm:py-8 bg-white">
+    <section id="highlights" className="py-6 sm:py-8 md:py-10 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-4 sm:mb-6 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#023080] mb-4 font-bold hover:text-[#04307b] hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer">
+        <div className={`text-center mb-4 sm:mb-6 md:mb-8 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#023080] mb-2 sm:mb-4 font-bold hover:text-[#04307b] hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer">
             Key Highlights of the Initiative
           </h2>
-          <p className="text-lg sm:text-xl text-[#04307b] max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[#04307b] max-w-3xl mx-auto">
             Comprehensive programs designed to<br />develop social leadership and create sustainable community impact.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-4">
+        <div className="grid lg:grid-cols-12 gap-4 sm:gap-6">
           <div className="lg:col-span-6">
-            <div className="relative h-[300px] sm:h-[400px] overflow-hidden">
+            <div className="relative h-[250px] sm:h-[300px] md:h-[400px] overflow-hidden">
               {images.map((image, index) => (
                 <div
                   key={index}
@@ -452,12 +447,12 @@ const HighlightsSection = ({ isVisible }) => {
                   />
                 </div>
               ))}
-              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
+              <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1 sm:gap-2">
                 {images.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setImageIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    className={`w-2 sm:w-2 md:w-3 h-2 sm:h-2 md:h-3 rounded-full transition-all duration-300 ${
                       index === imageIndex ? "bg-[#023080]" : "bg-[#023080]/30"
                     }`}
                   />
@@ -465,8 +460,8 @@ const HighlightsSection = ({ isVisible }) => {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 bg-[#023080] p-4 sm:p-6 rounded-lg">
-            <div className="space-y-4 mb-8">
+          <div className="lg:col-span-6 bg-[#023080] p-4 sm:p-6 md:p-8 rounded-lg">
+            <div className="space-y-2 sm:space-y-4 mb-4 sm:mb-6 md:mb-8">
               {highlights.map((highlight) => (
                 <motion.div
                   key={highlight}
@@ -480,7 +475,7 @@ const HighlightsSection = ({ isVisible }) => {
                   onMouseEnter={() => setActiveHighlight(highlight)}
                 >
                   <div className="relative">
-                    <h3 className="text-2xl text-white mb-2">{highlight}</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl text-white mb-1 sm:mb-2">{highlight}</h3>
                     <div
                       className={`h-0.5 transition-all duration-300 ${
                         activeHighlight === highlight ? "w-full bg-blue-400" : "w-0 bg-white"
@@ -490,12 +485,12 @@ const HighlightsSection = ({ isVisible }) => {
                 </motion.div>
               ))}
             </div>
-            <p className="text-white text-md leading-relaxed">
+            <p className="text-white text-sm sm:text-base md:text-lg leading-relaxed">
               {activeHighlight === "Knowledge Sharing" && "Provide guides, reports, and best practices to strengthen NGO's effectiveness."}
               {activeHighlight === "Capacity Building" && "To strengthen/build the capacities to strengthen management."}
               {activeHighlight === "Large Impact" && "Launch collaborative projects to expand and accelerate social change."}
               {activeHighlight === "Collaboration" && "Build a network of NGOs, funders, and experts for shared learning and partnerships."}
-              {activeHighlight === "Incubation" && "upport social enterprises with mentorship, funding access, and scaling strategies."}
+              {activeHighlight === "Incubation" && "Support social enterprises with mentorship, funding access, and scaling strategies."}
               {activeHighlight === "Social Leaders" && "To create a community pool of social-empathetic leaders."}
             </p>
           </div>
@@ -508,19 +503,19 @@ const HighlightsSection = ({ isVisible }) => {
 // CTASection Component
 const CTASection = ({ isVisible }) => {
   return (
-    <section id="cta" className="py-16 sm:py-20 bg-gradient-to-r from-[#023080] to-[#04307b] text-white">
+    <section id="cta" className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-[#023080] to-[#04307b] text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
         <div className={isVisible ? "animate-fadeInUp" : "opacity-0"}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6">
             Join Our Initiative
           </h2>
-          <p className="text-lg sm:text-xl text-[#d2d5e0] mb-8 sm:mb-12 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-[#d2d5e0] mb-4 sm:mb-6 md:mb-8 leading-relaxed">
             Be part of a transformative movement to create socially aware leaders who drive systemic change through innovation and impact.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/JoinUs"
-              className="border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 justify-center"
+              className="border border-white text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 justify-center text-base sm:text-lg"
             >
               Apply Now <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>

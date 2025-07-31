@@ -1,5 +1,5 @@
-import { CheckCircle } from "lucide-react"
-import { Link } from "react-router-dom"
+import { CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   const sections = [
@@ -48,51 +48,54 @@ const PrivacyPolicy = () => {
       content:
         "We reserve the right to update our privacy policy at any time. Users will be notified of any changes to our privacy policy on our website.",
     },
-  ]
+  ];
 
   return (
-    <div className="min-h-screen text-white font-sans" style={{ backgroundColor: '#04307b' }}>
-      {/* Top Spacer Section - Keeps space for navbar/header */}
-      <div className="h-20 md:h-24 lg:h-32"></div>
-
-      {/* Optional: Add your custom section here */}
-      {/* 
-      <section className="py-6 bg-white border-b border-[#d2d5e0]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold text-[#023080] mb-2">
-              Your Custom Section Title
-            </h2>
-            <p className="text-[#04307b]">
-              Add your custom content here
-            </p>
-          </div>
-        </div>
-      </section>
-      */}
-
+    <div
+      className="min-h-screen text-white font-sans pt-28 md:pt-32 lg:pt-40"
+      style={{ backgroundColor: "#04307b" }}
+    >
       {/* Header */}
-      <header className="py-8 md:py-10 border-b border-[#8e9fc5]">
-        <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#ffffff] mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>Privacy Policy</h1>
-          <p className="text-lg md:text-xl max-w-4xl" style={{ fontFamily: '"system-ui"' }}>
-            At SWIS, we are committed to protecting your privacy and ensuring the security of your personal information.
-            This policy outlines how we collect, use, and safeguard your data.
+      <header className="py-4 md:py-6 border-b border-[#8e9fc5]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#ffffff] mb-2 sm:mb-3"
+            style={{ fontFamily: '"Times New Roman", serif' }}
+          >
+            Privacy Policy
+          </h1>
+          <p
+            className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl"
+            style={{ fontFamily: '"system-ui"' }}
+          >
+            At SWIS, we are committed to protecting your privacy and ensuring the
+            security of your personal information. This policy outlines how we
+            collect, use, and safeguard your data.
           </p>
         </div>
       </header>
 
       {/* Policy Sections */}
-      <main className="max-w-7xl mx-auto px-4 py-10">
-        <div className="bg-[#FCFDFF] border border-[#8e9fc5] rounded-md p-6 md:p-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-10">
+        <div className="bg-[#FCFDFF] border border-[#8e9fc5] rounded-lg p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
           {sections.map((section, i) => (
-            <section key={i} className="flex items-start space-x-4">
+            <section key={i} className="flex items-start space-x-2 sm:space-x-4">
               <div className="flex-shrink-0 mt-1">
-                <CheckCircle className="h-5 w-5 text-[#023080]" />
+                <CheckCircle className="h-4 sm:h-5 w-4 sm:w-5 text-[#023080]" />
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#023080] mb-1" style={{ fontFamily: '"Times New Roman", serif' }}>{section.title}</h3>
-                <p className="text-[#04307b]" style={{ fontFamily: '"Times New Roman", serif' }}>{section.content}</p>
+                <h3
+                  className="text-base sm:text-lg md:text-xl font-semibold text-[#023080] mb-1"
+                  style={{ fontFamily: '"Times New Roman", serif' }}
+                >
+                  {section.title}
+                </h3>
+                <p
+                  className="text-[#04307b] text-sm sm:text-base"
+                  style={{ fontFamily: '"Times New Roman", serif' }}
+                >
+                  {section.content}
+                </p>
               </div>
             </section>
           ))}
@@ -100,11 +103,14 @@ const PrivacyPolicy = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#023080] text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-sm md:text-base">
+      <footer className="bg-[#023080] text-white py-4 sm:py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs sm:text-sm md:text-base">
             If you have questions or concerns about this Policy, please{" "}
-            <Link to="/ContactPage" className="underline hover:text-[#d2d5e0] transition">
+            <Link
+              to="/ContactPage"
+              className="underline hover:text-[#d2d5e0] transition"
+            >
               contact us
             </Link>
             .
@@ -112,7 +118,7 @@ const PrivacyPolicy = () => {
         </div>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default PrivacyPolicy
+export default PrivacyPolicy;
