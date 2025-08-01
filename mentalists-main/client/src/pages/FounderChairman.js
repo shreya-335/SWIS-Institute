@@ -1,12 +1,10 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-// Placeholder images for the rotating banner
-import founderHero1 from "../img/gal1ex.jpg";
+// Static image for the banner
 import founderHero2 from "../img/founderhero3ex.jpg";
-import founderHero3 from "../img/founderHero2.jpg";
 
 // Gallery images
 import gal1 from "../img/founderHero1.jpg";
@@ -18,12 +16,6 @@ import gal6 from "../img/gal6.jpg";
 
 // Founder image
 import founder from "../img/founder.jpg";
-
-const rotatingImages = [
-  founderHero1,
-  founderHero2,
-  founderHero3,
-];
 
 // Gallery images
 const allGalleryImages = [
@@ -39,15 +31,7 @@ const allGalleryImages = [
 const founderImage = founder;
 
 const FounderChairman = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [galleryImages, setGalleryImages] = useState([allGalleryImages[0], allGalleryImages[1], allGalleryImages[2]]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % rotatingImages.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handlePrev = () => {
     setGalleryImages((prev) => {
@@ -75,15 +59,14 @@ const FounderChairman = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#FCFDFF', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
-      {/* Rotating Banner Section */}
+      {/* Static Banner Section */}
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
         className="relative min-h-[85vh] lg:min-h-screen flex items-center justify-center overflow-hidden"
         style={{
-          background: `linear-gradient(135deg, rgba(2, 48, 128, 0.8), rgba(4, 48, 123, 0.6)), url(${rotatingImages[currentImageIndex]}) center/cover no-repeat`,
-          transition: 'background-image 1s ease-in-out',
+          background: `linear-gradient(135deg, rgba(2, 48, 128, 0.8), rgba(4, 48, 123, 0.6)), url(${founderHero2}) center/cover no-repeat`,
         }}
       >
         {/* Animated background overlay */}
