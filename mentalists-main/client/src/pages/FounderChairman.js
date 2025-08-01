@@ -4,15 +4,15 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Placeholder images for the rotating banner
-import founderHero1 from "../img/gal1.jpg";
-import founderHero2 from "../img/gal4.jpg";
-import founderHero3 from "../img/gal3.jpg";
+import founderHero1 from "../img/gal1ex.jpg";
+import founderHero2 from "../img/founderhero3ex.jpg";
+import founderHero3 from "../img/founderHero2.jpg";
 
 // Gallery images
 import gal1 from "../img/founderHero1.jpg";
 import gal2 from "../img/gal2.jpg";
-import gal3 from "../img/founderHero3.jpg";
-import gal4 from "../img/founderHero2.jpg";
+import gal3 from "../img/gal3.jpg";
+import gal4 from "../img/gal4.jpg";
 import gal5 from "../img/gal5.jpg";
 import gal6 from "../img/gal6.jpg";
 
@@ -102,7 +102,7 @@ const FounderChairman = () => {
               transition={{ delay: 0.7, duration: 0.8 }}
               className="text-4xl sm:text-5xl lg:text-7xl font-light mb-6 sm:mb-8 leading-tight tracking-wide"
             >
-              A timeless visionary
+              A Visionary Leader
             </motion.h1>
             <motion.p
               initial={{ y: 30, opacity: 0 }}
@@ -110,7 +110,7 @@ const FounderChairman = () => {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="text-lg sm:text-xl lg:text-2xl font-light leading-relaxed max-w-4xl mx-auto opacity-90"
             >
-              whose legacy emboldens the imagination of a billion people
+              shaping the future with purpose and passion
             </motion.p>
           </motion.div>
         </div>
