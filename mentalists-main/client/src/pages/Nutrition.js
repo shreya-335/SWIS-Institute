@@ -3,6 +3,13 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import { Heart, School, Users, ArrowRight, Baby } from "lucide-react"
+import nutrition1 from "../img/nutrition1.jpg";
+import nutrition2 from "../img/nutrition2.jpg";
+import nutrition3 from "../img/nutrition3.jpg";
+import nutrition4 from "../img/nutrition4.jpg";
+import nutrition5 from "../img/nutrition5.jpg";
+import nutrition6 from "../img/nutrition6.jpg";
+import nutrition7 from "../img/nutrition7.png";
 
 // Counter animation component
 const AnimatedCounter = ({ value, duration = 2 }) => {
@@ -49,28 +56,28 @@ const Nutrition = () => {
       percentage: "50%",
       description: "of India was hungry",
       subtitle: "Independence Era",
-      background: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
+      background: nutrition1,
     },
     {
       year: "2005",
       percentage: "35%",
       description: "of India was hungry",
       subtitle: "Progress Made",
-      background: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+      background: nutrition2,
     },
     {
       year: "2015",
       percentage: "27%",
       description: "of India was hungry",
       subtitle: "Continued Growth",
-      background: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
+      background: nutrition3,
     },
     {
       year: "2024",
       percentage: "22%",
       description: "of India was hungry",
       subtitle: "Current Reality",
-      background: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
+      background: nutrition4,
     },
   ]
 
@@ -136,10 +143,7 @@ const Nutrition = () => {
 
   // Slideshow images
   const slideImages = [
-    "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop",
+    nutrition4, nutrition5, nutrition6, nutrition1
   ]
 
   // Impact areas data with individual images
@@ -147,19 +151,19 @@ const Nutrition = () => {
     {
       icon: Baby,
       title: "Orphanages",
-      image: "https://images.unsplash.com/photo-1594736797933-d0d3085cf6dd?w=400&h=250&fit=crop",
+      image: nutrition2,
       description: "Supporting children in orphanages and shelter homes with nutritious meals",
     },
     {
       icon: School,
       title: "Schools",
-      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop",
+      image: nutrition3,
       description: "Enhancing mid-day meal programs in low-income schools",
     },
     {
       icon: Users,
       title: "Old Age Homes",
-      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=250&fit=crop",
+      image: nutrition5,
       description: "Providing specialized nutrition for elderly residents",
     },
   ]
@@ -309,7 +313,7 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          src={nutrition7}
           alt="Youth learning and skill development"
           className="w-full h-64 object-cover"
         />
@@ -403,7 +407,7 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=400&fit=crop"
+          src={nutrition7}
           alt="Youth learning and skill development"
           className="w-full h-64 object-cover"
         />
@@ -541,7 +545,7 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=400&fit=crop"
+          src={nutrition7}
           alt="Nutrition impact and healthy communities"
           className="w-full h-64 object-cover"
         />
@@ -625,7 +629,7 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=400&fit=crop"
+          src={nutrition7}
           alt="Children achieving nutritional goals"
           className="w-full h-64 object-cover"
         />

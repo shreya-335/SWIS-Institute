@@ -214,10 +214,10 @@ const VolunteerForm: React.FC = () => {
     } catch (error: any) {
       console.error("❌ APPLICATION SUBMISSION ERROR:", error)
 
-      let errorMessage = "Something went wrong. Please try again."
+      let errorMessage = "please wait a minute and try again. If the issue persists, contact us via email."//something went wrong. Please try again."
 
       if (error.message.includes("fetch")) {
-        errorMessage = "Cannot connect to server. Make sure backend is running on port 5000."
+        errorMessage = "try again in 1 minute" // port 5000
       } else if (error.message) {
         errorMessage = error.message
       }
