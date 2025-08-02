@@ -697,7 +697,7 @@ router.post("/volunteer-simple", multerDebug, upload.single("resume"), async (re
           <div style="padding: 20px; background-color: #1e40af; text-align: center; color: white;">
             <p style="margin: 0; font-size: 14px;">📅 Applied on: ${new Date().toLocaleString()}</p>
             <p style="margin: 8px 0 0 0; font-size: 14px; opacity: 0.8;">🌐 From: SWIS NGO Join Us Form</p>
-            ${resumeFileName ? `<p style="margin: 8px 0 0 0; font-size: 12px; opacity: 0.8;">💾 Resume: ${resumeFileName} (${(resumeFileSize / 1024).toFixed(2)} KB)</p>` : ""}
+            
           </div>
         </div>
       `,
@@ -734,7 +734,7 @@ router.post("/volunteer-simple", multerDebug, upload.single("resume"), async (re
               <p style="margin: 5px 0;"><strong>Age:</strong> ${age} years</p>
               <p style="margin: 5px 0;"><strong>Contact:</strong> ${contact}</p>
               <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
-              ${resumeFileName ? `<p style="margin: 5px 0;"><strong>Resume:</strong> ${resumeFileName} ✅ Uploaded Successfully</p>` : `<p style="margin: 5px 0;"><strong>Resume:</strong> ⚠️ Not uploaded</p>`}
+              
             </div>
           </div>
           
