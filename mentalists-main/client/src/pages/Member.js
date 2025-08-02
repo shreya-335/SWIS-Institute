@@ -681,5 +681,4 @@ const heroImages = [hero1, hero2, hero3];
 }
 
 export default Member
-//hvienfjef m vljvejf  
-//nvklnve, 
+//please get into main branch

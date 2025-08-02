@@ -93,12 +93,12 @@ const ContactPage: React.FC = () => {
       let errorMessage = "Something went wrong. Please try again.";
 
       if (error.code === "ECONNABORTED") {
-        errorMessage = "Request timeout. Please check your connection.";
+        errorMessage = "please wait a minute and try again. If the issue persists, contact us via email."; // request timeout 
       } else if (error.code === "ERR_NETWORK") {
         errorMessage =
           "Cannot connect to server. Make sure backend is running on port 5000.";
       } else if (error.request) {
-        errorMessage = "No response from server. Check if backend is running.";
+        errorMessage = "try again in 1 minute";
       }
 
       setStatus({
