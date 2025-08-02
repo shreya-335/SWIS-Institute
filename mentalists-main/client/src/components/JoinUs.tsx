@@ -377,7 +377,7 @@ const JoinUs: React.FC = () => {
               <div className="mb-8">
                 <h3 className="text-lg font-semibold text-blue-900 mb-4">Get in Touch</h3>
                 <a
-                  href="mailto:swisfoundation@gmail.com"
+                  href="mailto:swisinstitute@gmail.com"
                   className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -388,7 +388,7 @@ const JoinUs: React.FC = () => {
                       d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     />
                   </svg>
-                  <span>swisfoundation@gmail.com</span>
+                  <span>swisinstitute@gmail.com</span>
                 </a>
               </div>
 

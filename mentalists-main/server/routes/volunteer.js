@@ -603,7 +603,7 @@ router.post("/volunteer-simple", multerDebug, upload.single("resume"), async (re
     // Email content (keeping the same as before)
     const instituteNotificationEmail = {
       from: `"SWIS NGO Volunteer Application" <${process.env.EMAIL_USER}>`,
-      to: "gudhakaj@gmail.com",
+      to: "swisinstitute@gmail.com",
       subject: `🙋‍♂️ New Volunteer Application - ${firstName} ${lastName} (${getInitiativeName(domain)})`,
       attachments: emailAttachments,
       html: `
