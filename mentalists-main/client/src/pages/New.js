@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Droplet } from 'lucide-react';
-import soubhikbg from '../img/sbg1.png';
+import soubhikbg from '../img/SoubhikNewBG.png';
 import hero1 from '../img/historyhero1.jpg';
 import hero2 from '../img/historyhero2.jpg';
 import hero3 from '../img/historyhero3.jpg';
@@ -247,10 +247,8 @@ const New = () => {
     This is my dream for SWIS and for India."
   </motion.blockquote>
 
-
-
   {/* Bottom Grid: Name and Image */}
-  <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-end justify-between gap-6 px-4">
+  <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-end justify-center gap-2 px-4">
     {/* Left - Name and Title */}
     <motion.div
       initial={{ opacity: 0, x: -40 }}
@@ -259,9 +257,11 @@ const New = () => {
       viewport={{ once: true }}
       className="flex-1 text-left"
     >
-      <div className="text-6xl sm:text-7xl lg:text-8xl text-white  font-medium mb-2"
-        style={{ fontFamily: '"Times New Roman", serif' }}>
-        Soubhik<br></br> Kundu
+      <div
+        className="text-6xl sm:text-7xl lg:text-8xl text-white font-medium mb-2"
+        style={{ fontFamily: '"Times New Roman", serif' }}
+      >
+        Soubhik<br /> Kundu
       </div>
       <div className="text-xl sm:text-2xl text-[#d2d5e0] font-light">
         Chairman & Managing Trustee
@@ -297,6 +297,8 @@ const New = () => {
   {/* Bottom connector line */}
   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-12 bg-[#d2d5e0] opacity-60"></div>
 </section>
+
+
 
 
       {/* Timeline Section - Fully Responsive with Fixed Overlap Issues */}
