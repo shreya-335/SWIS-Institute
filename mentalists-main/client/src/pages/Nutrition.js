@@ -1,15 +1,15 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { motion, AnimatePresence, useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { Heart, School, Users, ArrowRight, Baby } from "lucide-react"
-import nutrition1 from "../img/nutrition1.jpg";
-import nutrition2 from "../img/nutrition2.jpg";
-import nutrition3 from "../img/nutrition3.jpg";
-import nutrition4 from "../img/nutrition4.jpg";
-import nutrition5 from "../img/nutrition5.jpg";
-import nutrition6 from "../img/nutrition6.jpg";
-import nutrition7 from "../img/nutrition7.png";
+import nutrition1 from "../img/nutrition1.jpg"
+import nutrition2 from "../img/nutrition2.jpg"
+import nutrition3 from "../img/nutrition3.jpg"
+import nutrition4 from "../img/nutrition4.jpg"
+import nutrition5 from "../img/nutrition5.jpg"
+import nutrition6 from "../img/nutrition6.jpg"
+import nutrition7 from "../img/nutrition7.png"
 
 // Counter animation component
 const AnimatedCounter = ({ value, duration = 2 }) => {
@@ -142,9 +142,7 @@ const Nutrition = () => {
   ]
 
   // Slideshow images
-  const slideImages = [
-    nutrition4, nutrition5, nutrition6, nutrition1
-  ]
+  const slideImages = [nutrition4, nutrition5, nutrition6, nutrition1]
 
   // Impact areas data with individual images
   const impactAreas = [
@@ -191,10 +189,12 @@ const Nutrition = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-8"
             >
-              <span className="text-[#d2d5e0] text-lg font-medium tracking-wider uppercase">SWIS FOUNDATION</span>
+              <span className="text-[#d2d5e0] text-sm sm:text-base md:text-lg font-medium tracking-wider uppercase">
+                SWIS FOUNDATION
+              </span>
             </motion.div>
-            <h1 className="text-6xl font-serif mb-8">Nutrition</h1>
-            <p className="text-2xl mb-12 max-w-3xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif mb-8">Nutrition</h1>
+            <p className="text-lg sm:text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
               A nutritious India, <span className="text-blue-300 italic">within our lifetime</span>
             </p>
           </motion.div>
@@ -204,37 +204,38 @@ const Nutrition = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative flex justify-center items-center space-x-16 mt-16"
+            className="relative flex flex-wrap justify-center items-center gap-2 sm:gap-4 md:gap-8 lg:gap-16 mt-16"
           >
-            {/* Continuous connecting line */}
-            <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2"></div>
+            <div className="absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-white bg-opacity-30 transform -translate-y-1/2 hidden md:block"></div>
 
             {timelineData.map((item, index) => (
-              <div key={index} className="relative flex flex-col items-center z-10">
+              <div key={index} className="relative flex flex-col items-center z-10 w-20 sm:w-24 md:w-auto">
                 <motion.button
                   onClick={() => setSelectedTimelineItem(index)}
-                  className={`flex flex-col items-center p-6 rounded-lg transition-all duration-300 bg-black bg-opacity-40 ${
+                  className={`flex flex-col items-center p-2 sm:p-3 md:p-4 lg:p-6 rounded-lg transition-all duration-300 bg-black bg-opacity-40 w-full ${
                     selectedTimelineItem === index
-                      ? "bg-white bg-opacity-20 scale-110"
+                      ? "bg-white bg-opacity-20 scale-105 sm:scale-110"
                       : "hover:bg-white hover:bg-opacity-10"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="text-4xl font-bold" style={{ color: "#FCFDFF" }}>
+                  <div className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold" style={{ color: "#FCFDFF" }}>
                     {item.year}
                   </div>
                   <div
-                    className={`w-6 h-6 rounded-full my-3 ${selectedTimelineItem === index ? "bg-white" : "bg-white bg-opacity-50"}`}
+                    className={`w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 rounded-full my-1 sm:my-2 md:my-3 ${selectedTimelineItem === index ? "bg-white" : "bg-white bg-opacity-50"}`}
                   ></div>
                   <div
-                    className="text-3xl font-bold"
-                    style={{ color: "#023080", backgroundColor: "#FCFDFF", padding: "8px 16px", borderRadius: "8px" }}
+                    className="text-sm sm:text-lg md:text-xl lg:text-3xl font-bold px-1 sm:px-2"
+                    style={{ color: "#023080", backgroundColor: "#FCFDFF", padding: "2px 4px", borderRadius: "4px" }}
                   >
                     {item.percentage}
                   </div>
-                  <div className="text-sm mt-3 text-center max-w-32">{item.description}</div>
-                  <div className="text-xs mt-2 text-[#d2d5e0] font-medium">{item.subtitle}</div>
+                  <div className="text-xs sm:text-sm mt-1 sm:mt-2 md:mt-3 text-center max-w-[70px] sm:max-w-[80px] md:max-w-32 leading-tight">
+                    {item.description}
+                  </div>
+                  <div className="text-xs mt-1 sm:mt-2 text-[#d2d5e0] font-medium text-center">{item.subtitle}</div>
                 </motion.button>
               </div>
             ))}
@@ -271,18 +272,18 @@ const Nutrition = () => {
               href="/JoinUs"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-[#023080] px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group"
+              className="bg-white text-[#023080] px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-2 sm:gap-3 group"
             >
               Join Us
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.a>
           </motion.div>
         </div>
       </section>
 
       {/* India's Nutrition Crisis Section */}
-      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-12 sm:py-16 md:py-24" style={{ backgroundColor: "#FCFDFF" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -290,8 +291,10 @@ const Nutrition = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-[#023080] mb-12">India's Nutrition Crisis</h2>
-            <p className="text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#023080] mb-8 sm:mb-12">
+              India's Nutrition Crisis
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#04307b]/90 leading-relaxed font-medium max-w-5xl mx-auto">
               India faces a silent nutrition crisis—over 35% of children under five are stunted and 32% are underweight
               (NFHS-5). The impact is worse in rural, tribal, and underserved communities. Hunger knows no age. Children
               in orphanages, the elderly in old age homes, and students in low-income schools often receive irregular,
@@ -313,7 +316,7 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src={nutrition7}
+          src={nutrition7 || "/placeholder.svg"}
           alt="Youth learning and skill development"
           className="w-full h-64 object-cover"
         />
@@ -329,72 +332,71 @@ const Nutrition = () => {
 
       {/* Our Nutrition Outreach Includes Section */}
       {/* Our Nutrition Outreach Includes Section */}
-      <section className="py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-12 sm:py-16 md:py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 md:mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Our Nutrition Outreach Includes</h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-8">
+              Our Nutrition Outreach Includes
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
               At SWIS, we believe that access to nutritious food is a basic human right, not a privilege. Our
               interventions are rooted in empathy, dignity, and sustainability—ensuring that every child, every elder,
               and every student under our care receives meals that nourish both body and mind.
             </p>
           </motion.div>
           {/* Program Navigation Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {programData.map((program, index) => (
               <motion.button
                 key={index}
                 onClick={() => setActiveCard(index)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`p-4 rounded-2xl transition-all duration-300 text-center bg-white   shadow-xl`
-                  }
+                className="p-3 sm:p-4 rounded-2xl transition-all duration-300 text-center bg-white shadow-xl"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-center justify-start gap-3 px-2">
+                <div className="flex items-center justify-start gap-2 sm:gap-3 px-1 sm:px-2">
                   <div className="text-gray-600 flex-shrink-0">{program.icon}</div>
-                  <h3 className="text-sm font-semibold text-gray-800 text-left leading-tight">{program.title}</h3>
+                  <h3 className="text-xs sm:text-sm font-semibold text-gray-800 text-left leading-tight">
+                    {program.title}
+                  </h3>
                 </div>
               </motion.button>
             ))}
           </div>
 
           {/* Updated Program Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {programData.map((program, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-3xl p-8 shadow-2xl flex flex-col items-center text-center hover:scale-105 transition-transform duration-300"
+                className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl flex flex-col items-center text-center hover:scale-105 transition-transform duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="flex-shrink-0 mb-4">
-                  <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-[#023080]">
+                <div className="flex-shrink-0 mb-3 sm:mb-4">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-100 rounded-xl sm:rounded-2xl flex items-center justify-center text-[#023080]">
                     {program.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#023080] mb-2"></h3>
-                <p className="text-gray-700 text-sm leading-relaxed">{program.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-[#023080] mb-2"></h3>
+                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{program.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
-          
-
-
 
       {/* second Rough Edge Image Section */}
       <div className="relative">
@@ -407,7 +409,7 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src={nutrition7}
+          src={nutrition7 || "/placeholder.svg"}
           alt="Youth learning and skill development"
           className="w-full h-64 object-cover"
         />
@@ -422,19 +424,21 @@ const Nutrition = () => {
       </div>
 
       {/* Where We Work Section */}
-      <section className="py-24" style={{ backgroundColor: "#023080" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-12 sm:py-16 md:py-24" style={{ backgroundColor: "#023080" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 md:mb-16"
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8">Where We Work</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-8">
+              Where We Work
+            </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {impactAreas.map((area, index) => (
               <motion.div
                 key={index}
@@ -443,20 +447,20 @@ const Nutrition = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02 }}
-                className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300"
+                className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
                 {/* Image Section */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden">
                   <img src={area.image || "/placeholder.svg"} alt={area.title} className="w-full h-full object-cover" />
                 </div>
 
                 {/* Content Section */}
-                <div className="p-6">
-                  <div className="flex items-center gap-4">
+                <div className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                     <div className="text-[#023080]">
-                      <area.icon className="w-8 h-8" />
+                      <area.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-[#023080]">{area.title}</h3>
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#023080]">{area.title}</h3>
                   </div>
                 </div>
               </motion.div>
@@ -466,69 +470,69 @@ const Nutrition = () => {
       </section>
 
       {/* Our Impact Section */}
-      <section className="py-24" style={{ backgroundColor: "#FCFDFF" }}>
+      <section className="py-12 sm:py-16 md:py-24" style={{ backgroundColor: "#FCFDFF" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 text-[#023080]"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-[#023080]"
           >
             Our Impact
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={2} />+
               </div>
-              <div className="text-xl text-gray-700">States</div>
+              <div className="text-sm sm:text-base md:text-xl text-gray-700">States</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={4} />+
               </div>
-              <div className="text-xl text-gray-700">Locations</div>
+              <div className="text-sm sm:text-base md:text-xl text-gray-700">Locations</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={10000} />+
               </div>
-              <div className="text-xl text-gray-700">Meals Served</div>
+              <div className="text-sm sm:text-base md:text-xl text-gray-700">Meals Served</div>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
+              className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="text-5xl font-bold mb-4" style={{ color: "#023080" }}>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4" style={{ color: "#023080" }}>
                 <AnimatedCounter value={150} />+
               </div>
-              <div className="text-xl text-gray-700">Beneficiaries Impacted</div>
+              <div className="text-sm sm:text-base md:text-xl text-gray-700">Beneficiaries Impacted</div>
             </motion.div>
           </div>
         </div>
@@ -545,7 +549,7 @@ const Nutrition = () => {
           }}
         ></div>
         <img
-          src={nutrition7}
+          src={nutrition7 || "/placeholder.svg"}
           alt="Nutrition impact and healthy communities"
           className="w-full h-64 object-cover"
         />
@@ -560,8 +564,8 @@ const Nutrition = () => {
       </div>
 
       {/* 2030 Vision Section */}
-      <section className="py-24" style={{ backgroundColor: "#04307b" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-12 sm:py-16 md:py-24" style={{ backgroundColor: "#04307b" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -569,17 +573,19 @@ const Nutrition = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-white">Our 2030 Vision</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-8 text-white">
+              Our 2030 Vision
+            </h2>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-5xl lg:text-7xl font-bold text-[#d2d5e0] mb-8"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#d2d5e0] mb-4 sm:mb-8"
             >
               600K+
             </motion.div>
-            <p className="text-lg lg:text-xl text-[#d2d5e0]/90 max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#d2d5e0]/90 max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12">
               By 2030, provide 600K+ healthy meals annually to vulnerable populations across shelter homes, schools, and
               senior care centers—fighting hunger, improving health, and restoring dignity for those most often
               forgotten.
@@ -591,16 +597,16 @@ const Nutrition = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
               viewport={{ once: true }}
-              className="mb-6"
+              className="mb-4 sm:mb-6"
             >
               <motion.a
                 href="/JoinUs"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#023080] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#d2d5e0] transition-all duration-300 transform hover:shadow-2xl inline-flex items-center gap-3 group"
+                className="bg-white text-[#023080] px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg hover:bg-[#d2d5e0] transition-all duration-300 transform hover:shadow-2xl inline-flex items-center gap-2 sm:gap-3 group"
               >
                 Join Our Mission
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </motion.a>
             </motion.div>
 
@@ -610,7 +616,7 @@ const Nutrition = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
               viewport={{ once: true }}
-              className="text-[#d2d5e0]/80 text-sm"
+              className="text-[#d2d5e0]/80 text-xs sm:text-sm"
             >
               Be part of India's transformation. Help us nourish those who need it most.
             </motion.p>
@@ -625,11 +631,11 @@ const Nutrition = () => {
           style={{
             backgroundColor: "#04307b",
             clipPath:
-              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 90%, 23% 100%, 21% 95%, 19% 100%, 17% 85%, 15% 100%, 13% 90%, 11% 100%, 9% 95%, 7% 100%, 5% 90%, 3% 100%, 1% 95%, 0 100%)",
+              "polygon(0 0, 100% 0, 99% 100%, 97% 90%, 95% 100%, 93% 85%, 91% 100%, 89% 95%, 87% 100%, 85% 90%, 83% 100%, 81% 95%, 79% 100%, 77% 85%, 75% 100%, 73% 90%, 71% 100%, 69% 95%, 67% 100%, 65% 90%, 63% 100%, 61% 95%, 59% 100%, 57% 85%, 55% 100%, 53% 90%, 51% 100%, 49% 95%, 47% 100%, 45% 90%, 43% 100%, 41% 95%, 39% 100%, 37% 85%, 35% 100%, 33% 90%, 31% 100%, 29% 95%, 27% 100%, 25% 90%, 23% 100%, 21% 95%, 19% 100%, 17% 85%, 15% 100%, 13% 90%, 11% 100%, 9% 95%, 7% 0, 5% 10%, 3% 0, 1% 5%, 0 100%)",
           }}
         ></div>
         <img
-          src={nutrition7}
+          src={nutrition7 || "/placeholder.svg"}
           alt="Children achieving nutritional goals"
           className="w-full h-64 object-cover"
         />
@@ -644,7 +650,7 @@ const Nutrition = () => {
       </div>
 
       {/* Statistics Section - Moved to end */}
-      <section className="py-24" style={{ backgroundColor: "#d2d5e0" }}>
+      <section className="py-12 sm:py-16 md:py-24" style={{ backgroundColor: "#d2d5e0" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -653,32 +659,35 @@ const Nutrition = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl font-bold mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-8">
               Why It Matters: <span style={{ color: "#023080" }}>Key Nutrition Statistics</span>
             </h2>
-            <p className="text-lg text-[#023080]/80 max-w-6xl mx-auto mb-16">
+            <p className="text-sm sm:text-base md:text-lg text-[#023080]/80 max-w-6xl mx-auto mb-8 sm:mb-12 md:mb-16">
               These statistics reveal the urgent need for comprehensive nutrition interventions across vulnerable
               populations in India.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-4"
+                  style={{ color: "#023080" }}
+                >
                   <AnimatedCounter value={1} />
-                  <span className="text-4xl">in</span>
+                  <span className="text-2xl sm:text-3xl md:text-4xl">in</span>
                   <AnimatedCounter value={3} />
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
+                <div className="text-gray-700 mb-2 sm:mb-4 text-sm sm:text-base md:text-lg font-semibold">
                   children in shelter homes do not receive adequate nutrition
                 </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
+                <div className="text-xs sm:text-sm" style={{ color: "#023080" }}>
                   Source: Childline India Foundation, 2021
                 </div>
               </motion.div>
@@ -688,17 +697,20 @@ const Nutrition = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-4"
+                  style={{ color: "#023080" }}
+                >
                   <AnimatedCounter value={50} />
                   %+
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
+                <div className="text-gray-700 mb-2 sm:mb-4 text-sm sm:text-base md:text-lg font-semibold">
                   of elderly in care homes suffer from undernutrition or chronic deficiencies
                 </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
+                <div className="text-xs sm:text-sm" style={{ color: "#023080" }}>
                   Source: HelpAge India, 2022
                 </div>
               </motion.div>
@@ -708,16 +720,19 @@ const Nutrition = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-7xl font-bold mb-4" style={{ color: "#023080" }}>
+                <div
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-4"
+                  style={{ color: "#023080" }}
+                >
                   <AnimatedCounter value={115} />M
                 </div>
-                <div className="text-gray-700 mb-4 text-lg font-semibold">
+                <div className="text-gray-700 mb-2 sm:mb-4 text-sm sm:text-base md:text-lg font-semibold">
                   children depend on Mid-Day Meals in India, yet quality, quantity, and safety remain major concerns
                 </div>
-                <div className="text-sm" style={{ color: "#023080" }}>
+                <div className="text-xs sm:text-sm" style={{ color: "#023080" }}>
                   Source: Ministry of Education, Govt. of India, 2023
                 </div>
               </motion.div>
