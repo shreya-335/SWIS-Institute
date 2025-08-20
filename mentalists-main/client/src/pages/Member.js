@@ -11,7 +11,7 @@ import Dikshitha from '../img/Dikshitha.jpg';
 import nakshatra from '../img/nakshatra.jpg';
 import harshita from '../img/harshita.jpg';
 import tanya from '../img/tanya.jpg';
-import soubhik from '../img/soubhik.jpg';
+import soubhik from '../img/SoubhikNew.jpg';
 import advikas from '../img/advikas.jpg';
 import zoha from '../img/zoha.jpg';
 import manya from '../img/manya.jpg';

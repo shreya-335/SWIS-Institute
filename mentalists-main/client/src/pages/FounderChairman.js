@@ -15,7 +15,7 @@ import gal5 from "../img/gal5.jpg";
 import gal6 from "../img/gal6.jpg";
 
 // Founder image
-import founder from "../img/founder.jpg";
+import founder from "../img/SoubhikNew.jpg";
 
 // Gallery images
 const allGalleryImages = [

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import soubhikbg from "../img/sbg1.png";
+import soubhikbg from "../img/SoubhikNewBG.png";
 import edu1 from "../img/edu2.jpg";
 import skill1 from "../img/skill1.jpg";
 

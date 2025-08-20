@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Users, Award, Clock, Heart, Target, Globe,ChevronLeft, ChevronRight, Droplet  } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import soubhikbg from '../img/S1.png';
+import soubhikbg from '../img/SoubhikNew.jpg';
 import csaaS2 from '../img/csaaS2.jpg';
 
 //nvdlnv
