@@ -44,33 +44,32 @@ const ScrollHeader = () => {
           description: "Learn about our journey and milestones",
         },
         {
-          title: "Chairman & Managing Trustee",
-          href: "/founderchairman",
-          description: "Meet our leadership team",
-        },
-        {
-          title: "Advisory Board",
-          href: "/member",
-          description: "Our strategic advisors and mentors",
-        },
-        { title: "Board Members", href: "/member", description: "Governing body members" },
-        { title: "Core Team", href: "/member", description: "Our dedicated team members" },
-        {
-          title: "Founding Supporters",
-          href: "/member",
-          description: "Those who believed in our vision",
-        },
-
-        {
           title: "Privacy Policy",
           href: "/PrivacyPolicy",
           description: "Data protection policies",
         },
+
         {
           title: "Terms & Conditions",
           href: "/TermsAndConditions",
           description: "Terms of service",
         },
+
+
+        {
+          title: "Chairman & Managing Trustee",
+          href: "/founderchairman",
+          description: "Meet our leadership team",
+        },
+        {
+          title: "Board & Committee Members",
+          href: "/member",
+          description: "Our strategic advisors and mentors",
+        },
+        
+
+        
+        
       ],
     },
     {

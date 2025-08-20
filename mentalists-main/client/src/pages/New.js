@@ -216,21 +216,21 @@ const New = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
-          >
-            <p className="text-base sm:text-lg md:text-xl text-[#d2d5e0] leading-relaxed font-light">
-              Over 4 years of dedicated service, transformative growth, and unwavering commitment to social change. From
-              humble beginnings to revolutionary impact - this is our story.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.6 }}
+  viewport={{ once: true }}
+  className="max-w-4xl mx-auto"
+>
+  <p className="text-lg sm:text-xl md:text-3xl text-[#d2d5e0] leading-relaxed font-light">
+    Over 4 years of dedicated service, transformative growth, and unwavering commitment to social change.
+    From humble beginnings to revolutionary impact - this is our story.
+  </p>
+</motion.div>
+</div>
+</section>
 
-     <section className="bg-[#023080] py-20 px-4 sm:px-6 lg:px-12 text-white relative overflow-hidden">
+<section className="bg-[#023080] py-20 px-4 sm:px-6 lg:px-12 text-white relative overflow-hidden">
   {/* Top connector line */}
   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-12 bg-[#d2d5e0] opacity-60"></div>
 
@@ -240,12 +240,14 @@ const New = () => {
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8 }}
     viewport={{ once: true }}
-    className="text-center max-w-5xl mx-auto text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-light leading-relaxed mb-8 font-[Times_New_Roman,_serif]"
+    className="text-center max-w-5xl mx-auto text-lg sm:text-xl md:text-3xl font-light leading-relaxed mb-8 font-[Times_New_Roman,_serif]"
   >
     "Our purpose has to be clear. Our compassion stronger.<br />
     Our commitment deeper. And our impact wider.<br />
     This is my dream for SWIS and for India."
   </motion.blockquote>
+
+
 
   {/* Bottom Grid: Name and Image */}
   <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-end justify-between gap-6 px-4">
