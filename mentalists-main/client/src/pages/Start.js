@@ -11,6 +11,8 @@ import h2 from "../img/h2.jpeg"
 import h3 from "../img/h3.jpeg"
 import h4 from "../img/h4.jpeg"
 import h5 from "../img/h5.jpeg"
+import hnew from "../img/hnew.jpg"
+
 import civil11 from "../img/civil (11).png"
 import civil1 from "../img/civil (1).png"
 import civil2 from "../img/civil (2).png"
@@ -52,7 +54,7 @@ const Homepage = () => {
   const [activeCenter, setActiveCenter] = useState("Social Action")
   const [hoveredState, setHoveredState] = useState("")
   // Sample images for slideshow
-  const slides = [h1, h2, h3, h4, h5]
+  const slides = [h1, h2, hnew, h4, h5]
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -633,7 +635,7 @@ const Homepage = () => {
               className="aspect-square rounded-lg md:rounded-2xl overflow-hidden"
             >
               <img
-                src={h3 || "/placeholder.svg"}
+                src={h2 || "/placeholder.svg"}
                 alt="Children studying together"
                 className="w-full h-full object-cover"
               />
@@ -695,27 +697,32 @@ const Homepage = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-lg md:rounded-2xl flex flex-col items-center justify-center text-white text-center p-3 md:p-6"
+              className="h-72 rounded-lg md:rounded-2xl flex flex-col items-center justify-center text-white text-center p-3 md:p-6"
               style={{ backgroundColor: "#023080" }}
             >
-              <h3 className="text-2xl md:text-4xl lg:text-5xl mb-1 md:mb-3" style={{ fontFamily: '"Times New Roman", serif' }}>
+              <h3
+                className="text-2xl md:text-4xl lg:text-5xl mb-1 md:mb-3"
+                style={{ fontFamily: '"Times New Roman", serif' }}
+              >
                 25+
               </h3>
               <p className="text-sm md:text-xl lg:text-2xl">Partners</p>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.7 }}
               viewport={{ once: true }}
-              className="col-span-2 aspect-[2/1] rounded-lg md:rounded-2xl overflow-hidden"
+              className="col-span-2 h-72 rounded-lg md:rounded-2xl overflow-hidden"
             >
               <img
-                src={h1 || "/placeholder.svg"}
+                src={hnew || "/placeholder.svg"}
                 alt="SWIS team members together"
                 className="w-full h-full object-cover"
               />
             </motion.div>
+
           </div>
         </div>
       </section>
